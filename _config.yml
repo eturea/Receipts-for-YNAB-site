@@ -1,6 +1,6 @@
 title: Receipts for YNAB
 description: Privacy-first receipt scanner for YNAB using Apple Intelligence
-theme: jekyll-theme-minima
+theme: minima
 baseurl: "/Receipts-for-YNAB-site"
 url: "https://eturea.github.io"
 
