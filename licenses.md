@@ -1,16 +1,16 @@
 # Legal Notices and Licenses
 
-**YNAB Receipts**
+**Receipts for YNAB**
 **Version:** 1.0
 **Last Updated:** October 15, 2025
 
-This document contains legal notices and license information for third-party software, frameworks, and services used in YNAB Receipts.
+This document contains legal notices and license information for third-party software, frameworks, and services used in Receipts for YNAB.
 
 ---
 
 ## Table of Contents
 
-1. [YNAB Receipts License](#ynab-receipts-license)
+1. [Receipts for YNAB License](#ynab-receipts-license)
 2. [Apple Frameworks and SDKs](#apple-frameworks-and-sdks)
 3. [Third-Party Services](#third-party-services)
 4. [Open Source Components](#open-source-components)
@@ -19,11 +19,11 @@ This document contains legal notices and license information for third-party sof
 
 ---
 
-## YNAB Receipts License
+## Receipts for YNAB License
 
 **Copyright © 2025 eTurea. All rights reserved.**
 
-YNAB Receipts is proprietary software owned by eTurea. The app is licensed to end users under the terms specified in our [Terms of Service](./terms.md).
+Receipts for YNAB is proprietary software owned by eTurea. The app is licensed to end users under the terms specified in our [Terms of Service](./terms.md).
 
 ### License Summary
 
@@ -38,7 +38,7 @@ For full license terms, please refer to our [Terms of Service](./terms.md).
 
 ## Apple Frameworks and SDKs
 
-YNAB Receipts is built using Apple's iOS SDK and frameworks. All Apple frameworks are used under Apple's standard SDK license agreement.
+Receipts for YNAB is built using Apple's iOS SDK and frameworks. All Apple frameworks are used under Apple's standard SDK license agreement.
 
 ### SwiftUI
 - **Copyright:** © Apple Inc.
@@ -141,7 +141,7 @@ The YNAB API is used under YNAB's API Terms of Service:
 - Tokens refreshed automatically as needed
 
 **Disclaimer:**
-YNAB Receipts is an independent application and is not affiliated with, endorsed by, or sponsored by YNAB or Steine LLC.
+Receipts for YNAB is an independent application and is not affiliated with, endorsed by, or sponsored by YNAB or Steine LLC.
 
 ---
 
@@ -176,7 +176,7 @@ limitations under the License.
 
 ### Additional Open Source Dependencies
 
-**Currently, YNAB Receipts does not use any additional third-party open-source libraries beyond the Swift standard library and Apple frameworks.**
+**Currently, Receipts for YNAB does not use any additional third-party open-source libraries beyond the Swift standard library and Apple frameworks.**
 
 If open-source dependencies are added in future versions, they will be listed here with their respective licenses and attributions.
 
@@ -184,12 +184,12 @@ If open-source dependencies are added in future versions, they will be listed he
 
 ## Trademarks
 
-### YNAB Receipts
+### Receipts for YNAB
 
-**"YNAB Receipts"** and the YNAB Receipts logo are trademarks of **eTurea**.
+**"Receipts for YNAB"** and the Receipts for YNAB logo are trademarks of **eTurea**.
 
 **Restrictions:**
-- Unauthorized use of the YNAB Receipts trademark is prohibited
+- Unauthorized use of the Receipts for YNAB trademark is prohibited
 - The app name and logo may not be used without written permission from eTurea
 
 ### YNAB (You Need A Budget)
@@ -198,7 +198,7 @@ If open-source dependencies are added in future versions, they will be listed he
 
 **Usage:**
 - Used with permission to identify integration with YNAB's budgeting service
-- YNAB Receipts is not endorsed by or affiliated with YNAB
+- Receipts for YNAB is not endorsed by or affiliated with YNAB
 - All rights to the YNAB trademark remain with Steine LLC
 
 ### Apple
@@ -207,24 +207,24 @@ If open-source dependencies are added in future versions, they will be listed he
 
 **Usage:**
 - Used to describe platform compatibility and features
-- YNAB Receipts is not endorsed by or affiliated with Apple Inc.
+- Receipts for YNAB is not endorsed by or affiliated with Apple Inc.
 - All rights to Apple trademarks remain with Apple Inc.
 
 ---
 
 ## Copyright Notices
 
-### YNAB Receipts Source Code
+### Receipts for YNAB Source Code
 
 **Copyright © 2025 eTurea. All rights reserved.**
 
-The source code for YNAB Receipts is proprietary and confidential. Unauthorized copying, modification, distribution, or reverse engineering is strictly prohibited.
+The source code for Receipts for YNAB is proprietary and confidential. Unauthorized copying, modification, distribution, or reverse engineering is strictly prohibited.
 
 ### Receipt Data and User Content
 
 **Users retain all ownership rights to their receipt images and data.**
 
-By using YNAB Receipts, users grant eTurea a limited license to:
+By using Receipts for YNAB, users grant eTurea a limited license to:
 - Process receipt images on-device using Apple Intelligence
 - Store data locally on the user's device
 - Transmit transaction data to YNAB when explicitly requested
@@ -257,7 +257,7 @@ https://www.youneedabudget.com/privacy-policy/
 
 ### No Analytics or Tracking
 
-YNAB Receipts does **not** use:
+Receipts for YNAB does **not** use:
 - Analytics services (Google Analytics, Mixpanel, etc.)
 - Advertising networks
 - Crash reporting tools (Firebase, Sentry, etc.)
@@ -269,7 +269,7 @@ For complete privacy details, see our [Privacy Policy](./privacy.md).
 
 ## Export Control
 
-This software is subject to U.S. export control laws and regulations. By downloading or using YNAB Receipts, you represent and warrant that:
+This software is subject to U.S. export control laws and regulations. By downloading or using Receipts for YNAB, you represent and warrant that:
 
 - You are not located in a country subject to U.S. government embargo
 - You are not listed on any U.S. government list of prohibited or restricted parties
@@ -281,7 +281,7 @@ This software is subject to U.S. export control laws and regulations. By downloa
 
 ### Apple App Store Review Guidelines
 
-YNAB Receipts complies with Apple's App Store Review Guidelines:
+Receipts for YNAB complies with Apple's App Store Review Guidelines:
 https://developer.apple.com/app-store/review/guidelines/
 
 **Key Compliance Areas:**
@@ -292,7 +292,7 @@ https://developer.apple.com/app-store/review/guidelines/
 
 ### Privacy Regulations
 
-YNAB Receipts is designed to comply with:
+Receipts for YNAB is designed to comply with:
 
 - **GDPR** (General Data Protection Regulation) - European Union
 - **CCPA** (California Consumer Privacy Act) - United States
@@ -323,7 +323,7 @@ You can always view the most current version of this document:
 
 ### Development Tools
 
-YNAB Receipts was built using:
+Receipts for YNAB was built using:
 
 - **Xcode** - Apple's integrated development environment
 - **Swift** - Apple's programming language
@@ -345,7 +345,7 @@ If you have questions about licenses, attributions, or legal notices, please con
 
 **Email:** support@ynabreceipts.app
 **Developer:** eTurea
-**App Name:** YNAB Receipts
+**App Name:** Receipts for YNAB
 
 For general support inquiries, please use the same contact email.
 

@@ -1,18 +1,18 @@
-# YNAB Receipts
+# Receipts for YNAB
 
 ### Transform Your Paper Receipts into YNAB Transactions with Apple Intelligence
 
-**YNAB Receipts** is the intelligent receipt scanner for YNAB users. Capture receipts with your iPhone, let Apple Intelligence extract the details, and sync transactions to your budget—all while keeping your data private and secure on your device.
+**Receipts for YNAB** is the intelligent receipt scanner for YNAB users. Capture receipts with your iPhone, let Apple Intelligence extract the details, and sync transactions to your budget—all while keeping your data private and secure on your device.
 
 [Download on the App Store](#) | [Privacy Policy](./privacy.md) | [Terms of Service](./terms.md)
 
 ---
 
-## Why YNAB Receipts?
+## Why Receipts for YNAB?
 
 ### Powered by Apple Intelligence
 
-YNAB Receipts harnesses **Apple Intelligence** (iOS 26+) to process receipts entirely on your device. No cloud uploads, no external servers—just fast, accurate, and private receipt scanning.
+Receipts for YNAB harnesses **Apple Intelligence** (iOS 26+) to process receipts entirely on your device. No cloud uploads, no external servers—just fast, accurate, and private receipt scanning.
 
 ✨ **AI-Powered Extraction** - Automatically detects merchant names, dates, amounts, and line items
 🔒 **100% On-Device** - All processing happens on your iPhone using Apple's Vision and Foundation Models
@@ -109,7 +109,7 @@ Learn more in our [Privacy Policy](./privacy.md).
 ### 🎙️ Siri and Shortcuts Integration
 
 **Voice-Activated Scanning:**
-- "Hey Siri, scan a receipt in YNAB Receipts"
+- "Hey Siri, scan a receipt in Receipts for YNAB"
 - Add to Shortcuts app for automation
 - Quick Actions from Home Screen
 - App Intents for advanced workflows
@@ -166,7 +166,7 @@ Choose a YNAB account and sync. The transaction appears in your budget with all 
 
 ## Pricing
 
-**YNAB Receipts is completely free.**
+**Receipts for YNAB is completely free.**
 
 No in-app purchases, no subscriptions, no ads. Just a powerful receipt scanner for YNAB users.
 
@@ -186,7 +186,7 @@ OAuth2 with PKCE (Proof Key for Code Exchange) ensures secure YNAB authenticatio
 We don't operate servers, use analytics tools, or track your behavior. The only external service we communicate with is YNAB's API—and only when you choose to sync.
 
 ### Compliance
-YNAB Receipts complies with:
+Receipts for YNAB complies with:
 - GDPR (European Union)
 - CCPA (California, USA)
 - COPPA (USA)
@@ -200,17 +200,17 @@ Read our full [Privacy Policy](./privacy.md) for details.
 
 ### General Questions
 
-**Q: What is YNAB Receipts?**
-A: YNAB Receipts is an iOS app that uses Apple Intelligence to scan paper receipts and create transactions in your YNAB (You Need A Budget) account. It's built for YNAB users who want to digitize receipts and track purchases with line-item detail.
+**Q: What is Receipts for YNAB?**
+A: Receipts for YNAB is an iOS app that uses Apple Intelligence to scan paper receipts and create transactions in your YNAB (You Need A Budget) account. It's built for YNAB users who want to digitize receipts and track purchases with line-item detail.
 
 **Q: Do I need a YNAB account?**
-A: Yes. YNAB Receipts requires an active YNAB subscription to sync receipts. You can scan and store receipts locally without YNAB, but syncing requires authentication.
+A: Yes. Receipts for YNAB requires an active YNAB subscription to sync receipts. You can scan and store receipts locally without YNAB, but syncing requires authentication.
 
-**Q: Is YNAB Receipts affiliated with YNAB?**
-A: No. YNAB Receipts is an independent app developed by eTurea. We are not affiliated with, endorsed by, or sponsored by YNAB (Steine LLC).
+**Q: Is Receipts for YNAB affiliated with YNAB?**
+A: No. Receipts for YNAB is an independent app developed by eTurea. We are not affiliated with, endorsed by, or sponsored by YNAB (Steine LLC).
 
 **Q: How much does it cost?**
-A: YNAB Receipts is **completely free**. No in-app purchases, no subscriptions, no ads.
+A: Receipts for YNAB is **completely free**. No in-app purchases, no subscriptions, no ads.
 
 ### Privacy & Data
 
@@ -256,7 +256,7 @@ A: The app validates photo quality before scanning and provides helpful feedback
 
 ### YNAB Integration
 
-**Q: Does YNAB Receipts modify my existing transactions?**
+**Q: Does Receipts for YNAB modify my existing transactions?**
 A: No. The app only creates new transactions that you approve or updates transactions previously created by this app.
 
 **Q: Can I choose which YNAB account to use?**
@@ -287,7 +287,7 @@ A: Go to Settings → YNAB Connection → Disconnect. This immediately removes y
 ### Technical Questions
 
 **Q: What devices are supported?**
-A: YNAB Receipts requires:
+A: Receipts for YNAB requires:
 - iPhone or iPad with Apple Intelligence support
 - A17 Pro chip or later (iPhone 15 Pro, iPhone 16 series, or M-series iPad)
 - iOS 26.0 or later
@@ -298,7 +298,7 @@ The app will not appear in the App Store for incompatible devices.
 A: Apple Intelligence (Foundation Models framework) provides the on-device AI that extracts structured data from receipts. This ensures your receipt images never leave your device.
 
 **Q: Can I use Siri to scan receipts?**
-A: Yes! The app supports Siri voice commands and Shortcuts integration. You can say "Hey Siri, scan a receipt in YNAB Receipts" or create custom automation workflows.
+A: Yes! The app supports Siri voice commands and Shortcuts integration. You can say "Hey Siri, scan a receipt in Receipts for YNAB" or create custom automation workflows.
 
 **Q: Does the app work offline?**
 A: Receipt scanning works completely offline (on-device AI). Syncing to YNAB requires an internet connection.
@@ -364,7 +364,7 @@ We love hearing from users! If you have ideas for new features or improvements, 
 
 ### Open Source
 
-YNAB Receipts is built with:
+Receipts for YNAB is built with:
 - **Swift** (Apache 2.0 License)
 - **Apple iOS Frameworks** (SwiftUI, SwiftData, Vision, Foundation Models, Combine, Security)
 
@@ -372,7 +372,7 @@ See our [Licenses](./licenses.md) page for complete attributions.
 
 ### Compliance
 
-YNAB Receipts complies with:
+Receipts for YNAB complies with:
 - Apple App Store Review Guidelines
 - GDPR (General Data Protection Regulation)
 - CCPA (California Consumer Privacy Act)
@@ -382,7 +382,7 @@ YNAB Receipts complies with:
 
 ## About eTurea
 
-**YNAB Receipts** is developed by **eTurea**, an independent software developer passionate about building privacy-first productivity tools.
+**Receipts for YNAB** is developed by **eTurea**, an independent software developer passionate about building privacy-first productivity tools.
 
 Our mission is to create apps that:
 - Respect user privacy
@@ -394,7 +394,7 @@ Our mission is to create apps that:
 
 **Developer:** eTurea
 **Email:** support@ynabreceipts.app
-**App Store:** [YNAB Receipts](#)
+**App Store:** [Receipts for YNAB](#)
 
 ---
 
@@ -415,7 +415,7 @@ Our mission is to create apps that:
 
 ### Coming Soon
 
-We're constantly improving YNAB Receipts. Future updates may include:
+We're constantly improving Receipts for YNAB. Future updates may include:
 - Bulk receipt export
 - Advanced search and filtering
 - Receipt templates for recurring purchases
@@ -429,7 +429,7 @@ Follow us for updates and announcements!
 
 ## Download
 
-**YNAB Receipts is available now on the App Store.**
+**Receipts for YNAB is available now on the App Store.**
 
 [Download on the App Store](#)
 
@@ -460,7 +460,7 @@ Browse, search, and manage all your scanned receipts.
 
 **© 2025 eTurea. All rights reserved.**
 
-YNAB Receipts is not affiliated with, endorsed by, or sponsored by YNAB (Steine LLC).
+Receipts for YNAB is not affiliated with, endorsed by, or sponsored by YNAB (Steine LLC).
 "YNAB" and "You Need A Budget" are trademarks of Steine LLC.
 
 [Privacy Policy](./privacy.md) | [Terms of Service](./terms.md) | [Licenses](./licenses.md) | [Contact](mailto:support@ynabreceipts.app)

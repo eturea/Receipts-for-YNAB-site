@@ -1,18 +1,18 @@
-# Terms of Service for YNAB Receipts
+# Terms of Service for Receipts for YNAB
 
 **Effective Date:** October 15, 2025
 **Last Updated:** October 15, 2025
 
-Welcome to **YNAB Receipts**. These Terms of Service ("Terms", "Agreement") are a legal agreement between you ("User", "you", or "your") and **eTurea** ("we", "us", or "our") governing your use of the YNAB Receipts mobile application (the "App", "Service").
+Welcome to **Receipts for YNAB**. These Terms of Service ("Terms", "Agreement") are a legal agreement between you ("User", "you", or "your") and **eTurea** ("we", "us", or "our") governing your use of the Receipts for YNAB mobile application (the "App", "Service").
 
-**By downloading, installing, or using YNAB Receipts, you agree to be bound by these Terms.** If you do not agree to these Terms, do not use the App.
+**By downloading, installing, or using Receipts for YNAB, you agree to be bound by these Terms.** If you do not agree to these Terms, do not use the App.
 
 ---
 
 ## 1. Acceptance of Terms
 
 ### 1.1 Agreement to Terms
-By accessing or using YNAB Receipts, you confirm that:
+By accessing or using Receipts for YNAB, you confirm that:
 - You are at least 13 years of age
 - You have the legal capacity to enter into this Agreement
 - You have read, understood, and agree to be bound by these Terms
@@ -35,8 +35,8 @@ We reserve the right to modify these Terms at any time. When we make material ch
 
 ## 2. Description of Service
 
-### 2.1 What YNAB Receipts Does
-YNAB Receipts is an iOS mobile application that provides the following features:
+### 2.1 What Receipts for YNAB Does
+Receipts for YNAB is an iOS mobile application that provides the following features:
 
 - **Receipt Scanning:** Capture or import photos of paper receipts
 - **Data Extraction:** Use Apple Intelligence (on-device AI) to extract merchant names, dates, amounts, and line items from receipt images
@@ -45,7 +45,7 @@ YNAB Receipts is an iOS mobile application that provides the following features:
 - **Category Matching:** Suggest appropriate YNAB budget categories for your purchases
 - **Data Verification:** Review and edit extracted information before saving
 
-### 2.2 What YNAB Receipts Does NOT Do
+### 2.2 What Receipts for YNAB Does NOT Do
 The App does not:
 - Store your data on external servers (all data is on your device)
 - Access your banking or financial accounts directly
@@ -54,7 +54,7 @@ The App does not:
 - Modify or delete YNAB transactions created by other apps or sources
 
 ### 2.3 Requirements
-To use YNAB Receipts, you must have:
+To use Receipts for YNAB, you must have:
 - An iPhone or iPad running iOS 18.0 or later
 - A device with Apple Intelligence capabilities (A17 Pro or later chip)
 - A valid, active YNAB account (subscription required by YNAB)
@@ -66,7 +66,7 @@ To use YNAB Receipts, you must have:
 ## 3. User Accounts and Authentication
 
 ### 3.1 YNAB Account Required
-YNAB Receipts requires authentication with a valid YNAB account. You are responsible for:
+Receipts for YNAB requires authentication with a valid YNAB account. You are responsible for:
 - Maintaining an active YNAB subscription
 - Keeping your YNAB credentials secure
 - All activity that occurs under your YNAB account when using this App
@@ -90,7 +90,7 @@ You agree to:
 ## 4. Acceptable Use Policy
 
 ### 4.1 Permitted Uses
-You may use YNAB Receipts only for:
+You may use Receipts for YNAB only for:
 - Personal, non-commercial receipt management
 - Creating legitimate transactions in your own YNAB budget
 - Scanning receipts for purchases you actually made
@@ -169,7 +169,7 @@ You may not use the App to scan or process:
 ## 6. Intellectual Property Rights
 
 ### 6.1 App Ownership
-YNAB Receipts and all associated intellectual property rights are owned by eTurea, including:
+Receipts for YNAB and all associated intellectual property rights are owned by eTurea, including:
 - The App's source code, design, and user interface
 - The App's name, logo, and branding
 - Documentation and instructional materials
@@ -195,7 +195,7 @@ The App may include third-party software or frameworks subject to separate licen
 - Any open-source components (listed in the App's About section)
 
 ### 6.5 Trademarks
-"YNAB Receipts" and associated logos are trademarks of eTurea. "YNAB" and "You Need A Budget" are trademarks of Steine LLC (YNAB). Use of these trademarks without permission is prohibited.
+"Receipts for YNAB" and associated logos are trademarks of eTurea. "YNAB" and "You Need A Budget" are trademarks of Steine LLC (YNAB). Use of these trademarks without permission is prohibited.
 
 ---
 
@@ -229,10 +229,10 @@ We reserve the right to:
 ## 8. Fees and Payment
 
 ### 8.1 Free App
-YNAB Receipts is currently provided **free of charge**. You are not required to pay any fees to download or use the App.
+Receipts for YNAB is currently provided **free of charge**. You are not required to pay any fees to download or use the App.
 
 ### 8.2 YNAB Subscription
-While YNAB Receipts is free, you must maintain an active **YNAB subscription** (paid separately to YNAB) to sync receipt data. We are not responsible for YNAB's subscription fees or billing policies.
+While Receipts for YNAB is free, you must maintain an active **YNAB subscription** (paid separately to YNAB) to sync receipt data. We are not responsible for YNAB's subscription fees or billing policies.
 
 ### 8.3 Future Pricing
 We reserve the right to:
@@ -274,7 +274,7 @@ Due to YNAB API limitations:
 - Some YNAB features may not be available through the App
 
 ### 9.4 Financial Decisions
-**YNAB Receipts is not financial advice.** The App:
+**Receipts for YNAB is not financial advice.** The App:
 - Does not provide budgeting recommendations
 - Does not analyze your spending patterns
 - Does not offer tax preparation services
@@ -551,7 +551,7 @@ You are responsible for:
 
 ## 19. Accessibility
 
-We strive to make YNAB Receipts accessible to users with disabilities. If you encounter accessibility issues, please contact us at support@ynabreceipts.app, and we will make reasonable efforts to address them.
+We strive to make Receipts for YNAB accessible to users with disabilities. If you encounter accessibility issues, please contact us at support@ynabreceipts.app, and we will make reasonable efforts to address them.
 
 ---
 
@@ -570,7 +570,7 @@ If you have questions, concerns, or feedback about these Terms of Service, pleas
 
 **Email:** support@ynabreceipts.app
 **Developer:** eTurea
-**App Name:** YNAB Receipts
+**App Name:** Receipts for YNAB
 
 We will respond to inquiries within 30 days.
 

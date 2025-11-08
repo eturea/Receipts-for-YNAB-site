@@ -1,17 +1,17 @@
-# Privacy Policy for YNAB Receipts
+# Privacy Policy for Receipts for YNAB
 
 **Effective Date:** October 15, 2025
 **Last Updated:** October 15, 2025
 
-Thank you for using **YNAB Receipts** ("the App"), developed by **eTurea** ("we", "our", or "us"). Your privacy is extremely important to us. This Privacy Policy explains what information we collect, how we use it, how we protect it, and your rights regarding your personal data.
+Thank you for using **Receipts for YNAB** ("the App"), developed by **eTurea** ("we", "our", or "us"). Your privacy is extremely important to us. This Privacy Policy explains what information we collect, how we use it, how we protect it, and your rights regarding your personal data.
 
-By using YNAB Receipts, you agree to the collection and use of information in accordance with this Privacy Policy.
+By using Receipts for YNAB, you agree to the collection and use of information in accordance with this Privacy Policy.
 
 ---
 
 ## 1. Overview: Our Privacy Commitment
 
-YNAB Receipts is designed with **privacy-first principles**:
+Receipts for YNAB is designed with **privacy-first principles**:
 
 - **All receipt processing happens on your device** using Apple Intelligence
 - **We never see your receipt images or extracted data**
@@ -229,7 +229,7 @@ You have full control over your data:
 - Data is included in iOS backups (subject to your backup settings)
 
 ### 7.5 Withdrawal of Consent
-- You can revoke camera or photo library access in iOS Settings → YNAB Receipts
+- You can revoke camera or photo library access in iOS Settings → Receipts for YNAB
 - You can disconnect from YNAB at any time
 - You can delete the app entirely
 
@@ -237,7 +237,7 @@ You have full control over your data:
 
 ## 8. Children's Privacy
 
-YNAB Receipts is not intended for use by children under the age of 13, and we do not knowingly collect personal information from children under 13.
+Receipts for YNAB is not intended for use by children under the age of 13, and we do not knowingly collect personal information from children under 13.
 
 - The app requires a YNAB account, which has its own age restrictions
 - If we learn that we have inadvertently collected information from a child under 13, we will take steps to delete such information
@@ -305,7 +305,7 @@ If you have any questions, concerns, or requests regarding this Privacy Policy o
 
 **Email:** support@ynabreceipts.app
 **Developer:** eTurea
-**App Name:** YNAB Receipts
+**App Name:** Receipts for YNAB
 
 We will respond to privacy-related inquiries within 30 days.
 

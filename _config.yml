@@ -1,0 +1,22 @@
+title: Receipts for YNAB
+description: Privacy-first receipt scanner for YNAB using Apple Intelligence
+theme: jekyll-theme-minimal
+baseurl: "/Receipts-for-YNAB-site"
+url: "https://eturea.github.io"
+
+# Markdown settings
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+
+# Build settings
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+
+# Navigation
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
