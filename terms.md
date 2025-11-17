@@ -437,7 +437,7 @@ Apple and its subsidiaries are third-party beneficiaries of these Terms. Upon yo
 ## 15. Dispute Resolution
 
 ### 15.1 Informal Resolution
-Before filing a claim, you agree to try to resolve the dispute informally by contacting us at support@ynabreceipts.app. We will attempt to resolve the dispute informally within 60 days.
+Before filing a claim, you agree to try to resolve the dispute informally by contacting us at receiptsforynab.app@gmail.com. We will attempt to resolve the dispute informally within 60 days.
 
 ### 15.2 Governing Law
 These Terms are governed by and construed in accordance with the laws of the **State of California, United States**, without regard to its conflict of law principles.
@@ -551,7 +551,7 @@ You are responsible for:
 
 ## 19. Accessibility
 
-We strive to make Receipts for YNAB accessible to users with disabilities. If you encounter accessibility issues, please contact us at support@ynabreceipts.app, and we will make reasonable efforts to address them.
+We strive to make Receipts for YNAB accessible to users with disabilities. If you encounter accessibility issues, please contact us at receiptsforynab.app@gmail.com, and we will make reasonable efforts to address them.
 
 ---
 
@@ -568,7 +568,7 @@ You may not use or export the App except as authorized by United States law and 
 
 If you have questions, concerns, or feedback about these Terms of Service, please contact us:
 
-**Email:** support@ynabreceipts.app
+**Email:** receiptsforynab.app@gmail.com
 **Developer:** eTurea
 **App Name:** Receipts for YNAB
 
@@ -587,3 +587,9 @@ If you do not agree to these Terms, you must not use the App.
 **© 2025 eTurea. All rights reserved.**
 
 This Terms of Service was last updated on October 15, 2025.
+
+---
+
+We are not affiliated, associated, or in any way officially connected with YNAB or any of its subsidiaries or affiliates. The official YNAB website can be found at [https://www.ynab.com](https://www.ynab.com).
+
+The names YNAB and You Need A Budget, as well as related names, tradenames, marks, trademarks, emblems, and images are registered trademarks of YNAB.

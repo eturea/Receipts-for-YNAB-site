@@ -337,7 +337,7 @@ A: Make sure:
 
 If you have questions, encounter issues, or want to provide feedback:
 
-**Email:** support@ynabreceipts.app
+**Email:** receiptsforynab.app@gmail.com
 **Response Time:** Within 30 days
 
 ### Report a Bug
@@ -350,7 +350,7 @@ When reporting bugs, please include:
 
 ### Feature Requests
 
-We love hearing from users! If you have ideas for new features or improvements, email us at support@ynabreceipts.app.
+We love hearing from users! If you have ideas for new features or improvements, email us at receiptsforynab.app@gmail.com.
 
 ---
 
@@ -393,7 +393,7 @@ Our mission is to create apps that:
 ### Contact
 
 **Developer:** eTurea
-**Email:** support@ynabreceipts.app
+**Email:** receiptsforynab.app@gmail.com
 **App Store:** [Receipts for YNAB](#)
 
 ---
@@ -460,7 +460,8 @@ Browse, search, and manage all your scanned receipts.
 
 **© 2025 eTurea. All rights reserved.**
 
-Receipts for YNAB is not affiliated with, endorsed by, or sponsored by YNAB (Steine LLC).
-"YNAB" and "You Need A Budget" are trademarks of Steine LLC.
+We are not affiliated, associated, or in any way officially connected with YNAB or any of its subsidiaries or affiliates. The official YNAB website can be found at [https://www.ynab.com](https://www.ynab.com).
 
-[Privacy Policy](./privacy.md) | [Terms of Service](./terms.md) | [Licenses](./licenses.md) | [Contact](mailto:support@ynabreceipts.app)
+The names YNAB and You Need A Budget, as well as related names, tradenames, marks, trademarks, emblems, and images are registered trademarks of YNAB.
+
+[Privacy Policy](./privacy.md) | [Terms of Service](./terms.md) | [Licenses](./licenses.md) | [Contact](mailto:receiptsforynab.app@gmail.com)

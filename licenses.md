@@ -343,7 +343,7 @@ We would like to thank:
 
 If you have questions about licenses, attributions, or legal notices, please contact us:
 
-**Email:** support@ynabreceipts.app
+**Email:** receiptsforynab.app@gmail.com
 **Developer:** eTurea
 **App Name:** Receipts for YNAB
 
@@ -364,6 +364,12 @@ For legally binding terms, please refer to:
 **© 2025 eTurea. All rights reserved.**
 
 This Legal Notices and Licenses document was last updated on October 15, 2025.
+
+---
+
+We are not affiliated, associated, or in any way officially connected with YNAB or any of its subsidiaries or affiliates. The official YNAB website can be found at [https://www.ynab.com](https://www.ynab.com).
+
+The names YNAB and You Need A Budget, as well as related names, tradenames, marks, trademarks, emblems, and images are registered trademarks of YNAB.
 
 ---
 

@@ -262,7 +262,7 @@ If you are a California resident, you have additional rights under the Californi
 - **Right to Opt-Out of Sale:** We do not sell personal information
 - **Right to Non-Discrimination:** We do not discriminate based on exercise of privacy rights
 
-To exercise these rights, contact us at support@ynabreceipts.app.
+To exercise these rights, contact us at receiptsforynab.app@gmail.com.
 
 ---
 
@@ -303,7 +303,7 @@ We may update this Privacy Policy from time to time to reflect:
 
 If you have any questions, concerns, or requests regarding this Privacy Policy or your data, please contact us:
 
-**Email:** support@ynabreceipts.app
+**Email:** receiptsforynab.app@gmail.com
 **Developer:** eTurea
 **App Name:** Receipts for YNAB
 
@@ -324,3 +324,9 @@ This Privacy Policy complies with:
 **© 2025 eTurea. All rights reserved.**
 
 This Privacy Policy was last updated on October 15, 2025.
+
+---
+
+We are not affiliated, associated, or in any way officially connected with YNAB or any of its subsidiaries or affiliates. The official YNAB website can be found at [https://www.ynab.com](https://www.ynab.com).
+
+The names YNAB and You Need A Budget, as well as related names, tradenames, marks, trademarks, emblems, and images are registered trademarks of YNAB.
