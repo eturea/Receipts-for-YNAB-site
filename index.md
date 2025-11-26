@@ -14,10 +14,11 @@
 
 Receipts for YNAB harnesses **Apple Intelligence** (iOS 26+) to process receipts entirely on your device. No cloud uploads, no external servers—just fast, accurate, and private receipt scanning.
 
-✨ **AI-Powered Extraction** - Automatically detects merchant names, dates, amounts, and line items
-🔒 **100% On-Device** - All processing happens on your iPhone using Apple's Vision and Foundation Models
-🎯 **Smart Category Matching** - Suggests YNAB categories based on your budget structure
-📊 **Confidence Scoring** - Know how accurate the extracted data is before syncing
+- **AI-Powered Extraction** - Automatically detects merchant names, dates, amounts, and line items
+- **100% On-Device** - All processing happens on your iPhone using Apple's Vision and Foundation Models
+- **Smart Category Matching** - Suggests YNAB categories based on your budget structure
+- **Confidence Scoring** - Know how accurate the extracted data is before syncing
+- **Manual Entry Fallback** - Works on ALL iOS 26+ devices, even without Apple Intelligence
 
 ---
 
@@ -149,28 +150,44 @@ Choose a YNAB account and sync. The transaction appears in your budget with all 
 ## System Requirements
 
 **Device:**
-- iPhone or iPad with **Apple Intelligence** support
-- **A17 Pro chip or later** (iPhone 15 Pro, iPhone 16, iPad with M-series chip)
+- iPhone running **iOS 26.0 or later**
+- **Recommended:** iPhone 15 Pro or newer (A17 Pro chip) for AI-powered scanning
+- **All iOS 26+ devices** can use manual entry mode
 
 **Software:**
-- **iOS 26.0 or later**
+- **iOS 26.0 or later** (required)
 - Active **YNAB subscription** (required for syncing)
+- Apple Intelligence & Siri enabled (for AI scanning features)
 
 **Permissions:**
 - Camera access (for capturing receipts)
 - Photo library access (for importing images)
 
-**Note:** The app will not appear in the App Store for incompatible devices (enforced by `UIRequiredDeviceCapabilities: apple-intelligence`).
+**Note:** The app works on ALL iOS 26+ devices. AI scanning requires Apple Intelligence-capable hardware (iPhone 15 Pro+), but manual entry is available on all supported devices.
 
 ---
 
 ## Pricing
 
-**Receipts for YNAB is completely free.**
+**Receipts for YNAB offers flexible subscription tiers:**
 
-No in-app purchases, no subscriptions, no ads. Just a powerful receipt scanner for YNAB users.
+### Free Tier
+- **10 AI scans per month** included
+- Unlimited manual receipt entry
+- Full YNAB sync capabilities
+- No credit card required
 
-*(A YNAB subscription is required separately to sync receipts to your budget.)*
+### Manual Tier
+- Unlimited manual receipt entry
+- No AI scanning
+- Perfect for users who prefer manual control
+
+### AI Tier
+- **Unlimited AI scans**
+- Full Apple Intelligence-powered extraction
+- Priority processing
+
+*(A separate YNAB subscription is required to sync receipts to your budget.)*
 
 ---
 
@@ -210,7 +227,7 @@ A: Yes. Receipts for YNAB requires an active YNAB subscription to sync receipts.
 A: No. Receipts for YNAB is an independent app developed by eTurea. We are not affiliated with, endorsed by, or sponsored by YNAB (Steine LLC).
 
 **Q: How much does it cost?**
-A: Receipts for YNAB is **completely free**. No in-app purchases, no subscriptions, no ads.
+A: Receipts for YNAB offers a **Free tier** with 10 AI scans per month and unlimited manual entry. Premium tiers are available for unlimited AI scanning.
 
 ### Privacy & Data
 
@@ -287,15 +304,14 @@ A: Go to Settings → YNAB Connection → Disconnect. This immediately removes y
 ### Technical Questions
 
 **Q: What devices are supported?**
-A: Receipts for YNAB requires:
-- iPhone or iPad with Apple Intelligence support
-- A17 Pro chip or later (iPhone 15 Pro, iPhone 16 series, or M-series iPad)
-- iOS 26.0 or later
+A: Receipts for YNAB works on **all iPhones running iOS 26.0 or later**:
+- **AI Scanning:** Requires iPhone 15 Pro or newer (A17 Pro chip) with Apple Intelligence enabled
+- **Manual Entry:** Works on ALL iOS 26+ devices, including older iPhones
 
-The app will not appear in the App Store for incompatible devices.
+The app is available to all iOS 26+ users. AI features are automatically hidden on devices without Apple Intelligence support.
 
-**Q: Why does the app require Apple Intelligence?**
-A: Apple Intelligence (Foundation Models framework) provides the on-device AI that extracts structured data from receipts. This ensures your receipt images never leave your device.
+**Q: Why is Apple Intelligence recommended?**
+A: Apple Intelligence (Foundation Models framework) provides the on-device AI that extracts structured data from receipts automatically. This ensures your receipt images never leave your device. However, the app also offers full manual entry mode for devices without Apple Intelligence.
 
 **Q: Can I use Siri to scan receipts?**
 A: Yes! The app supports Siri voice commands and Shortcuts integration. You can say "Hey Siri, scan a receipt in Receipts for YNAB" or create custom automation workflows.
@@ -433,7 +449,7 @@ Follow us for updates and announcements!
 
 [Download on the App Store](#)
 
-**Requirements:** iPhone/iPad with Apple Intelligence (A17 Pro+), iOS 26.0+
+**Requirements:** iPhone with iOS 26.0+ (AI scanning requires iPhone 15 Pro or newer)
 
 ---
 

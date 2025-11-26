@@ -2,7 +2,7 @@
 
 **Receipts for YNAB**
 **Version:** 1.0
-**Last Updated:** October 15, 2025
+**Last Updated:** November 25, 2025
 
 This document contains legal notices and license information for third-party software, frameworks, and services used in Receipts for YNAB.
 
@@ -71,7 +71,7 @@ Receipts for YNAB is built using Apple's iOS SDK and frameworks. All Apple frame
   - `@Generable` protocol - Structured output generation
   - Tool calling for dynamic category retrieval
 - **Website:** https://developer.apple.com/documentation/foundationmodels
-- **Requirements:** iOS 18.0+, Apple Intelligence-capable devices (A17 Pro or later)
+- **Requirements:** iOS 26.0+, Apple Intelligence-capable devices (A17 Pro or later) for AI features; manual entry works on all iOS 26+ devices
 
 ### Combine
 - **Copyright:** © Apple Inc.
@@ -111,7 +111,7 @@ https://developer.apple.com/support/terms/
 **Important Notes:**
 - All Apple frameworks are used as-is without modification
 - On-device processing ensures data privacy (Vision, Foundation Models)
-- Apple Intelligence features require compatible hardware and iOS 18.0+
+- Apple Intelligence features require compatible hardware (A17 Pro+) and iOS 26.0+
 
 ---
 
@@ -363,7 +363,7 @@ For legally binding terms, please refer to:
 
 **© 2025 eTurea. All rights reserved.**
 
-This Legal Notices and Licenses document was last updated on October 15, 2025.
+This Legal Notices and Licenses document was last updated on November 25, 2025.
 
 ---
 

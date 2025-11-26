@@ -1,7 +1,7 @@
 # Privacy Policy for Receipts for YNAB
 
 **Effective Date:** October 15, 2025
-**Last Updated:** October 15, 2025
+**Last Updated:** November 25, 2025
 
 Thank you for using **Receipts for YNAB** ("the App"), developed by **eTurea** ("we", "our", or "us"). Your privacy is extremely important to us. This Privacy Policy explains what information we collect, how we use it, how we protect it, and your rights regarding your personal data.
 
@@ -170,7 +170,7 @@ The **only** third-party service we communicate with is **YNAB (You Need A Budge
 
 The app uses the following Apple frameworks and services:
 
-- **Apple Intelligence / Foundation Models:** On-device AI for receipt data extraction (iOS 18+)
+- **Apple Intelligence / Foundation Models:** On-device AI for receipt data extraction (iOS 26+, requires compatible hardware)
 - **Vision Framework:** On-device OCR for text recognition
 - **Siri / App Intents:** Optional voice commands for scanning (if you choose to set them up)
 
@@ -323,7 +323,7 @@ This Privacy Policy complies with:
 
 **© 2025 eTurea. All rights reserved.**
 
-This Privacy Policy was last updated on October 15, 2025.
+This Privacy Policy was last updated on November 25, 2025.
 
 ---
 

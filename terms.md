@@ -1,7 +1,7 @@
 # Terms of Service for Receipts for YNAB
 
 **Effective Date:** October 15, 2025
-**Last Updated:** October 15, 2025
+**Last Updated:** November 25, 2025
 
 Welcome to **Receipts for YNAB**. These Terms of Service ("Terms", "Agreement") are a legal agreement between you ("User", "you", or "your") and **eTurea** ("we", "us", or "our") governing your use of the Receipts for YNAB mobile application (the "App", "Service").
 
@@ -55,8 +55,9 @@ The App does not:
 
 ### 2.3 Requirements
 To use Receipts for YNAB, you must have:
-- An iPhone or iPad running iOS 18.0 or later
-- A device with Apple Intelligence capabilities (A17 Pro or later chip)
+- An iPhone running iOS 26.0 or later
+- For AI scanning: A device with Apple Intelligence capabilities (A17 Pro chip or later, e.g., iPhone 15 Pro+)
+- For manual entry: Any iOS 26+ device (AI not required)
 - A valid, active YNAB account (subscription required by YNAB)
 - An internet connection for YNAB synchronization
 - Permission to access your device's camera and photo library
@@ -586,7 +587,7 @@ If you do not agree to these Terms, you must not use the App.
 
 **© 2025 eTurea. All rights reserved.**
 
-This Terms of Service was last updated on October 15, 2025.
+This Terms of Service was last updated on November 25, 2025.
 
 ---
 
