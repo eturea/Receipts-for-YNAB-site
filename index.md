@@ -2,7 +2,7 @@
 
 ### Transform Your Paper Receipts into YNAB Transactions with Apple Intelligence
 
-**Receipts for YNAB** is the intelligent receipt scanner for YNAB users. Capture receipts with your iPhone, let Apple Intelligence extract the details, and sync transactions to your budget—all while keeping your data private and secure on your device.
+**Receipts for YNAB** is the intelligent receipt scanner for YNAB users. Capture receipts with your iPhone, let Apple Intelligence extract the details, and sync transactions to your plan—all while keeping your data private and secure on your device.
 
 [Download on the App Store](#) | [Privacy Policy](./privacy.md) | [Terms of Service](./terms.md)
 
@@ -16,7 +16,7 @@ Receipts for YNAB harnesses **Apple Intelligence** (iOS 26+) to process receipts
 
 - **AI-Powered Extraction** - Automatically detects merchant names, dates, amounts, and line items
 - **100% On-Device** - All processing happens on your iPhone using Apple's Vision and Foundation Models
-- **Smart Category Matching** - Suggests YNAB categories based on your budget structure
+- **Smart Category Matching** - Suggests YNAB categories based on your plan structure
 - **Confidence Scoring** - Know how accurate the extracted data is before syncing
 - **Manual Entry Fallback** - Works on ALL iOS 26+ devices, even without Apple Intelligence
 
@@ -43,7 +43,7 @@ Apple Intelligence reads your receipts and extracts:
 - **Transaction Date** - When the purchase occurred
 - **Total Amount** - What you spent
 - **Line Items** - Individual purchases (synced as YNAB subtransactions)
-- **Suggested Categories** - Matched to your YNAB budget
+- **Suggested Categories** - Matched to your YNAB plan
 
 All extraction happens **on-device** using iOS 26's Foundation Models—your receipts never leave your iPhone.
 
@@ -68,7 +68,7 @@ Review the breakdown to understand extraction quality before syncing to YNAB.
 **Smart Syncing:**
 - Create transactions with line items (subtransactions)
 - Assign to specific YNAB accounts
-- Auto-match categories from your budget
+- Auto-match categories from your plan
 - Option to save receipts locally without syncing
 
 **YNAB API Features:**
@@ -143,7 +143,7 @@ Apple Intelligence analyzes the receipt on-device, extracting merchant name, dat
 Check the confidence score and extracted data. Edit any fields as needed. The app suggests YNAB categories automatically.
 
 ### 4️⃣ Sync to YNAB
-Choose a YNAB account and sync. The transaction appears in your budget with all line items as subtransactions. Or save locally to sync later.
+Choose a YNAB account and sync. The transaction appears in your plan with all line items as subtransactions. Or save locally to sync later.
 
 ---
 
@@ -187,7 +187,7 @@ Choose a YNAB account and sync. The transaction appears in your budget with all 
 - Full Apple Intelligence-powered extraction
 - Priority processing
 
-*(A separate YNAB subscription is required to sync receipts to your budget.)*
+*(A separate YNAB subscription is required to sync receipts to your plan.)*
 
 ---
 
@@ -254,7 +254,7 @@ A: The app uses Apple Intelligence to extract:
 - Transaction date
 - Total amount
 - Individual line items (with quantities and prices)
-- Suggested YNAB categories (matched from your budget)
+- Suggested YNAB categories (matched from your plan)
 
 **Q: How accurate is the AI extraction?**
 A: Accuracy depends on receipt quality, formatting, and legibility. The app provides a confidence score to help you assess extraction quality. You should always review extracted data before syncing to YNAB.
@@ -263,7 +263,7 @@ A: Accuracy depends on receipt quality, formatting, and legibility. The app prov
 A: Yes. You can edit any extracted field before syncing. After syncing, most fields can be updated except transaction dates and subtransactions (YNAB API limitation).
 
 **Q: Does the app support line items?**
-A: Yes! Extracted line items are synced to YNAB as subtransactions, giving you detailed purchase breakdowns in your budget.
+A: Yes! Extracted line items are synced to YNAB as subtransactions, giving you detailed purchase breakdowns in your plan.
 
 **Q: Can I save receipts without syncing to YNAB?**
 A: Yes. You can save receipts locally-only and sync them later, or keep them as local records indefinitely.
@@ -281,7 +281,7 @@ A: Yes. When syncing a receipt, you select which YNAB account (checking, credit 
 
 **Q: What YNAB data does the app access?**
 A: The app accesses:
-- Budget names and IDs
+- Plan names and IDs
 - Account names and IDs
 - Category groups and categories
 - Category availability (to prevent overspending)
@@ -340,8 +340,8 @@ A: Ensure:
 
 **Q: Categories aren't being suggested—why?**
 A: Make sure:
-- You're connected to YNAB and have selected a budget
-- Your budget has active categories
+- You're connected to YNAB and have selected a plan
+- Your plan has active categories
 - You have an internet connection (categories are fetched from YNAB)
 - Category caching is working (check Settings)
 

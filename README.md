@@ -35,6 +35,6 @@ For questions about the website content, contact: eTurea
 
 ---
 
-**Last Updated:** 2025-11-25
+**Last Updated:** 2025-12-01
 **App Version:** 1.0 (Build 1)
 **Status:** Beta Preparation

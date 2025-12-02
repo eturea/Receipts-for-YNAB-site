@@ -1,7 +1,7 @@
 # Privacy Policy for Receipts for YNAB
 
 **Effective Date:** October 15, 2025
-**Last Updated:** November 25, 2025
+**Last Updated:** December 1, 2025
 
 Thank you for using **Receipts for YNAB** ("the App"), developed by **eTurea** ("we", "our", or "us"). Your privacy is extremely important to us. This Privacy Policy explains what information we collect, how we use it, how we protect it, and your rights regarding your personal data.
 
@@ -34,7 +34,7 @@ When you scan a receipt, the following information is processed and stored **ent
   - Transaction date
   - Total amount
   - Individual line items and prices
-  - Suggested YNAB categories (matched using your budget data)
+  - Suggested YNAB categories (matched using your plan data)
 - **Verification status** (whether you've reviewed the receipt)
 - **Confidence scores** (accuracy ratings for extracted data)
 - **YNAB sync metadata** (transaction IDs, account IDs, sync timestamps)
@@ -43,10 +43,10 @@ When you scan a receipt, the following information is processed and stored **ent
 
 ### 2.2 YNAB Account Information
 
-To enable budget synchronization, we access the following from your YNAB account via the official YNAB API:
+To enable plan synchronization, we access the following from your YNAB account via the official YNAB API:
 
-- **Budget information:**
-  - Budget names and IDs
+- **Plan information:**
+  - Plan names and IDs
   - Account names and IDs (for selecting where to save transactions)
   - Category group names and category names
   - Category availability (to prevent overspending suggestions)
@@ -72,7 +72,7 @@ To enable budget synchronization, we access the following from your YNAB account
 
 The following settings are stored locally on your device:
 
-- Selected YNAB budget (if you have multiple budgets)
+- Selected YNAB plan (if you have multiple plans)
 - Category selections and preferences (cached for faster receipt scanning)
 - Onboarding completion status
 - App appearance preferences
@@ -103,8 +103,8 @@ We use the information described above **solely** for the following purposes:
 ### 3.1 Core Functionality
 - **Receipt scanning:** Using Apple Intelligence to extract merchant names, dates, amounts, and line items from receipt photos
 - **Data verification:** Calculating confidence scores to help you verify extracted information
-- **Category matching:** Suggesting appropriate YNAB categories based on your budget structure
-- **Transaction creation:** Syncing verified receipts to your YNAB budget as transactions
+- **Category matching:** Suggesting appropriate YNAB categories based on your plan structure
+- **Transaction creation:** Syncing verified receipts to your YNAB plan as transactions
 - **Receipt management:** Organizing and displaying your scanned receipts within the app
 
 ### 3.2 User Experience
@@ -150,7 +150,7 @@ We implement the following security practices:
 When you sync receipts to YNAB:
 - Data is transmitted directly from your device to YNAB's servers using encrypted HTTPS
 - We act as a client of YNAB's API and are subject to YNAB's security measures
-- YNAB's Privacy Policy governs how they handle your budget data
+- YNAB's Privacy Policy governs how they handle your plan data
 
 ---
 
@@ -160,11 +160,11 @@ When you sync receipts to YNAB:
 
 The **only** third-party service we communicate with is **YNAB (You Need A Budget)**:
 
-- **Purpose:** To sync receipt transactions to your budget
+- **Purpose:** To sync receipt transactions to your plan
 - **Data shared:** Transaction details extracted from receipts (merchant, date, amount, category, line items)
 - **When:** Only when you explicitly choose to save a receipt to YNAB
-- **YNAB's Privacy Policy:** https://www.youneedabudget.com/privacy-policy/
-- **YNAB's Terms of Service:** https://www.youneedabudget.com/terms/
+- **YNAB's Privacy Policy:** https://www.ynab.com/privacy-policy/
+- **YNAB's Terms of Service:** https://www.ynab.com/terms
 
 ### 5.2 Apple Services
 
@@ -323,7 +323,7 @@ This Privacy Policy complies with:
 
 **© 2025 eTurea. All rights reserved.**
 
-This Privacy Policy was last updated on November 25, 2025.
+This Privacy Policy was last updated on December 1, 2025.
 
 ---
 

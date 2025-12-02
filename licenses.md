@@ -126,13 +126,13 @@ https://developer.apple.com/support/terms/
 
 **Purpose:**
 - OAuth2 authentication with YNAB accounts
-- Retrieving budget, account, and category information
+- Retrieving plan, account, and category information
 - Creating and updating transactions
 
 **API License:**
 The YNAB API is used under YNAB's API Terms of Service:
-- **Terms:** https://www.youneedabudget.com/terms/
-- **Privacy Policy:** https://www.youneedabudget.com/privacy-policy/
+- **Terms:** https://www.ynab.com/terms
+- **Privacy Policy:** https://www.ynab.com/privacy-policy/
 - **API Documentation:** https://api.youneedabudget.com
 
 **Authentication Protocol:**
@@ -253,7 +253,7 @@ Data shared with YNAB includes:
 - Line items (subtransactions)
 
 YNAB's handling of your data is governed by their Privacy Policy:
-https://www.youneedabudget.com/privacy-policy/
+https://www.ynab.com/privacy-policy/
 
 ### No Analytics or Tracking
 

@@ -1,7 +1,7 @@
 # Terms of Service for Receipts for YNAB
 
 **Effective Date:** October 15, 2025
-**Last Updated:** November 25, 2025
+**Last Updated:** December 1, 2025
 
 Welcome to **Receipts for YNAB**. These Terms of Service ("Terms", "Agreement") are a legal agreement between you ("User", "you", or "your") and **eTurea** ("we", "us", or "our") governing your use of the Receipts for YNAB mobile application (the "App", "Service").
 
@@ -21,7 +21,7 @@ By accessing or using Receipts for YNAB, you confirm that:
 ### 1.2 Additional Terms
 Your use of the App is also subject to:
 - Apple's App Store Terms of Service
-- YNAB's Terms of Service (https://www.youneedabudget.com/terms/)
+- YNAB's Terms of Service (https://www.ynab.com/terms)
 - Our Privacy Policy (available in the App or at privacy.md)
 
 ### 1.3 Modifications to Terms
@@ -42,7 +42,7 @@ Receipts for YNAB is an iOS mobile application that provides the following featu
 - **Data Extraction:** Use Apple Intelligence (on-device AI) to extract merchant names, dates, amounts, and line items from receipt images
 - **Receipt Management:** Store and organize scanned receipts on your device
 - **YNAB Integration:** Sync receipt data to your YNAB (You Need A Budget) account as transactions
-- **Category Matching:** Suggest appropriate YNAB budget categories for your purchases
+- **Category Matching:** Suggest appropriate YNAB plan categories for your purchases
 - **Data Verification:** Review and edit extracted information before saving
 
 ### 2.2 What Receipts for YNAB Does NOT Do
@@ -93,7 +93,7 @@ You agree to:
 ### 4.1 Permitted Uses
 You may use Receipts for YNAB only for:
 - Personal, non-commercial receipt management
-- Creating legitimate transactions in your own YNAB budget
+- Creating legitimate transactions in your own YNAB plan
 - Scanning receipts for purchases you actually made
 - Managing your personal financial records
 
@@ -111,7 +111,7 @@ You agree NOT to:
 - Use the App for any illegal, fraudulent, or unauthorized purpose
 - Create fake or fraudulent receipts or transactions
 - Scan receipts that do not belong to you without permission
-- Use the App to manipulate or falsify your YNAB budget data
+- Use the App to manipulate or falsify your YNAB plan data
 - Share, sell, or distribute your access to the App
 
 **YNAB API Abuse:**
@@ -587,7 +587,7 @@ If you do not agree to these Terms, you must not use the App.
 
 **© 2025 eTurea. All rights reserved.**
 
-This Terms of Service was last updated on November 25, 2025.
+This Terms of Service was last updated on December 1, 2025.
 
 ---
 
