@@ -87,9 +87,9 @@ Review the breakdown to understand extraction quality before syncing to YNAB.
 - Edit extracted data before or after syncing
 
 **Search and Filter:**
-- Find receipts by merchant, date, or amount
-- Filter by verification status
-- Sort by confidence score
+- Find receipts by merchant, date, amount, or category
+- Filter by sync status (local-only or YNAB synced)
+- Sort by receipt date or scan date
 
 ### 🛡️ Privacy-First Design
 
@@ -172,20 +172,21 @@ Choose a YNAB account and sync. The transaction appears in your plan with all li
 **Receipts for YNAB offers flexible subscription tiers:**
 
 ### Free Tier
-- **10 AI scans per month** included
-- Unlimited manual receipt entry
+- **10 scans per month** (AI or manual combined)
+- **5 YNAB uploads per month**
 - Full YNAB sync capabilities
 - No credit card required
 
 ### Manual Tier
 - Unlimited manual receipt entry
-- No AI scanning
-- Perfect for users who prefer manual control
+- Unlimited YNAB uploads
+- Works on all iOS 26+ devices
 
 ### AI Tier
 - **Unlimited AI scans**
-- Full Apple Intelligence-powered extraction
-- Priority processing
+- Unlimited manual entry backup
+- Unlimited YNAB uploads
+- Requires Apple Intelligence-capable device
 
 *(A separate YNAB subscription is required to sync receipts to your plan.)*
 
@@ -227,7 +228,7 @@ A: Yes. Receipts for YNAB requires an active YNAB subscription to sync receipts.
 A: No. Receipts for YNAB is an independent app developed by eTurea. We are not affiliated with, endorsed by, or sponsored by YNAB (Steine LLC).
 
 **Q: How much does it cost?**
-A: Receipts for YNAB offers a **Free tier** with 10 AI scans per month and unlimited manual entry. Premium tiers are available for unlimited AI scanning.
+A: Receipts for YNAB offers a **Free tier** with 10 scans per month (AI or manual combined) and 5 YNAB uploads per month. Premium tiers are available for unlimited scanning and uploads.
 
 ### Privacy & Data
 
@@ -418,7 +419,7 @@ Our mission is to create apps that:
 
 ### Version History
 
-**Version 1.0** (October 2025)
+**Version 1.0** (December 2025)
 - 🎉 Initial release
 - 🧠 Apple Intelligence integration for receipt scanning
 - 📸 Camera, photo library, and document scanner support
