@@ -4,7 +4,7 @@
 
 **Receipts for YNAB** is the intelligent receipt scanner for YNAB users. Capture receipts with your iPhone, let Apple Intelligence extract the details, and sync transactions to your plan—all while keeping your data private and secure on your device.
 
-[Download on the App Store](#) | [Privacy Policy](./privacy.md) | [Terms of Service](./terms.md)
+[Download on the App Store](https://apps.apple.com/us/app/receipts-for-ynab/id6755055273) | [Privacy Policy](./privacy.md) | [Terms of Service](./terms.md)
 
 ---
 
@@ -411,7 +411,7 @@ Our mission is to create apps that:
 
 **Developer:** eTurea
 **Email:** receiptsforynab.app@gmail.com
-**App Store:** [Receipts for YNAB](#)
+**App Store:** [Receipts for YNAB](https://apps.apple.com/us/app/receipts-for-ynab/id6755055273)
 
 ---
 
@@ -448,7 +448,7 @@ Follow us for updates and announcements!
 
 **Receipts for YNAB is available now on the App Store.**
 
-[Download on the App Store](#)
+[Download on the App Store](https://apps.apple.com/us/app/receipts-for-ynab/id6755055273)
 
 **Requirements:** iPhone with iOS 26.0+ (AI scanning requires iPhone 15 Pro or newer)
 
