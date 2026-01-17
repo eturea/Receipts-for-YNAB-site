@@ -1,0 +1,1612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Meta Tags -->
+    <title>Receipts for YNAB - Scan Receipts to YNAB with Apple Intelligence</title>
+    <meta name="description" content="Transform paper receipts into YNAB transactions instantly. Powered by Apple Intelligence for 100% on-device processing. Privacy-first receipt scanning for iPhone.">
+    <meta name="keywords" content="YNAB, receipt scanner, Apple Intelligence, iOS app, budgeting, expense tracking, receipt to YNAB, on-device AI">
+    <meta name="author" content="eTurea">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://eturea.github.io/Receipts-for-YNAB-site/">
+    <meta property="og:title" content="Receipts for YNAB - AI-Powered Receipt Scanner">
+    <meta property="og:description" content="Scan receipts and sync to YNAB instantly. 100% on-device AI processing with Apple Intelligence.">
+    <meta property="og:image" content="https://eturea.github.io/Receipts-for-YNAB-site/assets/og-image.png">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Receipts for YNAB - AI-Powered Receipt Scanner">
+    <meta name="twitter:description" content="Scan receipts and sync to YNAB instantly. 100% on-device AI processing.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://eturea.github.io/Receipts-for-YNAB-site/">
+
+    <style>
+        :root {
+            /* Apple Intelligence inspired colors */
+            --gradient-orange: #FF6B35;
+            --gradient-pink: #F72585;
+            --gradient-purple: #7B2CBF;
+            --gradient-blue: #3A86FF;
+            --gradient-cyan: #4CC9F0;
+
+            /* Theme colors */
+            --bg-primary: #0A0A0F;
+            --bg-secondary: #12121A;
+            --bg-card: #1A1A24;
+            --bg-card-hover: #22222E;
+
+            --text-primary: #FAFAFA;
+            --text-secondary: #A0A0B0;
+            --text-muted: #606070;
+
+            --accent-primary: #4CC9F0;
+            --accent-secondary: #F72585;
+            --accent-success: #34D399;
+
+            --border-subtle: rgba(255, 255, 255, 0.08);
+            --border-strong: rgba(255, 255, 255, 0.15);
+
+            /* Spacing */
+            --space-xs: 0.5rem;
+            --space-sm: 1rem;
+            --space-md: 1.5rem;
+            --space-lg: 2rem;
+            --space-xl: 3rem;
+            --space-2xl: 5rem;
+            --space-3xl: 8rem;
+
+            /* Typography */
+            --font-display: 'Outfit', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-display);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .bg-gradient {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .bg-gradient::before {
+            content: '';
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            top: -25%;
+            left: -25%;
+            background:
+                radial-gradient(ellipse at 20% 20%, rgba(247, 37, 133, 0.12) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 30%, rgba(255, 107, 53, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 60% 80%, rgba(123, 44, 191, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 10% 70%, rgba(76, 201, 240, 0.1) 0%, transparent 50%);
+            animation: gradientFloat 20s ease-in-out infinite;
+        }
+
+        @keyframes gradientFloat {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(2%, -2%) rotate(1deg); }
+            66% { transform: translate(-1%, 1%) rotate(-1deg); }
+        }
+
+        /* Noise overlay */
+        .noise {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            opacity: 0.03;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-md);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: var(--space-sm) 0;
+            backdrop-filter: blur(20px);
+            background: rgba(10, 10, 15, 0.8);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.25rem;
+            background: linear-gradient(135deg, var(--gradient-cyan), var(--gradient-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: var(--space-lg);
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, var(--gradient-blue), var(--gradient-cyan));
+            color: white !important;
+            padding: 0.6rem 1.2rem;
+            border-radius: 100px;
+            font-weight: 600;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(76, 201, 240, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: var(--space-3xl) 0 var(--space-2xl);
+            position: relative;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-2xl);
+            align-items: center;
+        }
+
+        .hero-text {
+            opacity: 0;
+            animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(76, 201, 240, 0.1);
+            border: 1px solid rgba(76, 201, 240, 0.2);
+            border-radius: 100px;
+            font-size: 0.85rem;
+            color: var(--accent-primary);
+            margin-bottom: var(--space-md);
+            font-weight: 500;
+        }
+
+        .hero-badge svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: var(--space-md);
+            letter-spacing: -0.03em;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--gradient-orange), var(--gradient-pink), var(--gradient-purple), var(--gradient-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 300% 300%;
+            animation: gradientShift 8s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero-description {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-lg);
+            max-width: 500px;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: var(--space-sm);
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--gradient-blue), var(--gradient-cyan));
+            color: white;
+            text-decoration: none;
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(76, 201, 240, 0.35);
+        }
+
+        .btn-primary:active {
+            transform: translateY(-1px);
+        }
+
+        .btn-primary svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: transparent;
+            color: var(--text-primary);
+            text-decoration: none;
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 1rem;
+            border: 1px solid var(--border-strong);
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.25);
+        }
+
+        /* Hero Image */
+        .hero-image {
+            position: relative;
+            opacity: 0;
+            animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+        }
+
+        .phone-mockup {
+            position: relative;
+            max-width: 320px;
+            margin: 0 auto;
+            transform: perspective(1000px) rotateY(-5deg) rotateX(5deg);
+            transition: transform 0.3s ease;
+        }
+
+        .phone-mockup:hover {
+            transform: perspective(1000px) rotateY(0deg) rotateX(0deg);
+        }
+
+        .phone-mockup img {
+            width: 100%;
+            height: auto;
+            border-radius: 40px;
+            box-shadow:
+                0 50px 100px -20px rgba(0, 0, 0, 0.5),
+                0 30px 60px -30px rgba(0, 0, 0, 0.6);
+        }
+
+        .phone-glow {
+            position: absolute;
+            inset: -20%;
+            background: radial-gradient(circle, rgba(76, 201, 240, 0.2) 0%, transparent 70%);
+            z-index: -1;
+            filter: blur(60px);
+        }
+
+        /* Trust Badges */
+        .trust-section {
+            padding: var(--space-xl) 0;
+            border-top: 1px solid var(--border-subtle);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: var(--space-2xl);
+            flex-wrap: wrap;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .trust-item svg {
+            width: 24px;
+            height: 24px;
+            color: var(--accent-success);
+        }
+
+        /* Features Section */
+        .features {
+            padding: var(--space-3xl) 0;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto var(--space-2xl);
+        }
+
+        .section-label {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--accent-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: var(--space-sm);
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            letter-spacing: -0.02em;
+        }
+
+        .section-description {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: var(--space-lg);
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            padding: var(--space-lg);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .feature-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .feature-card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-strong);
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: var(--space-md);
+            font-size: 1.5rem;
+        }
+
+        .feature-icon.ai {
+            background: linear-gradient(135deg, rgba(247, 37, 133, 0.2), rgba(123, 44, 191, 0.2));
+        }
+
+        .feature-icon.privacy {
+            background: linear-gradient(135deg, rgba(52, 211, 153, 0.2), rgba(76, 201, 240, 0.2));
+        }
+
+        .feature-icon.sync {
+            background: linear-gradient(135deg, rgba(58, 134, 255, 0.2), rgba(76, 201, 240, 0.2));
+        }
+
+        .feature-icon.scan {
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.2), rgba(247, 37, 133, 0.2));
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: var(--space-xs);
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            padding: var(--space-3xl) 0;
+            background: var(--bg-secondary);
+            position: relative;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-lg);
+            margin-top: var(--space-2xl);
+        }
+
+        .step {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gradient-blue), var(--gradient-cyan));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.25rem;
+            margin: 0 auto var(--space-md);
+        }
+
+        .step h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: var(--space-xs);
+        }
+
+        .step p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Screenshots Gallery */
+        .screenshots {
+            padding: var(--space-3xl) 0;
+        }
+
+        .screenshots-gallery {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: var(--space-lg);
+            margin-top: var(--space-2xl);
+            perspective: 1000px;
+        }
+
+        .screenshot-item {
+            max-width: 280px;
+            transition: transform 0.4s ease;
+        }
+
+        .screenshot-item:nth-child(1) {
+            transform: rotateY(10deg) translateZ(-50px);
+        }
+
+        .screenshot-item:nth-child(2) {
+            transform: translateZ(50px) scale(1.05);
+            z-index: 2;
+        }
+
+        .screenshot-item:nth-child(3) {
+            transform: rotateY(-10deg) translateZ(-50px);
+        }
+
+        .screenshot-item:hover {
+            transform: scale(1.08) translateZ(100px);
+            z-index: 3;
+        }
+
+        .screenshot-item img {
+            width: 100%;
+            border-radius: 30px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .screenshot-caption {
+            text-align: center;
+            margin-top: var(--space-sm);
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: var(--space-3xl) 0;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: var(--space-lg);
+            margin-top: var(--space-2xl);
+        }
+
+        .testimonial-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            padding: var(--space-lg);
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: var(--space-sm);
+            left: var(--space-md);
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1;
+            background: linear-gradient(135deg, var(--gradient-cyan), var(--gradient-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            opacity: 0.3;
+        }
+
+        .testimonial-content {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: var(--space-md);
+            position: relative;
+            z-index: 1;
+            padding-top: var(--space-md);
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .testimonial-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gradient-blue), var(--gradient-cyan));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .testimonial-info h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 0.15rem;
+        }
+
+        .testimonial-info p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .testimonial-stars {
+            display: flex;
+            gap: 0.15rem;
+            margin-bottom: var(--space-sm);
+        }
+
+        .testimonial-stars svg {
+            width: 16px;
+            height: 16px;
+            fill: #FFB800;
+        }
+
+        /* Pricing */
+        .pricing {
+            padding: var(--space-3xl) 0;
+            background: var(--bg-secondary);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-lg);
+            max-width: 1100px;
+            margin: var(--space-2xl) auto 0;
+        }
+
+        .pricing-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 24px;
+            padding: var(--space-xl);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            border-color: var(--border-strong);
+            transform: translateY(-5px);
+        }
+
+        /* Equalize pricing card heights */
+        .pricing-grid {
+            align-items: stretch;
+        }
+
+        .pricing-card {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pricing-features {
+            flex-grow: 1;
+        }
+
+        .pricing-card.featured {
+            border-color: var(--accent-secondary);
+            background: linear-gradient(180deg, rgba(247, 37, 133, 0.08) 0%, var(--bg-card) 100%);
+        }
+
+        .pricing-card.featured::before {
+            content: 'Launch Special!';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--gradient-orange), var(--gradient-pink));
+            padding: 0.3rem 1rem;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .pricing-subtitle {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: var(--space-sm);
+        }
+
+        .pricing-annual {
+            font-size: 0.85rem;
+            color: var(--accent-success);
+            margin-top: 0.25rem;
+        }
+
+        .pricing-trial {
+            display: inline-block;
+            margin-top: 0.5rem;
+            padding: 0.25rem 0.75rem;
+            background: rgba(52, 211, 153, 0.15);
+            border-radius: 100px;
+            font-size: 0.8rem;
+            color: var(--accent-success);
+        }
+
+        .pricing-note {
+            text-align: center;
+            margin-top: var(--space-lg);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 900px) {
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+            }
+        }
+
+        .pricing-name {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: var(--space-xs);
+        }
+
+        .pricing-price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: var(--space-sm);
+        }
+
+        .pricing-price span {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--text-secondary);
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin: var(--space-lg) 0;
+        }
+
+        .pricing-features li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.5rem 0;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .pricing-features li svg {
+            width: 18px;
+            height: 18px;
+            color: var(--accent-success);
+            flex-shrink: 0;
+        }
+
+        .pricing-cta {
+            width: 100%;
+            padding: 1rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: var(--space-3xl) 0;
+            text-align: center;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, rgba(247, 37, 133, 0.1), rgba(123, 44, 191, 0.1), rgba(76, 201, 240, 0.1));
+            border: 1px solid var(--border-subtle);
+            border-radius: 32px;
+            padding: var(--space-2xl);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-title {
+            font-size: clamp(1.75rem, 3vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+        }
+
+        .cta-description {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-lg);
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Footer */
+        footer {
+            padding: var(--space-2xl) 0 var(--space-lg);
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: var(--space-2xl);
+            margin-bottom: var(--space-2xl);
+        }
+
+        .footer-brand p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: var(--space-sm);
+            max-width: 300px;
+        }
+
+        .footer-column h4 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: var(--space-xs);
+        }
+
+        .footer-column a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s ease;
+        }
+
+        .footer-column a:hover {
+            color: var(--text-primary);
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-subtle);
+            flex-wrap: wrap;
+            gap: var(--space-sm);
+        }
+
+        .footer-bottom p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: var(--space-md);
+        }
+
+        .footer-legal a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.2s ease;
+        }
+
+        .footer-legal a:hover {
+            color: var(--text-secondary);
+        }
+
+        /* Animations */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 968px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-description {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-ctas {
+                justify-content: center;
+            }
+
+            .hero-image {
+                order: -1;
+            }
+
+            .phone-mockup {
+                max-width: 260px;
+                transform: none;
+            }
+
+            .steps {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .screenshots-gallery {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .screenshot-item,
+            .screenshot-item:nth-child(1),
+            .screenshot-item:nth-child(2),
+            .screenshot-item:nth-child(3) {
+                transform: none;
+                max-width: 250px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .nav-links {
+                display: none;
+            }
+
+            .trust-badges {
+                flex-direction: column;
+                gap: var(--space-md);
+            }
+
+            .steps {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        /* Scroll reveal */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .scroll-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-gradient"></div>
+    <div class="noise"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container nav-content">
+            <a href="#" class="logo">Receipts for YNAB</a>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="https://apps.apple.com/us/app/receipts-for-ynab/id6755055273" class="nav-cta">Download</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <div class="hero-badge" style="background: linear-gradient(135deg, rgba(255, 107, 53, 0.15), rgba(247, 37, 133, 0.15)); border-color: rgba(247, 37, 133, 0.3);">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="color: var(--gradient-pink);">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span style="color: var(--gradient-orange);">🎉 Launch Special — AI Scanning 25% Off!</span>
+                    </div>
+                    <h1>Scan Receipts.<br><span class="gradient-text">Sync to YNAB.</span></h1>
+                    <p class="hero-description">Tired of manually entering receipt totals? Let Apple Intelligence extract every line item and sync to YNAB in seconds—100% on-device, 100% private.</p>
+                    <div class="hero-ctas">
+                        <a href="https://apps.apple.com/us/app/receipts-for-ynab/id6755055273" class="btn-primary">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                            </svg>
+                            Download Free
+                        </a>
+                        <a href="#how-it-works" class="btn-secondary">See How It Works</a>
+                    </div>
+                    <p style="margin-top: var(--space-sm); font-size: 0.9rem; color: var(--text-muted);">Free to download • 10 AI scans included • No credit card required</p>
+                </div>
+                <div class="hero-image">
+                    <div class="phone-mockup">
+                        <div class="phone-glow"></div>
+                        <img src="assets/screenshot-home.png" alt="Receipts for YNAB iOS app home screen showing camera, photo library, and document scanner capture options for receipt scanning" loading="eager">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Section -->
+    <section class="trust-section">
+        <div class="container">
+            <div class="trust-badges">
+                <div class="trust-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                    </svg>
+                    100% On-Device Processing
+                </div>
+                <div class="trust-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    </svg>
+                    No Data Collection
+                </div>
+                <div class="trust-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                    GDPR & CCPA Compliant
+                </div>
+                <div class="trust-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                    Instant Sync
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label">Features</p>
+                <h2 class="section-title">Smart Receipt Scanner Features for YNAB</h2>
+                <p class="section-description">Built for YNAB users who want fast, private, and accurate receipt scanning.</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-icon ai">
+                        <span>&#129302;</span>
+                    </div>
+                    <h3>Apple Intelligence Powered</h3>
+                    <p>AI extracts merchant names, dates, amounts, and individual line items automatically using iOS 26's Foundation Models.</p>
+                </div>
+
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-icon privacy">
+                        <span>&#128274;</span>
+                    </div>
+                    <h3>Privacy-First Design</h3>
+                    <p>Your receipts never leave your device. All processing happens on-device with no cloud uploads or external servers.</p>
+                </div>
+
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-icon sync">
+                        <span>&#128260;</span>
+                    </div>
+                    <h3>Seamless YNAB Sync</h3>
+                    <p>One tap to create transactions with full line items as subtransactions. Categories auto-matched from your budget.</p>
+                </div>
+
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-icon scan">
+                        <span>&#128247;</span>
+                    </div>
+                    <h3>Smart Capture</h3>
+                    <p>Use camera, photo library, or document scanner. Quality validation ensures clear scans for accurate extraction.</p>
+                </div>
+
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-icon ai">
+                        <span>&#128202;</span>
+                    </div>
+                    <h3>Confidence Scoring</h3>
+                    <p>See exactly how accurate each extraction is before syncing. Review the AI's breakdown and edit if needed.</p>
+                </div>
+
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-icon sync">
+                        <span>&#128451;</span>
+                    </div>
+                    <h3>Receipt Management</h3>
+                    <p>Organize, search, and manage all your scanned receipts. Filter by merchant, date, or sync status.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how-it-works" class="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label">How It Works</p>
+                <h2 class="section-title">Scan Receipts to YNAB in 4 Easy Steps</h2>
+                <p class="section-description">A simple 4-step process to digitize any receipt.</p>
+            </div>
+
+            <div class="steps">
+                <div class="step scroll-reveal">
+                    <div class="step-number">1</div>
+                    <h3>Capture</h3>
+                    <p>Take a photo using camera, library, or document scanner</p>
+                </div>
+
+                <div class="step scroll-reveal">
+                    <div class="step-number">2</div>
+                    <h3>Extract</h3>
+                    <p>Apple Intelligence reads the receipt on-device</p>
+                </div>
+
+                <div class="step scroll-reveal">
+                    <div class="step-number">3</div>
+                    <h3>Review</h3>
+                    <p>Check confidence score and edit any fields</p>
+                </div>
+
+                <div class="step scroll-reveal">
+                    <div class="step-number">4</div>
+                    <h3>Sync</h3>
+                    <p>One tap to create the transaction in YNAB</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Screenshots -->
+    <section class="screenshots">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label">App Preview</p>
+                <h2 class="section-title">Beautiful iOS Receipt Scanner App</h2>
+                <p class="section-description">A beautiful, native iOS experience that fits naturally into your workflow.</p>
+            </div>
+
+            <div class="screenshots-gallery">
+                <div class="screenshot-item scroll-reveal">
+                    <img src="assets/screenshot-home.png" alt="Receipt scanner app home screen with quick capture buttons for camera, photo library, and document scanner">
+                    <p class="screenshot-caption">Quick capture options</p>
+                </div>
+                <div class="screenshot-item scroll-reveal">
+                    <img src="assets/screenshot-hero.png" alt="Apple Intelligence scanning a grocery receipt and extracting merchant name, date, total, and line items automatically">
+                    <p class="screenshot-caption">AI-powered scanning</p>
+                </div>
+                <div class="screenshot-item scroll-reveal">
+                    <img src="assets/screenshot-detail.png" alt="Receipt detail view showing extracted transaction data with confidence scores and one-tap YNAB sync button">
+                    <p class="screenshot-caption">Extracted details & sync</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label">Beta Feedback</p>
+                <h2 class="section-title">What early users are saying</h2>
+                <p class="section-description">Trusted by YNAB enthusiasts during our beta program.</p>
+            </div>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card scroll-reveal">
+                    <div class="testimonial-stars">
+                        <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                        <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                        <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                        <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                        <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                    </div>
+                    <p class="testimonial-content">Finally a receipt scanner that actually works with YNAB! The AI extraction is incredibly accurate, and I love that nothing leaves my phone. Game changer for my grocery runs.</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">MK</div>
+                        <div class="testimonial-info">
+                            <h4>Mike K.</h4>
+                            <p>YNAB user since 2019</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card scroll-reveal">
+                    <div class="testimonial-stars">
+                        <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                        <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                        <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                        <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                        <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                    </div>
+                    <p class="testimonial-content">The privacy angle sold me immediately. As someone who's paranoid about financial data, having everything processed on-device with Apple Intelligence is exactly what I wanted.</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">SR</div>
+                        <div class="testimonial-info">
+                            <h4>Sarah R.</h4>
+                            <p>Beta tester</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card scroll-reveal">
+                    <div class="testimonial-stars">
+                        <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                        <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                        <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                        <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                        <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                    </div>
+                    <p class="testimonial-content">I scan all my Costco receipts now. Getting line items as subtransactions in YNAB is brilliant—I can finally see exactly where my grocery budget goes.</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">JT</div>
+                        <div class="testimonial-info">
+                            <h4>James T.</h4>
+                            <p>YNAB power user</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label">Pricing</p>
+                <h2 class="section-title">Simple, Transparent Pricing</h2>
+                <p class="section-description">Start with 10 AI scans and 5 YNAB uploads per month. Need more? Choose a plan that fits your budgeting style.</p>
+            </div>
+
+            <div class="pricing-grid">
+                <!-- Free Tier -->
+                <div class="pricing-card">
+                    <h3 class="pricing-name">Free</h3>
+                    <p class="pricing-price">$0</p>
+                    <p class="pricing-subtitle">Forever free</p>
+                    <ul class="pricing-features">
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            10 AI scans per month
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            5 YNAB uploads per month
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            On-device processing
+                        </li>
+                    </ul>
+                    <a href="https://apps.apple.com/us/app/receipts-for-ynab/id6755055273" class="btn-secondary pricing-cta">Get Started</a>
+                </div>
+
+                <!-- Manual Entry Tier -->
+                <div class="pricing-card">
+                    <h3 class="pricing-name">Manual Entry</h3>
+                    <p class="pricing-price">$0.99 <span>/ month</span></p>
+                    <p class="pricing-annual">or $9.99/year (2 months free!)</p>
+                    <ul class="pricing-features">
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            Unlimited manual entry
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            Unlimited YNAB syncing
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            Works on all iOS 26+ devices
+                        </li>
+                        <li style="color: var(--text-muted);">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="color: var(--text-muted);">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                            No AI scanning included
+                        </li>
+                    </ul>
+                    <a href="https://apps.apple.com/us/app/receipts-for-ynab/id6755055273" class="btn-secondary pricing-cta">Subscribe</a>
+                </div>
+
+                <!-- AI Scanning Tier (Featured) -->
+                <div class="pricing-card featured">
+                    <h3 class="pricing-name">AI Scanning</h3>
+                    <p class="pricing-price">$4.99 <span>/ month</span></p>
+                    <p class="pricing-annual">or $29.99/year <s style="color: var(--text-muted); font-size: 0.8rem;">$39.99</s> (6 months free!)</p>
+                    <span class="pricing-trial">14-day free trial</span>
+                    <ul class="pricing-features">
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            Unlimited AI-powered scanning
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            Unlimited YNAB syncing
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            Requires Apple Intelligence device
+                        </li>
+                    </ul>
+                    <a href="https://apps.apple.com/us/app/receipts-for-ynab/id6755055273" class="btn-primary pricing-cta">Start Free Trial</a>
+                </div>
+            </div>
+
+            <p class="pricing-note">No ads. No hidden fees. Cancel anytime from your Apple ID settings.<br>A YNAB subscription is required separately to sync receipts.</p>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-box scroll-reveal">
+                <h2 class="cta-title">Ready to simplify your receipt tracking?</h2>
+                <p class="cta-description">Download Receipts for YNAB and start scanning today. No credit card required.</p>
+                <a href="https://apps.apple.com/us/app/receipts-for-ynab/id6755055273" class="btn-primary">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                    </svg>
+                    Download on App Store
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="features" style="border-top: 1px solid var(--border-subtle);">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label">FAQ</p>
+                <h2 class="section-title">Frequently Asked Questions</h2>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card scroll-reveal">
+                    <h3>Do I need a YNAB account?</h3>
+                    <p>Yes, an active YNAB subscription is required to sync receipts. You can scan and store locally without YNAB.</p>
+                </div>
+
+                <div class="feature-card scroll-reveal">
+                    <h3>Is this affiliated with YNAB?</h3>
+                    <p>No. Receipts for YNAB is an independent app by eTurea. We are not affiliated with or endorsed by YNAB.</p>
+                </div>
+
+                <div class="feature-card scroll-reveal">
+                    <h3>What devices are supported?</h3>
+                    <p>Any iPhone running iOS 26 (releasing Fall 2025). AI scanning requires Apple Intelligence—iPhone 15 Pro or newer. Older iPhones can use manual entry.</p>
+                </div>
+
+                <div class="feature-card scroll-reveal">
+                    <h3>Are my receipts uploaded?</h3>
+                    <p>Never. All processing happens on your device using Apple Intelligence. We don't operate any servers that collect your data.</p>
+                </div>
+
+                <div class="feature-card scroll-reveal">
+                    <h3>What data goes to YNAB?</h3>
+                    <p>Only transaction details (merchant, date, amount, category) when you explicitly sync. Never your receipt images.</p>
+                </div>
+
+                <div class="feature-card scroll-reveal">
+                    <h3>Does it work offline?</h3>
+                    <p>Receipt scanning works completely offline. An internet connection is only needed to sync to YNAB.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="#" class="logo">Receipts for YNAB</a>
+                    <p>The intelligent receipt scanner for YNAB users. Powered by Apple Intelligence, built for privacy.</p>
+                    <p style="margin-top: var(--space-sm); font-size: 0.8rem; color: var(--text-muted);">Crafted with ❤️ by an independent iOS developer and fellow YNAB budgeter.</p>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="https://apps.apple.com/us/app/receipts-for-ynab/id6755055273">Download</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="licenses.html">Licenses</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="mailto:receiptsforynab.app@gmail.com">Contact</a></li>
+                        <li><a href="mailto:receiptsforynab.app@gmail.com">Report a Bug</a></li>
+                        <li><a href="mailto:receiptsforynab.app@gmail.com">Feature Request</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025-2026 eTurea. All rights reserved. Not affiliated with YNAB.</p>
+                <div class="footer-legal">
+                    <a href="privacy.html">Privacy</a>
+                    <a href="terms.html">Terms</a>
+                    <a href="licenses.html">Licenses</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll Reveal Script -->
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+
+        // Stagger feature cards
+        document.querySelectorAll('.feature-card').forEach((card, index) => {
+            card.style.transitionDelay = `${index * 0.1}s`;
+        });
+    </script>
+
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "MobileApplication",
+        "name": "Receipts for YNAB",
+        "operatingSystem": "iOS 26+",
+        "applicationCategory": "FinanceApplication",
+        "description": "Transform paper receipts into YNAB transactions with Apple Intelligence. 100% on-device AI processing for privacy.",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "5",
+            "ratingCount": "1"
+        },
+        "author": {
+            "@type": "Organization",
+            "name": "eTurea"
+        }
+    }
+    </script>
+
+    <!-- FAQ Schema for Rich Snippets -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Do I need a YNAB account to use Receipts for YNAB?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, an active YNAB subscription is required to sync receipts to your budget. However, you can still scan and store receipts locally without YNAB."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Is Receipts for YNAB affiliated with YNAB?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "No. Receipts for YNAB is an independent app created by eTurea. We are not affiliated with or endorsed by YNAB."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What iPhone models support AI scanning?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "AI-powered scanning requires an Apple Intelligence compatible device: iPhone 15 Pro, iPhone 15 Pro Max, or newer models running iOS 26+. Manual entry works on all iPhones running iOS 26+."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Are my receipt images uploaded to any server?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Never. All processing happens entirely on your device using Apple Intelligence. We don't operate any servers that collect your receipt images or personal data."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What data is sent to YNAB?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Only transaction details (merchant name, date, amount, category) are sent when you explicitly sync. Your receipt images are never uploaded to YNAB or any other server."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Does the app work offline?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes! Receipt scanning and AI extraction work completely offline. An internet connection is only required when syncing transactions to YNAB."
+                }
+            }
+        ]
+    }
+    </script>
+</body>
+</html>

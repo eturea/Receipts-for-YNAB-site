@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service - Receipts for YNAB | User Agreement</title>
+    <meta name="description" content="Terms of Service for Receipts for YNAB. Read our user agreement governing the use of our iOS receipt scanning app with Apple Intelligence.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://eturea.github.io/Receipts-for-YNAB-site/terms">
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://eturea.github.io/Receipts-for-YNAB-site/terms">
+    <meta property="og:title" content="Terms of Service - Receipts for YNAB">
+    <meta property="og:description" content="Terms of Service for our iOS receipt scanning app with Apple Intelligence.">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Terms of Service - Receipts for YNAB">
+    <meta name="twitter:description" content="Terms of Service for our iOS receipt scanning app.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --gradient-orange: #FF6B35;
+            --gradient-pink: #F72585;
+            --gradient-purple: #7B2CBF;
+            --gradient-blue: #3A86FF;
+            --gradient-cyan: #4CC9F0;
+
+            --bg-primary: #0A0A0F;
+            --bg-secondary: #12121A;
+            --bg-card: #1A1A24;
+
+            --text-primary: #FAFAFA;
+            --text-secondary: #A0A0B0;
+            --text-muted: #606070;
+
+            --accent-primary: #4CC9F0;
+            --accent-secondary: #F72585;
+            --accent-success: #34D399;
+
+            --border-subtle: rgba(255, 255, 255, 0.08);
+            --border-strong: rgba(255, 255, 255, 0.15);
+
+            --font-display: 'Outfit', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-display);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+
+        /* Animated Background */
+        .bg-gradient {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .bg-gradient::before {
+            content: '';
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            top: -25%;
+            left: -25%;
+            background:
+                radial-gradient(ellipse at 20% 20%, rgba(247, 37, 133, 0.12) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 30%, rgba(255, 107, 53, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 60% 80%, rgba(123, 44, 191, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 10% 70%, rgba(76, 201, 240, 0.1) 0%, transparent 50%);
+            animation: gradientFloat 20s ease-in-out infinite;
+        }
+
+        @keyframes gradientFloat {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(2%, -2%) rotate(1deg); }
+            66% { transform: translate(-1%, 1%) rotate(-1deg); }
+        }
+
+        /* Noise overlay */
+        .noise {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            opacity: 0.03;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 1rem 0;
+            backdrop-filter: blur(20px);
+            background: rgba(10, 10, 15, 0.85);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .nav-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.1rem;
+            background: linear-gradient(135deg, var(--gradient-cyan), var(--gradient-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, var(--gradient-blue), var(--gradient-cyan));
+            color: white !important;
+            padding: 0.5rem 1rem;
+            border-radius: 100px;
+            font-weight: 600;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(76, 201, 240, 0.3);
+        }
+
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 8rem 1.5rem 4rem;
+        }
+
+        .page-header {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .page-meta {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .page-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .content h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-top: 3rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-subtle);
+            color: var(--text-primary);
+        }
+
+        .content h3 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+        }
+
+        .content h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .content p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .content ul, .content ol {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+        }
+
+        .content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .content strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .content a {
+            color: var(--accent-primary);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .content a:hover {
+            color: var(--gradient-cyan);
+            text-decoration: underline;
+        }
+
+        .content hr {
+            border: none;
+            border-top: 1px solid var(--border-subtle);
+            margin: 2rem 0;
+        }
+
+        .info-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-left: 3px solid var(--accent-primary);
+            border-radius: 8px;
+            padding: 1rem 1.25rem;
+            margin: 1.5rem 0;
+        }
+
+        .info-box.important {
+            border-left-color: var(--accent-secondary);
+        }
+
+        .info-box.warning {
+            border-left-color: #FBBF24;
+        }
+
+        .info-box p {
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        .legal-caps {
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        footer {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+            border-top: 1px solid var(--border-subtle);
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-primary);
+        }
+
+        footer p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 640px) {
+            .nav-links {
+                display: none;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .page-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-gradient"></div>
+    <div class="noise"></div>
+
+    <nav>
+        <div class="nav-content">
+            <a href="./" class="logo">Receipts for YNAB</a>
+            <ul class="nav-links">
+                <li><a href="./">Home</a></li>
+                <li><a href="./privacy">Privacy</a></li>
+                <li><a href="./terms">Terms</a></li>
+                <li><a href="./licenses">Licenses</a></li>
+                <li><a href="https://apps.apple.com/us/app/receipts-for-ynab/id6755055273" class="nav-cta">Download</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <header class="page-header">
+            <h1>Terms of Service</h1>
+            <div class="page-meta">
+                <span><strong>Effective:</strong> October 15, 2025</span>
+                <span><strong>Updated:</strong> December 1, 2025</span>
+            </div>
+        </header>
+
+        <div class="content">
+            <p>Welcome to <strong>Receipts for YNAB</strong>. These Terms of Service ("Terms", "Agreement") are a legal agreement between you ("User", "you", or "your") and <strong>eTurea</strong> ("we", "us", or "our") governing your use of the Receipts for YNAB mobile application (the "App", "Service").</p>
+
+            <div class="info-box important">
+                <p><strong>By downloading, installing, or using Receipts for YNAB, you agree to be bound by these Terms.</strong> If you do not agree to these Terms, do not use the App.</p>
+            </div>
+
+            <h2>1. Acceptance of Terms</h2>
+
+            <h3>1.1 Agreement to Terms</h3>
+            <p>By accessing or using Receipts for YNAB, you confirm that:</p>
+            <ul>
+                <li>You are at least 13 years of age</li>
+                <li>You have the legal capacity to enter into this Agreement</li>
+                <li>You have read, understood, and agree to be bound by these Terms</li>
+                <li>You agree to comply with all applicable laws and regulations</li>
+            </ul>
+
+            <h3>1.2 Additional Terms</h3>
+            <p>Your use of the App is also subject to:</p>
+            <ul>
+                <li>Apple's App Store Terms of Service</li>
+                <li>YNAB's Terms of Service (<a href="https://www.ynab.com/terms" target="_blank" rel="noopener">https://www.ynab.com/terms</a>)</li>
+                <li>Our <a href="./privacy">Privacy Policy</a></li>
+            </ul>
+
+            <h3>1.3 Modifications to Terms</h3>
+            <p>We reserve the right to modify these Terms at any time. When we make material changes, we will update the "Last Updated" date and may notify you through the App. Your continued use after changes constitutes acceptance.</p>
+
+            <h2>2. Description of Service</h2>
+
+            <h3>2.1 What Receipts for YNAB Does</h3>
+            <p>Receipts for YNAB is an iOS mobile application that provides:</p>
+            <ul>
+                <li><strong>Receipt Scanning:</strong> Capture or import photos of paper receipts</li>
+                <li><strong>Data Extraction:</strong> Use Apple Intelligence to extract merchant names, dates, amounts, and line items</li>
+                <li><strong>Receipt Management:</strong> Store and organize scanned receipts on your device</li>
+                <li><strong>YNAB Integration:</strong> Sync receipt data to your YNAB account as transactions</li>
+                <li><strong>Category Matching:</strong> Suggest appropriate YNAB categories for your purchases</li>
+            </ul>
+
+            <h3>2.2 What Receipts for YNAB Does NOT Do</h3>
+            <p>The App does not:</p>
+            <ul>
+                <li>Store your data on external servers (all data is on your device)</li>
+                <li>Access your banking or financial accounts directly</li>
+                <li>Provide financial advice or budgeting recommendations</li>
+                <li>Guarantee 100% accuracy of extracted receipt data</li>
+                <li>Modify or delete YNAB transactions created by other apps or sources</li>
+            </ul>
+
+            <h3>2.3 Requirements</h3>
+            <p>To use Receipts for YNAB, you must have:</p>
+            <ul>
+                <li>An iPhone running iOS 26 (releasing Fall 2025) or later</li>
+                <li>For AI scanning: A device with Apple Intelligence capabilities (iPhone 15 Pro, iPhone 15 Pro Max, or newer)</li>
+                <li>For manual entry: Any iPhone running iOS 26+</li>
+                <li>A valid, active YNAB account (subscription required by YNAB)</li>
+                <li>An internet connection for YNAB synchronization</li>
+            </ul>
+
+            <h2>3. User Accounts and Authentication</h2>
+
+            <h3>3.1 YNAB Account Required</h3>
+            <p>Receipts for YNAB requires authentication with a valid YNAB account. You are responsible for maintaining an active YNAB subscription, keeping your credentials secure, and all activity that occurs under your account.</p>
+
+            <h3>3.2 OAuth2 Authentication</h3>
+            <p>The App uses OAuth2 to connect to your YNAB account. We never see or store your YNAB password. Access tokens are stored securely in your device's iOS Keychain. You can revoke access at any time through the App settings or YNAB's website.</p>
+
+            <h2>4. Acceptable Use Policy</h2>
+
+            <h3>4.1 Permitted Uses</h3>
+            <p>You may use Receipts for YNAB only for personal, non-commercial receipt management and creating legitimate transactions in your own YNAB plan.</p>
+
+            <h3>4.2 Prohibited Uses</h3>
+            <p>You agree NOT to:</p>
+            <ul>
+                <li>Reverse engineer, decompile, or attempt to derive the source code of the App</li>
+                <li>Use the App for any illegal, fraudulent, or unauthorized purpose</li>
+                <li>Create fake or fraudulent receipts or transactions</li>
+                <li>Make excessive API requests that could burden YNAB's servers</li>
+                <li>Transmit viruses, malware, or harmful code through the App</li>
+                <li>Attempt to gain unauthorized access to any systems or networks</li>
+            </ul>
+
+            <h2>5. User Content and Data</h2>
+
+            <h3>5.1 Your Content</h3>
+            <p>You retain all ownership rights to content you create or upload to the App, including receipt images and edited transaction details.</p>
+
+            <h3>5.2 License to Your Content</h3>
+            <p>By using the App, you grant us a limited license to process your receipt images using on-device AI, store your data locally on your device, and transmit transaction data to YNAB when you explicitly choose to sync.</p>
+
+            <h3>5.3 Content Responsibility</h3>
+            <p>You are solely responsible for the accuracy of data you enter or sync to YNAB and ensuring you have the right to scan and process receipts.</p>
+
+            <h2>6. Intellectual Property Rights</h2>
+
+            <h3>6.1 App Ownership</h3>
+            <p>Receipts for YNAB and all associated intellectual property rights are owned by eTurea, including the App's source code, design, user interface, name, logo, and branding.</p>
+
+            <h3>6.2 License Grant</h3>
+            <p>Subject to your compliance with these Terms, we grant you a limited, non-exclusive, non-transferable, revocable license to download, install, and use the App on Apple devices you own or control for personal, non-commercial purposes.</p>
+
+            <h2>7. Third-Party Services</h2>
+
+            <h3>7.1 YNAB Integration</h3>
+            <p>The App integrates with YNAB's API. You acknowledge that YNAB is a separate service operated by Steine LLC, their Terms of Service and Privacy Policy apply, and we are not responsible for YNAB's service availability. <strong>We are not affiliated with, endorsed by, or sponsored by YNAB.</strong></p>
+
+            <h3>7.2 Apple Services</h3>
+            <p>The App uses Apple's services and frameworks including Apple Intelligence, Vision framework, iOS Keychain, and Siri/Shortcuts. Apple's terms and policies apply to these services.</p>
+
+            <h2>8. Fees and Payment</h2>
+
+            <h3>8.1 Subscription Tiers</h3>
+            <p>Receipts for YNAB offers a <strong>Free tier</strong> with limited scans and uploads per month. Premium tiers are available for unlimited usage. A separate YNAB subscription (paid to YNAB) is required to sync receipts.</p>
+
+            <h3>8.2 Future Pricing</h3>
+            <p>We reserve the right to introduce paid features or subscriptions in the future with advance notice.</p>
+
+            <h2>9. Data Accuracy and Disclaimer</h2>
+
+            <h3>9.1 AI Extraction Accuracy</h3>
+            <div class="info-box warning">
+                <p><strong>AI-extracted data may contain errors and should always be verified.</strong> Accuracy depends on receipt quality, formatting, and legibility. You are responsible for reviewing and correcting data before syncing to YNAB.</p>
+            </div>
+
+            <h3>9.2 YNAB Sync Limitations</h3>
+            <p>Due to YNAB API limitations:</p>
+            <ul>
+                <li><strong>Transaction dates cannot be changed</strong> after syncing</li>
+                <li><strong>Subtransactions (line items) cannot be edited</strong> after syncing</li>
+                <li>You may need to delete and re-scan receipts to correct certain errors</li>
+            </ul>
+
+            <h3>9.3 Financial Decisions</h3>
+            <p><strong>Receipts for YNAB is not financial advice.</strong> You are responsible for maintaining accurate financial records and consulting qualified professionals for financial advice.</p>
+
+            <h2>10. Disclaimer of Warranties</h2>
+
+            <p class="legal-caps">TO THE FULLEST EXTENT PERMITTED BY LAW, RECEIPTS FOR YNAB IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, NON-INFRINGEMENT, ACCURACY, RELIABILITY, OR SECURITY.</p>
+
+            <p>We do not guarantee that the App will be available at all times, be free from bugs or errors, or meet your specific requirements.</p>
+
+            <h2>11. Limitation of Liability</h2>
+
+            <p class="legal-caps">TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL ETUREA BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING BUT NOT LIMITED TO LOST PROFITS, LOSS OF DATA, OR DAMAGE TO REPUTATION.</p>
+
+            <p>If we are found liable for any damages, our total liability shall not exceed the greater of the amount you paid us in the 12 months prior to the event or <strong>$50 USD</strong>.</p>
+
+            <h2>12. Indemnification</h2>
+
+            <p>You agree to indemnify, defend, and hold harmless eTurea from and against any claims, damages, losses, liabilities, costs, and expenses arising from your use or misuse of the App, your violation of these Terms, or your violation of any third-party rights.</p>
+
+            <h2>13. Termination</h2>
+
+            <h3>13.1 Termination by You</h3>
+            <p>You may stop using the App at any time by deleting it from your device and disconnecting your YNAB account in Settings.</p>
+
+            <h3>13.2 Termination by Us</h3>
+            <p>We reserve the right to suspend or terminate your access without notice if you violate these Terms, engage in fraudulent activity, or if required by law.</p>
+
+            <h3>13.3 Effect of Termination</h3>
+            <p>Upon termination, your license ends immediately. Disclaimers, limitations of liability, and indemnification obligations survive termination.</p>
+
+            <h2>14. Apple-Specific Terms</h2>
+
+            <p>You acknowledge that these Terms are between you and eTurea, not Apple. Apple has no obligation to provide support for the App. eTurea, not Apple, is responsible for maintenance, support, warranties, and product claims. Apple and its subsidiaries are third-party beneficiaries of these Terms.</p>
+
+            <h2>15. Dispute Resolution</h2>
+
+            <h3>15.1 Informal Resolution</h3>
+            <p>Before filing a claim, you agree to try to resolve the dispute informally by contacting us at <a href="mailto:receiptsforynab.app@gmail.com">receiptsforynab.app@gmail.com</a>.</p>
+
+            <h3>15.2 Governing Law</h3>
+            <p>These Terms are governed by the laws of the <strong>State of California, United States</strong>.</p>
+
+            <h3>15.3 Class Action Waiver</h3>
+            <p class="legal-caps">YOU AGREE THAT DISPUTES WILL BE RESOLVED INDIVIDUALLY, NOT AS PART OF A CLASS ACTION OR REPRESENTATIVE PROCEEDING.</p>
+
+            <h2>16. General Provisions</h2>
+
+            <ul>
+                <li><strong>Entire Agreement:</strong> These Terms and our Privacy Policy constitute the entire agreement between you and eTurea</li>
+                <li><strong>Severability:</strong> If any provision is invalid, the remaining provisions remain in effect</li>
+                <li><strong>Waiver:</strong> Our failure to enforce any right does not constitute a waiver</li>
+                <li><strong>Assignment:</strong> You may not assign these Terms without our consent</li>
+                <li><strong>Force Majeure:</strong> We are not liable for failures due to circumstances beyond our control</li>
+            </ul>
+
+            <h2>17. Contact Information</h2>
+
+            <p>If you have questions about these Terms, please contact us:</p>
+            <ul>
+                <li><strong>Email:</strong> <a href="mailto:receiptsforynab.app@gmail.com">receiptsforynab.app@gmail.com</a></li>
+                <li><strong>Developer:</strong> eTurea</li>
+            </ul>
+
+            <p>We will respond to inquiries within 30 days.</p>
+
+            <h2>18. Acknowledgment</h2>
+
+            <div class="info-box">
+                <p><strong>BY USING RECEIPTS FOR YNAB, YOU ACKNOWLEDGE THAT YOU HAVE READ, UNDERSTOOD, AND AGREE TO BE BOUND BY THESE TERMS OF SERVICE.</strong></p>
+            </div>
+
+            <hr>
+
+            <p><strong>&copy; 2025 eTurea. All rights reserved.</strong></p>
+
+            <p style="font-size: 0.85rem; margin-top: 2rem;">We are not affiliated, associated, or in any way officially connected with YNAB or any of its subsidiaries or affiliates. The official YNAB website can be found at <a href="https://www.ynab.com" target="_blank" rel="noopener">https://www.ynab.com</a>. The names YNAB and You Need A Budget are registered trademarks of YNAB.</p>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-links">
+            <a href="./">Home</a>
+            <a href="./privacy">Privacy Policy</a>
+            <a href="./terms">Terms of Service</a>
+            <a href="./licenses">Licenses</a>
+            <a href="mailto:receiptsforynab.app@gmail.com">Contact</a>
+        </div>
+        <p style="margin-bottom: 0.5rem;">&copy; 2025-2026 eTurea. All rights reserved.</p>
+        <p style="font-size: 0.8rem; color: var(--text-muted);">Crafted with ❤️ by an independent iOS developer and fellow YNAB budgeter.</p>
+    </footer>
+</body>
+</html>

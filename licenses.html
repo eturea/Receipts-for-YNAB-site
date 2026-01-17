@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legal Notices and Licenses - Receipts for YNAB | Attributions</title>
+    <meta name="description" content="Legal notices and third-party software licenses for Receipts for YNAB. View attributions for Apple frameworks, Apple Intelligence, and open source components.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://eturea.github.io/Receipts-for-YNAB-site/licenses">
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://eturea.github.io/Receipts-for-YNAB-site/licenses">
+    <meta property="og:title" content="Legal Notices and Licenses - Receipts for YNAB">
+    <meta property="og:description" content="View attributions for Apple frameworks and open source components.">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Licenses - Receipts for YNAB">
+    <meta name="twitter:description" content="Legal notices and third-party software licenses.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --gradient-orange: #FF6B35;
+            --gradient-pink: #F72585;
+            --gradient-purple: #7B2CBF;
+            --gradient-blue: #3A86FF;
+            --gradient-cyan: #4CC9F0;
+
+            --bg-primary: #0A0A0F;
+            --bg-secondary: #12121A;
+            --bg-card: #1A1A24;
+
+            --text-primary: #FAFAFA;
+            --text-secondary: #A0A0B0;
+            --text-muted: #606070;
+
+            --accent-primary: #4CC9F0;
+            --accent-secondary: #F72585;
+            --accent-success: #34D399;
+
+            --border-subtle: rgba(255, 255, 255, 0.08);
+            --border-strong: rgba(255, 255, 255, 0.15);
+
+            --font-display: 'Outfit', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-display);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+
+        /* Animated Background */
+        .bg-gradient {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .bg-gradient::before {
+            content: '';
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            top: -25%;
+            left: -25%;
+            background:
+                radial-gradient(ellipse at 20% 20%, rgba(247, 37, 133, 0.12) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 30%, rgba(255, 107, 53, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 60% 80%, rgba(123, 44, 191, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 10% 70%, rgba(76, 201, 240, 0.1) 0%, transparent 50%);
+            animation: gradientFloat 20s ease-in-out infinite;
+        }
+
+        @keyframes gradientFloat {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(2%, -2%) rotate(1deg); }
+            66% { transform: translate(-1%, 1%) rotate(-1deg); }
+        }
+
+        /* Noise overlay */
+        .noise {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            opacity: 0.03;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 1rem 0;
+            backdrop-filter: blur(20px);
+            background: rgba(10, 10, 15, 0.85);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .nav-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.1rem;
+            background: linear-gradient(135deg, var(--gradient-cyan), var(--gradient-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, var(--gradient-blue), var(--gradient-cyan));
+            color: white !important;
+            padding: 0.5rem 1rem;
+            border-radius: 100px;
+            font-weight: 600;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(76, 201, 240, 0.3);
+        }
+
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 8rem 1.5rem 4rem;
+        }
+
+        .page-header {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .page-meta {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .page-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Table of Contents */
+        .toc {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .toc h2 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .toc ol {
+            padding-left: 1.25rem;
+            color: var(--text-secondary);
+        }
+
+        .toc li {
+            margin-bottom: 0.5rem;
+        }
+
+        .toc a {
+            color: var(--accent-primary);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .toc a:hover {
+            color: var(--gradient-cyan);
+        }
+
+        .content h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-top: 3rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-subtle);
+            color: var(--text-primary);
+        }
+
+        .content h3 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+        }
+
+        .content h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .content p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .content ul, .content ol {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+        }
+
+        .content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .content strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .content a {
+            color: var(--accent-primary);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .content a:hover {
+            color: var(--gradient-cyan);
+            text-decoration: underline;
+        }
+
+        .content hr {
+            border: none;
+            border-top: 1px solid var(--border-subtle);
+            margin: 2rem 0;
+        }
+
+        /* License Cards */
+        .license-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .license-card h4 {
+            margin-top: 0;
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .license-card .meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.85rem;
+        }
+
+        .license-card .meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            color: var(--text-muted);
+        }
+
+        .license-card .meta strong {
+            color: var(--text-secondary);
+        }
+
+        .license-card p {
+            font-size: 0.95rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .license-card ul {
+            font-size: 0.95rem;
+            margin-bottom: 0;
+        }
+
+        /* Code block for license text */
+        .license-text {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-subtle);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .license-text-collapsed {
+            max-height: 300px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .license-text-collapsed::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: linear-gradient(transparent, var(--bg-primary));
+            pointer-events: none;
+        }
+
+        .expand-btn {
+            display: inline-block;
+            margin-top: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 6px;
+            color: var(--accent-primary);
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .expand-btn:hover {
+            background: var(--bg-secondary);
+            border-color: var(--accent-primary);
+        }
+
+        footer {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+            border-top: 1px solid var(--border-subtle);
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-primary);
+        }
+
+        footer p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 640px) {
+            .nav-links {
+                display: none;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .page-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .license-card .meta {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-gradient"></div>
+    <div class="noise"></div>
+
+    <nav>
+        <div class="nav-content">
+            <a href="./" class="logo">Receipts for YNAB</a>
+            <ul class="nav-links">
+                <li><a href="./">Home</a></li>
+                <li><a href="./privacy">Privacy</a></li>
+                <li><a href="./terms">Terms</a></li>
+                <li><a href="./licenses">Licenses</a></li>
+                <li><a href="https://apps.apple.com/us/app/receipts-for-ynab/id6755055273" class="nav-cta">Download</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <header class="page-header">
+            <h1>Legal Notices and Licenses</h1>
+            <div class="page-meta">
+                <span><strong>Version:</strong> 1.0</span>
+                <span><strong>Updated:</strong> November 25, 2025</span>
+            </div>
+        </header>
+
+        <nav class="toc">
+            <h2>Table of Contents</h2>
+            <ol>
+                <li><a href="#app-license">Receipts for YNAB License</a></li>
+                <li><a href="#apple-frameworks">Apple Frameworks and SDKs</a></li>
+                <li><a href="#third-party">Third-Party Services</a></li>
+                <li><a href="#open-source">Open Source Components</a></li>
+                <li><a href="#trademarks">Trademarks</a></li>
+                <li><a href="#contact">Contact Information</a></li>
+            </ol>
+        </nav>
+
+        <div class="content">
+            <h2 id="app-license">1. Receipts for YNAB License</h2>
+
+            <p><strong>Copyright &copy; 2025 eTurea. All rights reserved.</strong></p>
+
+            <p>Receipts for YNAB is proprietary software owned by eTurea. The app is licensed to end users under the terms specified in our <a href="./terms">Terms of Service</a>.</p>
+
+            <div class="license-card">
+                <h4>License Summary</h4>
+                <div class="meta">
+                    <span><strong>Type:</strong> Proprietary</span>
+                    <span><strong>Usage:</strong> Personal, non-commercial</span>
+                    <span><strong>Distribution:</strong> Apple App Store only</span>
+                </div>
+                <p>No reverse engineering, modification, or redistribution is permitted.</p>
+            </div>
+
+            <h2 id="apple-frameworks">2. Apple Frameworks and SDKs</h2>
+
+            <p>Receipts for YNAB is built using Apple's iOS SDK and frameworks. All Apple frameworks are used under Apple's standard SDK license agreement.</p>
+
+            <div class="license-card">
+                <h4>SwiftUI</h4>
+                <div class="meta">
+                    <span><strong>Copyright:</strong> &copy; Apple Inc.</span>
+                    <span><strong>License:</strong> Apple SDK License</span>
+                </div>
+                <p>User interface framework for building native iOS applications.</p>
+            </div>
+
+            <div class="license-card">
+                <h4>SwiftData</h4>
+                <div class="meta">
+                    <span><strong>Copyright:</strong> &copy; Apple Inc.</span>
+                    <span><strong>License:</strong> Apple SDK License</span>
+                </div>
+                <p>Data persistence and modeling framework for local storage.</p>
+            </div>
+
+            <div class="license-card">
+                <h4>Vision Framework</h4>
+                <div class="meta">
+                    <span><strong>Copyright:</strong> &copy; Apple Inc.</span>
+                    <span><strong>License:</strong> Apple SDK License</span>
+                </div>
+                <p>On-device OCR and document recognition. Features used:</p>
+                <ul>
+                    <li><code>RecognizeDocumentsRequest</code> - Text recognition</li>
+                    <li><code>DetectLensSmudgeRequest</code> - Photo quality validation</li>
+                    <li><code>CalculateImageAestheticsScoresRequest</code> - Document detection</li>
+                </ul>
+            </div>
+
+            <div class="license-card">
+                <h4>Foundation Models (Apple Intelligence)</h4>
+                <div class="meta">
+                    <span><strong>Copyright:</strong> &copy; Apple Inc.</span>
+                    <span><strong>License:</strong> Apple SDK License</span>
+                </div>
+                <p>On-device AI for structured data extraction. Features used:</p>
+                <ul>
+                    <li><code>SystemLanguageModel</code> - Natural language processing</li>
+                    <li><code>@Generable</code> protocol - Structured output generation</li>
+                    <li>Tool calling for dynamic category retrieval</li>
+                </ul>
+                <p><strong>Requirements:</strong> iOS 26 (releasing Fall 2025)+, iPhone 15 Pro or newer for AI features; manual entry works on all iOS 26+ devices.</p>
+            </div>
+
+            <div class="license-card">
+                <h4>Other Apple Frameworks</h4>
+                <div class="meta">
+                    <span><strong>Copyright:</strong> &copy; Apple Inc.</span>
+                    <span><strong>License:</strong> Apple SDK License</span>
+                </div>
+                <ul>
+                    <li><strong>Combine</strong> - Reactive programming for authentication state</li>
+                    <li><strong>Security Framework</strong> - iOS Keychain for credential storage</li>
+                    <li><strong>UIKit</strong> - Camera, photo picker, and document scanner</li>
+                    <li><strong>App Intents</strong> - Siri and Shortcuts integration</li>
+                </ul>
+            </div>
+
+            <div class="license-card">
+                <h4>Swift Programming Language</h4>
+                <div class="meta">
+                    <span><strong>Copyright:</strong> &copy; Apple Inc. and Swift project authors</span>
+                    <span><strong>License:</strong> Apache License 2.0</span>
+                </div>
+                <p>Open source programming language. <a href="https://swift.org" target="_blank" rel="noopener">https://swift.org</a></p>
+            </div>
+
+            <p><strong>Apple SDK License Agreement:</strong> <a href="https://developer.apple.com/support/terms/" target="_blank" rel="noopener">https://developer.apple.com/support/terms/</a></p>
+
+            <h2 id="third-party">3. Third-Party Services</h2>
+
+            <div class="license-card">
+                <h4>YNAB API (You Need A Budget)</h4>
+                <div class="meta">
+                    <span><strong>Provider:</strong> Steine LLC (YNAB)</span>
+                    <span><strong>API Version:</strong> v1</span>
+                </div>
+                <p><strong>Purpose:</strong> OAuth2 authentication, retrieving budget data, creating and updating transactions.</p>
+                <p><strong>Authentication:</strong> OAuth2 with PKCE (Proof Key for Code Exchange)</p>
+                <ul>
+                    <li><strong>Terms:</strong> <a href="https://www.ynab.com/terms" target="_blank" rel="noopener">https://www.ynab.com/terms</a></li>
+                    <li><strong>Privacy Policy:</strong> <a href="https://www.ynab.com/privacy-policy/" target="_blank" rel="noopener">https://www.ynab.com/privacy-policy/</a></li>
+                    <li><strong>API Docs:</strong> <a href="https://api.youneedabudget.com" target="_blank" rel="noopener">https://api.youneedabudget.com</a></li>
+                </ul>
+                <p><strong>Disclaimer:</strong> Receipts for YNAB is an independent application and is not affiliated with, endorsed by, or sponsored by YNAB or Steine LLC.</p>
+            </div>
+
+            <h2 id="open-source">4. Open Source Components</h2>
+
+            <div class="license-card">
+                <h4>Swift Standard Library</h4>
+                <div class="meta">
+                    <span><strong>Copyright:</strong> &copy; Apple Inc. and Swift project authors</span>
+                    <span><strong>License:</strong> Apache License 2.0</span>
+                </div>
+                <p><strong>Source Code:</strong> <a href="https://github.com/apple/swift" target="_blank" rel="noopener">https://github.com/apple/swift</a></p>
+            </div>
+
+            <p><strong>Note:</strong> Currently, Receipts for YNAB does not use any additional third-party open-source libraries beyond the Swift standard library and Apple frameworks. If dependencies are added in future versions, they will be listed here.</p>
+
+            <h3>Apache License 2.0</h3>
+
+            <p>The Swift programming language is licensed under the Apache License 2.0:</p>
+
+            <div class="license-text license-text-collapsed" id="apache-license">Apache License
+Version 2.0, January 2004
+http://www.apache.org/licenses/
+
+TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
+
+1. Definitions.
+
+"License" shall mean the terms and conditions for use, reproduction,
+and distribution as defined by Sections 1 through 9 of this document.
+
+"Licensor" shall mean the copyright owner or entity authorized by
+the copyright owner that is granting the License.
+
+"Legal Entity" shall mean the union of the acting entity and all
+other entities that control, are controlled by, or are under common
+control with that entity.
+
+"You" (or "Your") shall mean an individual or Legal Entity
+exercising permissions granted by this License.
+
+"Source" form shall mean the preferred form for making modifications,
+including but not limited to software source code, documentation
+source, and configuration files.
+
+"Object" form shall mean any form resulting from mechanical
+transformation or translation of a Source form.
+
+"Work" shall mean the work of authorship made available under the License.
+
+"Derivative Works" shall mean any work that is based on the Work.
+
+"Contribution" shall mean any work of authorship submitted to the Licensor.
+
+"Contributor" shall mean Licensor and any Legal Entity on behalf of whom
+a Contribution has been received by Licensor.
+
+2. Grant of Copyright License. Subject to the terms of this License, each
+Contributor grants to You a perpetual, worldwide, non-exclusive, no-charge,
+royalty-free, irrevocable copyright license to reproduce, prepare Derivative
+Works of, publicly display, publicly perform, sublicense, and distribute the
+Work and such Derivative Works in Source or Object form.
+
+3. Grant of Patent License. Subject to the terms of this License, each
+Contributor grants to You a perpetual, worldwide, non-exclusive, no-charge,
+royalty-free, irrevocable patent license to make, have made, use, offer to sell,
+sell, import, and otherwise transfer the Work.
+
+4. Redistribution. You may reproduce and distribute copies of the Work provided
+that You meet the following conditions: give recipients a copy of this License;
+cause modified files to carry prominent notices; retain all copyright notices;
+include a NOTICE file if the Work includes one.
+
+5. Submission of Contributions. Unless You explicitly state otherwise, any
+Contribution submitted for inclusion in the Work shall be under the terms of
+this License.
+
+6. Trademarks. This License does not grant permission to use the trade names,
+trademarks, or product names of the Licensor.
+
+7. Disclaimer of Warranty. The Work is provided on an "AS IS" BASIS, WITHOUT
+WARRANTIES OR CONDITIONS OF ANY KIND.
+
+8. Limitation of Liability. In no event shall any Contributor be liable to You
+for damages.
+
+9. Accepting Warranty or Additional Liability. You may choose to offer warranty
+or additional liability obligations.
+
+END OF TERMS AND CONDITIONS</div>
+            <button class="expand-btn" onclick="toggleLicense()">Show Full License</button>
+
+            <h2 id="trademarks">5. Trademarks</h2>
+
+            <h3>Receipts for YNAB</h3>
+            <p><strong>"Receipts for YNAB"</strong> and the Receipts for YNAB logo are trademarks of <strong>eTurea</strong>. Unauthorized use is prohibited.</p>
+
+            <h3>YNAB (You Need A Budget)</h3>
+            <p><strong>"YNAB"</strong>, <strong>"You Need A Budget"</strong>, and the YNAB logo are trademarks of <strong>Steine LLC</strong>. Used to identify integration with YNAB's budgeting service. Receipts for YNAB is not endorsed by or affiliated with YNAB.</p>
+
+            <h3>Apple</h3>
+            <p><strong>"Apple"</strong>, <strong>"iPhone"</strong>, <strong>"iPad"</strong>, <strong>"iOS"</strong>, <strong>"App Store"</strong>, <strong>"Face ID"</strong>, <strong>"Touch ID"</strong>, <strong>"Siri"</strong>, <strong>"Shortcuts"</strong>, <strong>"SwiftUI"</strong>, <strong>"SwiftData"</strong>, <strong>"Apple Intelligence"</strong>, and related trademarks are trademarks of <strong>Apple Inc.</strong> Receipts for YNAB is not endorsed by or affiliated with Apple Inc.</p>
+
+            <h2>6. Compliance</h2>
+
+            <p>Receipts for YNAB complies with:</p>
+            <ul>
+                <li><strong>Apple App Store Review Guidelines</strong> - <a href="https://developer.apple.com/app-store/review/guidelines/" target="_blank" rel="noopener">View Guidelines</a></li>
+                <li><strong>GDPR</strong> (General Data Protection Regulation) - European Union</li>
+                <li><strong>CCPA</strong> (California Consumer Privacy Act) - United States</li>
+                <li><strong>COPPA</strong> (Children's Online Privacy Protection Act) - United States</li>
+            </ul>
+
+            <h2 id="contact">7. Contact Information</h2>
+
+            <p>If you have questions about licenses, attributions, or legal notices, please contact us:</p>
+            <ul>
+                <li><strong>Email:</strong> <a href="mailto:receiptsforynab.app@gmail.com">receiptsforynab.app@gmail.com</a></li>
+                <li><strong>Developer:</strong> eTurea</li>
+            </ul>
+
+            <hr>
+
+            <p><strong>&copy; 2025 eTurea. All rights reserved.</strong></p>
+
+            <p style="font-size: 0.85rem; margin-top: 2rem;">We are not affiliated, associated, or in any way officially connected with YNAB or any of its subsidiaries or affiliates. The official YNAB website can be found at <a href="https://www.ynab.com" target="_blank" rel="noopener">https://www.ynab.com</a>. The names YNAB and You Need A Budget are registered trademarks of YNAB.</p>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-links">
+            <a href="./">Home</a>
+            <a href="./privacy">Privacy Policy</a>
+            <a href="./terms">Terms of Service</a>
+            <a href="./licenses">Licenses</a>
+            <a href="mailto:receiptsforynab.app@gmail.com">Contact</a>
+        </div>
+        <p style="margin-bottom: 0.5rem;">&copy; 2025-2026 eTurea. All rights reserved.</p>
+        <p style="font-size: 0.8rem; color: var(--text-muted);">Crafted with ❤️ by an independent iOS developer and fellow YNAB budgeter.</p>
+    </footer>
+
+    <script>
+        function toggleLicense() {
+            const licenseEl = document.getElementById('apache-license');
+            const btn = document.querySelector('.expand-btn');
+
+            if (licenseEl.classList.contains('license-text-collapsed')) {
+                licenseEl.classList.remove('license-text-collapsed');
+                btn.textContent = 'Show Less';
+            } else {
+                licenseEl.classList.add('license-text-collapsed');
+                btn.textContent = 'Show Full License';
+            }
+        }
+    </script>
+</body>
+</html>
