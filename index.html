@@ -60,7 +60,37 @@
 
             --border-subtle: rgba(255, 255, 255, 0.08);
             --border-strong: rgba(255, 255, 255, 0.15);
+        }
 
+        /* Light theme overrides */
+        [data-theme="light"] {
+            --bg-primary: #FAFAFA;
+            --bg-secondary: #F0F0F5;
+            --bg-card: #FFFFFF;
+            --bg-card-hover: #F5F5FA;
+            --text-primary: #1A1A24;
+            --text-secondary: #5A5A6A;
+            --text-muted: #8A8A9A;
+            --border-subtle: rgba(0, 0, 0, 0.08);
+            --border-strong: rgba(0, 0, 0, 0.15);
+        }
+
+        /* System preference detection (when no manual preference set) */
+        @media (prefers-color-scheme: light) {
+            :root:not([data-theme="dark"]) {
+                --bg-primary: #FAFAFA;
+                --bg-secondary: #F0F0F5;
+                --bg-card: #FFFFFF;
+                --bg-card-hover: #F5F5FA;
+                --text-primary: #1A1A24;
+                --text-secondary: #5A5A6A;
+                --text-muted: #8A8A9A;
+                --border-subtle: rgba(0, 0, 0, 0.08);
+                --border-strong: rgba(0, 0, 0, 0.15);
+            }
+        }
+
+        :root {
             /* Spacing */
             --space-xs: 0.5rem;
             --space-sm: 1rem;
@@ -152,6 +182,16 @@
             border-bottom: 1px solid var(--border-subtle);
         }
 
+        [data-theme="light"] nav {
+            background: rgba(250, 250, 250, 0.85);
+        }
+
+        @media (prefers-color-scheme: light) {
+            :root:not([data-theme="dark"]) nav {
+                background: rgba(250, 250, 250, 0.85);
+            }
+        }
+
         .nav-content {
             display: flex;
             justify-content: space-between;
@@ -197,6 +237,50 @@
         .nav-cta:hover {
             transform: translateY(-2px);
             box-shadow: 0 10px 30px rgba(76, 201, 240, 0.3);
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 100px;
+            padding: 0.5rem 0.7rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .theme-toggle:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-strong);
+            transform: translateY(-2px);
+        }
+
+        /* Show sun in dark mode, moon in light mode */
+        .theme-icon-light {
+            display: none;
+        }
+        .theme-icon-dark {
+            display: inline;
+        }
+
+        [data-theme="light"] .theme-icon-light {
+            display: inline;
+        }
+        [data-theme="light"] .theme-icon-dark {
+            display: none;
+        }
+
+        @media (prefers-color-scheme: light) {
+            :root:not([data-theme="dark"]) .theme-icon-light {
+                display: inline;
+            }
+            :root:not([data-theme="dark"]) .theme-icon-dark {
+                display: none;
+            }
         }
 
         /* Hero Section */
@@ -578,6 +662,18 @@
             margin-top: var(--space-sm);
             font-size: 0.9rem;
             color: var(--text-secondary);
+        }
+
+        /* Theme-aware screenshots */
+        .img-dark { display: block; }
+        .img-light { display: none; }
+
+        [data-theme="light"] .img-dark { display: none; }
+        [data-theme="light"] .img-light { display: block; }
+
+        @media (prefers-color-scheme: light) {
+            :root:not([data-theme="dark"]) .img-dark { display: none; }
+            :root:not([data-theme="dark"]) .img-light { display: block; }
         }
 
         /* Testimonials */
@@ -1031,6 +1127,12 @@
                 <li><a href="#how-it-works">How It Works</a></li>
                 <li><a href="#pricing">Pricing</a></li>
                 <li><a href="#faq">FAQ</a></li>
+                <li>
+                    <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle light/dark mode">
+                        <span class="theme-icon-light">&#9728;</span>
+                        <span class="theme-icon-dark">&#9790;</span>
+                    </button>
+                </li>
                 <li><a href="https://apps.apple.com/us/app/receipts-for-ynab/id6755055273" class="nav-cta">Download</a></li>
             </ul>
         </div>
@@ -1063,7 +1165,8 @@
                 <div class="hero-image">
                     <div class="phone-mockup">
                         <div class="phone-glow"></div>
-                        <img src="assets/screenshot-home.png" alt="Receipts for YNAB iOS app home screen showing camera, photo library, and document scanner capture options for receipt scanning" loading="eager">
+                        <img class="img-dark" src="assets/screenshot-home.png" alt="Receipts for YNAB iOS app home screen showing camera, photo library, and document scanner capture options for receipt scanning" loading="eager">
+                        <img class="img-light" src="assets/screenshot-home-light.png" alt="Receipts for YNAB iOS app home screen showing camera, photo library, and document scanner capture options for receipt scanning" loading="eager">
                     </div>
                 </div>
             </div>
@@ -1211,15 +1314,18 @@
 
             <div class="screenshots-gallery">
                 <div class="screenshot-item scroll-reveal">
-                    <img src="assets/screenshot-home.png" alt="Receipt scanner app home screen with quick capture buttons for camera, photo library, and document scanner">
+                    <img class="img-dark" src="assets/screenshot-home.png" alt="Receipt scanner app home screen with quick capture buttons for camera, photo library, and document scanner">
+                    <img class="img-light" src="assets/screenshot-home-light.png" alt="Receipt scanner app home screen with quick capture buttons for camera, photo library, and document scanner">
                     <p class="screenshot-caption">Quick capture options</p>
                 </div>
                 <div class="screenshot-item scroll-reveal">
-                    <img src="assets/screenshot-hero.png" alt="Apple Intelligence scanning a grocery receipt and extracting merchant name, date, total, and line items automatically">
+                    <img class="img-dark" src="assets/screenshot-hero.png" alt="Apple Intelligence scanning a grocery receipt and extracting merchant name, date, total, and line items automatically">
+                    <img class="img-light" src="assets/screenshot-hero-light.png" alt="Apple Intelligence scanning a grocery receipt and extracting merchant name, date, total, and line items automatically">
                     <p class="screenshot-caption">AI-powered scanning</p>
                 </div>
                 <div class="screenshot-item scroll-reveal">
-                    <img src="assets/screenshot-detail.png" alt="Receipt detail view showing extracted transaction data with confidence scores and one-tap YNAB sync button">
+                    <img class="img-dark" src="assets/screenshot-detail.png" alt="Receipt detail view showing extracted transaction data with confidence scores and one-tap YNAB sync button">
+                    <img class="img-light" src="assets/screenshot-detail-light.png" alt="Receipt detail view showing extracted transaction data with confidence scores and one-tap YNAB sync button">
                     <p class="screenshot-caption">Extracted details & sync</p>
                 </div>
             </div>
@@ -1589,6 +1695,52 @@
             }
         ]
     }
+    </script>
+
+    <!-- Theme Toggle Script -->
+    <script>
+        (function() {
+            const root = document.documentElement;
+            const toggle = document.querySelector('.theme-toggle');
+            const STORAGE_KEY = 'receipts-ynab-theme';
+
+            // Get user's preferred theme
+            function getPreferredTheme() {
+                // Check localStorage first
+                const stored = localStorage.getItem(STORAGE_KEY);
+                if (stored) return stored;
+
+                // Fall back to system preference
+                return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+            }
+
+            // Apply theme to document
+            function setTheme(theme) {
+                root.setAttribute('data-theme', theme);
+                localStorage.setItem(STORAGE_KEY, theme);
+            }
+
+            // Initialize theme on page load
+            setTheme(getPreferredTheme());
+
+            // Toggle button click handler
+            if (toggle) {
+                toggle.addEventListener('click', function() {
+                    const current = root.getAttribute('data-theme');
+                    const newTheme = current === 'light' ? 'dark' : 'light';
+                    setTheme(newTheme);
+                });
+            }
+
+            // Listen for system preference changes
+            window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', function(e) {
+                // Only auto-switch if user hasn't manually set a preference
+                const stored = localStorage.getItem(STORAGE_KEY);
+                if (!stored) {
+                    setTheme(e.matches ? 'light' : 'dark');
+                }
+            });
+        })();
     </script>
 </body>
 </html>
