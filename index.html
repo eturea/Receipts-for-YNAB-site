@@ -1700,6 +1700,11 @@
                     <h3>Which countries is the app available in?</h3>
                     <p>Receipts for YNAB is available in the US, UK, Canada, Australia, New Zealand, Philippines, Singapore, India, Ireland, and South Africa. We're working on expanding to more regions!</p>
                 </div>
+
+                <div class="feature-card scroll-reveal">
+                    <h3>How do you handle sales tax?</h3>
+                    <p>The app extracts line items, not tax directly. When syncing to YNAB, it calculates the difference between the total and item sum, creating a separate "Tax/Fees/Rounding" line automatically.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -1864,6 +1869,14 @@
                 "acceptedAnswer": {
                     "@type": "Answer",
                     "text": "Receipts for YNAB is currently available in the United States, United Kingdom, Canada, Australia, New Zealand, Philippines, Singapore, India, Ireland, and South Africa. We're working on expanding to more regions."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How does Receipts for YNAB handle sales tax?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "The app extracts line items from the receipt, not tax directly (since tax rates vary by region). When syncing to YNAB, it automatically calculates the difference between the receipt total and the sum of all items, creating a separate line with the memo 'Tax/Fees/Rounding'. You don't have to do anything manually."
                 }
             }
         ]
