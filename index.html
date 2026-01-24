@@ -501,6 +501,64 @@
             width: auto;
         }
 
+        /* Availability Banner */
+        .availability-banner {
+            padding: var(--space-md) 0;
+            text-align: center;
+        }
+
+        .availability-content {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--space-xs);
+        }
+
+        .availability-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .availability-label svg {
+            width: 18px;
+            height: 18px;
+            color: var(--accent-success);
+        }
+
+        .availability-flags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1rem;
+            font-size: 0.9rem;
+        }
+
+        .availability-flags span {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            color: var(--text-secondary);
+            white-space: nowrap;
+        }
+
+        .availability-flags .flag {
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 640px) {
+            .availability-flags {
+                gap: 0.4rem 0.8rem;
+                font-size: 0.8rem;
+            }
+
+            .availability-flags .flag {
+                font-size: 1rem;
+            }
+        }
+
         /* Features Section */
         .features {
             padding: var(--space-3xl) 0;
@@ -1275,6 +1333,32 @@
         </div>
     </section>
 
+    <!-- Availability Banner -->
+    <section class="availability-banner">
+        <div class="container">
+            <div class="availability-content">
+                <p class="availability-label">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    Now available in 10 countries
+                </p>
+                <div class="availability-flags">
+                    <span><span class="flag">🇺🇸</span> US</span>
+                    <span><span class="flag">🇬🇧</span> UK</span>
+                    <span><span class="flag">🇨🇦</span> Canada</span>
+                    <span><span class="flag">🇦🇺</span> Australia</span>
+                    <span><span class="flag">🇳🇿</span> New Zealand</span>
+                    <span><span class="flag">🇵🇭</span> Philippines</span>
+                    <span><span class="flag">🇸🇬</span> Singapore</span>
+                    <span><span class="flag">🇮🇳</span> India</span>
+                    <span><span class="flag">🇮🇪</span> Ireland</span>
+                    <span><span class="flag">🇿🇦</span> South Africa</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Features Section -->
     <section id="features" class="features">
         <div class="container">
@@ -1611,6 +1695,11 @@
                     <h3>Does it work offline?</h3>
                     <p>Receipt scanning works completely offline. An internet connection is only needed to sync to YNAB.</p>
                 </div>
+
+                <div class="feature-card scroll-reveal">
+                    <h3>Which countries is the app available in?</h3>
+                    <p>Receipts for YNAB is available in the US, UK, Canada, Australia, New Zealand, Philippines, Singapore, India, Ireland, and South Africa. We're working on expanding to more regions!</p>
+                </div>
             </div>
         </div>
     </section>
@@ -1767,6 +1856,14 @@
                 "acceptedAnswer": {
                     "@type": "Answer",
                     "text": "Yes! Receipt scanning and AI extraction work completely offline. An internet connection is only required when syncing transactions to YNAB."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Which countries is Receipts for YNAB available in?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Receipts for YNAB is currently available in the United States, United Kingdom, Canada, Australia, New Zealand, Philippines, Singapore, India, Ireland, and South Africa. We're working on expanding to more regions."
                 }
             }
         ]
