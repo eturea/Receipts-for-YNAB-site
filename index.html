@@ -42,7 +42,8 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript>
 
     <!-- Canonical URL -->
     <link rel="canonical" href="https://eturea.github.io/Receipts-for-YNAB-site/">
@@ -217,10 +218,12 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            text-decoration: none;
         }
 
         .nav-links {
             display: flex;
+            align-items: center;
             gap: var(--space-lg);
             list-style: none;
         }
@@ -255,14 +258,17 @@
         .theme-toggle {
             background: var(--bg-card);
             border: 1px solid var(--border-subtle);
-            border-radius: 100px;
-            padding: 0.5rem 0.7rem;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            padding: 0;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: all 0.3s ease;
-            font-size: 1rem;
+            font-size: 1.1rem;
+            flex-shrink: 0;
         }
 
         .theme-toggle:hover {
@@ -419,6 +425,18 @@
         .btn-secondary:hover {
             background: rgba(255, 255, 255, 0.05);
             border-color: rgba(255, 255, 255, 0.25);
+        }
+
+        [data-theme="light"] .btn-secondary:hover {
+            background: rgba(0, 0, 0, 0.05);
+            border-color: rgba(0, 0, 0, 0.2);
+        }
+
+        @media (prefers-color-scheme: light) {
+            :root:not([data-theme="dark"]) .btn-secondary:hover {
+                background: rgba(0, 0, 0, 0.05);
+                border-color: rgba(0, 0, 0, 0.2);
+            }
         }
 
         /* Hero Image */
@@ -1198,9 +1216,83 @@
             }
         }
 
+        /* Mobile Menu */
+        .mobile-menu-toggle {
+            display: none;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 8px;
+            padding: 0.5rem;
+            cursor: pointer;
+            color: var(--text-primary);
+        }
+
+        .mobile-menu-toggle svg {
+            width: 24px;
+            height: 24px;
+            display: block;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 60px;
+            left: 0;
+            right: 0;
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--border-subtle);
+            padding: var(--space-md);
+            z-index: 99;
+            backdrop-filter: blur(20px);
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        .mobile-menu a {
+            display: block;
+            padding: var(--space-sm);
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .mobile-menu a:hover {
+            background: var(--bg-card);
+            color: var(--text-primary);
+        }
+
+        .mobile-menu .mobile-cta {
+            display: block;
+            text-align: center;
+            margin-top: var(--space-sm);
+            background: linear-gradient(135deg, var(--gradient-blue), var(--gradient-cyan));
+            color: white;
+            padding: var(--space-sm);
+            border-radius: 100px;
+            font-weight: 600;
+        }
+
+        .mobile-theme-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--space-sm);
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
         @media (max-width: 640px) {
             .nav-links {
                 display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
             }
 
             .trust-badges {
@@ -1247,6 +1339,11 @@
     <nav>
         <div class="container nav-content">
             <a href="#" class="logo">Receipts for YNAB</a>
+            <button class="mobile-menu-toggle" aria-label="Open menu" aria-expanded="false">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
             <ul class="nav-links">
                 <li><a href="#features">Features</a></li>
                 <li><a href="#how-it-works">How It Works</a></li>
@@ -1262,6 +1359,22 @@
             </ul>
         </div>
     </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#features">Features</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+        <div class="mobile-theme-toggle">
+            <span>Theme</span>
+            <button class="theme-toggle mobile-theme-btn" aria-label="Toggle dark mode">
+                <span class="theme-icon-light">&#9728;</span>
+                <span class="theme-icon-dark">&#9790;</span>
+            </button>
+        </div>
+        <a href="https://apps.apple.com/us/app/receipts-for-ynab/id6755055273" class="mobile-cta">Download</a>
+    </div>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -1732,9 +1845,9 @@
                 <div class="footer-column">
                     <h4>Legal</h4>
                     <ul>
-                        <li><a href="privacy.html">Privacy Policy</a></li>
-                        <li><a href="terms.html">Terms of Service</a></li>
-                        <li><a href="licenses.html">Licenses</a></li>
+                        <li><a href="./privacy.html">Privacy Policy</a></li>
+                        <li><a href="./terms.html">Terms of Service</a></li>
+                        <li><a href="./licenses.html">Licenses</a></li>
                     </ul>
                 </div>
 
@@ -1756,9 +1869,9 @@
                 </div>
                 <p>&copy; 2025-2026 eTurea. All rights reserved.</p>
                 <div class="footer-legal">
-                    <a href="privacy.html">Privacy</a>
-                    <a href="terms.html">Terms</a>
-                    <a href="licenses.html">Licenses</a>
+                    <a href="./privacy.html">Privacy</a>
+                    <a href="./terms.html">Terms</a>
+                    <a href="./licenses.html">Licenses</a>
                 </div>
                 <p class="footer-attribution">We are not affiliated, associated, or in any way officially connected with YNAB or any of its subsidiaries or affiliates. The official YNAB website can be found at <a href="https://www.ynab.com" target="_blank" rel="noopener">ynab.com</a>. The names YNAB and You Need A Budget, as well as related names, marks, and images are registered trademarks of YNAB.</p>
             </div>
@@ -1883,11 +1996,42 @@
     }
     </script>
 
+    <!-- Mobile Menu Script -->
+    <script>
+        (function() {
+            const menuToggle = document.querySelector('.mobile-menu-toggle');
+            const mobileMenu = document.getElementById('mobileMenu');
+
+            if (menuToggle && mobileMenu) {
+                menuToggle.addEventListener('click', function() {
+                    const isOpen = mobileMenu.classList.toggle('active');
+                    menuToggle.setAttribute('aria-expanded', isOpen);
+
+                    // Update icon
+                    if (isOpen) {
+                        menuToggle.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>';
+                    } else {
+                        menuToggle.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>';
+                    }
+                });
+
+                // Close menu when clicking a link
+                mobileMenu.querySelectorAll('a').forEach(function(link) {
+                    link.addEventListener('click', function() {
+                        mobileMenu.classList.remove('active');
+                        menuToggle.setAttribute('aria-expanded', 'false');
+                        menuToggle.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>';
+                    });
+                });
+            }
+        })();
+    </script>
+
     <!-- Theme Toggle Script -->
     <script>
         (function() {
             const root = document.documentElement;
-            const toggle = document.querySelector('.theme-toggle');
+            const toggles = document.querySelectorAll('.theme-toggle');
             const STORAGE_KEY = 'receipts-ynab-theme';
 
             // Get user's preferred theme
@@ -1909,14 +2053,14 @@
             // Initialize theme on page load
             setTheme(getPreferredTheme());
 
-            // Toggle button click handler
-            if (toggle) {
+            // Toggle button click handlers (both desktop and mobile)
+            toggles.forEach(function(toggle) {
                 toggle.addEventListener('click', function() {
                     const current = root.getAttribute('data-theme');
                     const newTheme = current === 'light' ? 'dark' : 'light';
                     setTheme(newTheme);
                 });
-            }
+            });
 
             // Listen for system preference changes
             window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', function(e) {

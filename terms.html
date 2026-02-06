@@ -176,10 +176,14 @@
             }
         }
 
-        .nav-content {
-            max-width: 900px;
+        /* Container */
+        .container {
+            max-width: 1200px;
             margin: 0 auto;
             padding: 0 1.5rem;
+        }
+
+        .nav-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -187,7 +191,7 @@
 
         .logo {
             font-weight: 700;
-            font-size: 1.1rem;
+            font-size: 1.25rem;
             background: linear-gradient(135deg, var(--gradient-cyan), var(--gradient-purple));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -197,6 +201,7 @@
 
         .nav-links {
             display: flex;
+            align-items: center;
             gap: 1.5rem;
             list-style: none;
         }
@@ -216,7 +221,7 @@
         .nav-cta {
             background: linear-gradient(135deg, var(--gradient-blue), var(--gradient-cyan));
             color: white !important;
-            padding: 0.5rem 1rem;
+            padding: 0.6rem 1.2rem;
             border-radius: 100px;
             font-weight: 600;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -231,14 +236,17 @@
         .theme-toggle {
             background: var(--bg-card);
             border: 1px solid var(--border-subtle);
-            border-radius: 100px;
-            padding: 0.5rem 0.7rem;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            padding: 0;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: all 0.3s ease;
-            font-size: 1rem;
+            font-size: 1.1rem;
+            flex-shrink: 0;
         }
 
         .theme-toggle:hover {
@@ -413,9 +421,83 @@
             font-size: 0.85rem;
         }
 
+        /* Mobile Menu */
+        .mobile-menu-toggle {
+            display: none;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 8px;
+            padding: 0.5rem;
+            cursor: pointer;
+            color: var(--text-primary);
+        }
+
+        .mobile-menu-toggle svg {
+            width: 24px;
+            height: 24px;
+            display: block;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 60px;
+            left: 0;
+            right: 0;
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 1rem;
+            z-index: 99;
+            backdrop-filter: blur(20px);
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        .mobile-menu a {
+            display: block;
+            padding: 0.75rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .mobile-menu a:hover {
+            background: var(--bg-card);
+            color: var(--text-primary);
+        }
+
+        .mobile-menu .mobile-cta {
+            display: block;
+            text-align: center;
+            margin-top: 0.75rem;
+            background: linear-gradient(135deg, var(--gradient-blue), var(--gradient-cyan));
+            color: white;
+            padding: 0.75rem;
+            border-radius: 100px;
+            font-weight: 600;
+        }
+
+        .mobile-theme-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
         @media (max-width: 640px) {
             .nav-links {
                 display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
             }
 
             .page-header h1 {
@@ -434,13 +516,18 @@
     <div class="noise"></div>
 
     <nav>
-        <div class="nav-content">
+        <div class="container nav-content">
             <a href="./" class="logo">Receipts for YNAB</a>
+            <button class="mobile-menu-toggle" aria-label="Open menu" aria-expanded="false">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
             <ul class="nav-links">
                 <li><a href="./">Home</a></li>
-                <li><a href="./privacy">Privacy</a></li>
-                <li><a href="./terms">Terms</a></li>
-                <li><a href="./licenses">Licenses</a></li>
+                <li><a href="./privacy.html">Privacy</a></li>
+                <li><a href="./terms.html">Terms</a></li>
+                <li><a href="./licenses.html">Licenses</a></li>
                 <li>
                     <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle light/dark mode">
                         <span class="theme-icon-light">&#9728;</span>
@@ -451,6 +538,22 @@
             </ul>
         </div>
     </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="./">Home</a>
+        <a href="./privacy.html">Privacy</a>
+        <a href="./terms.html">Terms</a>
+        <a href="./licenses.html">Licenses</a>
+        <div class="mobile-theme-toggle">
+            <span>Theme</span>
+            <button class="theme-toggle" aria-label="Toggle dark mode">
+                <span class="theme-icon-light">&#9728;</span>
+                <span class="theme-icon-dark">&#9790;</span>
+            </button>
+        </div>
+        <a href="https://apps.apple.com/us/app/receipts-for-ynab/id6755055273" class="mobile-cta">Download</a>
+    </div>
 
     <main>
         <header class="page-header">
@@ -678,20 +781,46 @@
     <footer>
         <div class="footer-links">
             <a href="./">Home</a>
-            <a href="./privacy">Privacy Policy</a>
-            <a href="./terms">Terms of Service</a>
-            <a href="./licenses">Licenses</a>
+            <a href="./privacy.html">Privacy Policy</a>
+            <a href="./terms.html">Terms of Service</a>
+            <a href="./licenses.html">Licenses</a>
             <a href="mailto:receiptsforynab.app@gmail.com">Contact</a>
         </div>
         <p style="margin-bottom: 0.5rem;">&copy; 2025-2026 eTurea. All rights reserved.</p>
         <p style="font-size: 0.8rem; color: var(--text-muted);">Crafted with ❤️ by an independent iOS developer and fellow YNAB budgeter.</p>
     </footer>
 
+    <!-- Mobile Menu Script -->
+    <script>
+        (function() {
+            const menuToggle = document.querySelector('.mobile-menu-toggle');
+            const mobileMenu = document.getElementById('mobileMenu');
+
+            if (menuToggle && mobileMenu) {
+                menuToggle.addEventListener('click', function() {
+                    const isOpen = mobileMenu.classList.toggle('active');
+                    menuToggle.setAttribute('aria-expanded', isOpen);
+                    menuToggle.innerHTML = isOpen
+                        ? '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>'
+                        : '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>';
+                });
+
+                mobileMenu.querySelectorAll('a').forEach(function(link) {
+                    link.addEventListener('click', function() {
+                        mobileMenu.classList.remove('active');
+                        menuToggle.setAttribute('aria-expanded', 'false');
+                        menuToggle.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>';
+                    });
+                });
+            }
+        })();
+    </script>
+
     <!-- Theme Toggle Script -->
     <script>
         (function() {
             const root = document.documentElement;
-            const toggle = document.querySelector('.theme-toggle');
+            const toggles = document.querySelectorAll('.theme-toggle');
             const STORAGE_KEY = 'receipts-ynab-theme';
 
             function getPreferredTheme() {
@@ -707,12 +836,12 @@
 
             setTheme(getPreferredTheme());
 
-            if (toggle) {
+            toggles.forEach(function(toggle) {
                 toggle.addEventListener('click', function() {
                     const current = root.getAttribute('data-theme');
                     setTheme(current === 'light' ? 'dark' : 'light');
                 });
-            }
+            });
 
             window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', function(e) {
                 if (!localStorage.getItem(STORAGE_KEY)) {
