@@ -15,8 +15,8 @@
 
     <!-- SEO Meta Tags -->
     <title>Receipts for YNAB - Scan Receipts to YNAB with Apple Intelligence</title>
-    <meta name="description" content="Transform paper receipts into YNAB transactions instantly. Powered by Apple Intelligence for 100% on-device processing. Privacy-first receipt scanning for iPhone.">
-    <meta name="keywords" content="YNAB, receipt scanner, Apple Intelligence, iOS app, budgeting, expense tracking, receipt to YNAB, on-device AI">
+    <meta name="description" content="Transform paper receipts into YNAB transactions instantly. Powered by Apple Intelligence for 100% on-device processing. Privacy-first receipt scanning for iPhone and iPad.">
+    <meta name="keywords" content="YNAB, receipt scanner, Apple Intelligence, iOS app, budgeting, expense tracking, receipt to YNAB, on-device AI, iPad receipt scanner, multi-budget YNAB, receipt vault, receipt storage, grocery receipt scanner, line item splitting, YNAB categories, Neural Engine">
     <meta name="author" content="eTurea">
     <meta name="robots" content="index, follow">
 
@@ -732,21 +732,27 @@
         }
 
         .screenshot-item {
+            width: 280px;
             max-width: 280px;
             transition: transform 0.4s ease;
         }
 
         .screenshot-item:nth-child(1) {
-            transform: rotateY(10deg) translateZ(-50px);
+            transform: rotateY(12deg) translateZ(-60px);
         }
 
         .screenshot-item:nth-child(2) {
-            transform: translateZ(50px) scale(1.05);
+            transform: rotateY(4deg) translateZ(20px) scale(1.03);
             z-index: 2;
         }
 
         .screenshot-item:nth-child(3) {
-            transform: rotateY(-10deg) translateZ(-50px);
+            transform: rotateY(-4deg) translateZ(20px) scale(1.03);
+            z-index: 2;
+        }
+
+        .screenshot-item:nth-child(4) {
+            transform: rotateY(-12deg) translateZ(-60px);
         }
 
         .screenshot-item:hover {
@@ -754,10 +760,16 @@
             z-index: 3;
         }
 
-        .screenshot-item img {
+        .screenshot-item img,
+        .screenshot-item video {
             width: 100%;
             border-radius: 30px;
             box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .screenshot-item video {
+            aspect-ratio: 1206 / 2482;
+            object-fit: cover;
         }
 
         .screenshot-caption {
@@ -1206,7 +1218,8 @@
             .screenshot-item,
             .screenshot-item:nth-child(1),
             .screenshot-item:nth-child(2),
-            .screenshot-item:nth-child(3) {
+            .screenshot-item:nth-child(3),
+            .screenshot-item:nth-child(4) {
                 transform: none;
                 max-width: 250px;
             }
@@ -1487,7 +1500,7 @@
                         <span>&#129302;</span>
                     </div>
                     <h3>Apple Intelligence Powered</h3>
-                    <p>AI extracts merchant names, dates, amounts, and individual line items automatically using iOS 26's Foundation Models.</p>
+                    <p>Extracts merchant names, dates, amounts, and line items automatically. Neural Engine document detection with perspective correction delivers 98% price extraction accuracy.</p>
                 </div>
 
                 <div class="feature-card scroll-reveal">
@@ -1503,7 +1516,7 @@
                         <span>&#128260;</span>
                     </div>
                     <h3>Seamless YNAB Sync</h3>
-                    <p>One tap to create split transactions with line items as subtransactions. Select categories from your YNAB budget.</p>
+                    <p>Save receipts locally and upload to YNAB when you're ready. Line items become subtransactions with categories from your budget.</p>
                 </div>
 
                 <div class="feature-card scroll-reveal">
@@ -1527,7 +1540,23 @@
                         <span>✂️</span>
                     </div>
                     <h3>Smart Splits for Complex Receipts</h3>
-                    <p>AI learns your preferences to categorize line items into groceries, household, pets, gifts, and more. Review, adjust, and sync—the app gets smarter with every receipt.</p>
+                    <p>Apple Intelligence learns your preferences to categorize line items into groceries, household, pets, gifts, and more. All learning happens on-device — the app gets smarter with every receipt, privately.</p>
+                </div>
+
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-icon sync">
+                        <span>&#128218;</span>
+                    </div>
+                    <h3>Multi-Budget Support</h3>
+                    <p>Connect multiple YNAB budgets and switch between them. Each budget keeps its own accounts, categories, and preferences.</p>
+                </div>
+
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-icon privacy">
+                        <span>&#128451;</span>
+                    </div>
+                    <h3>Receipt Vault</h3>
+                    <p>Store receipts locally for warranties, returns, and expense tracking — even without a YNAB account. Your personal receipt archive, always on your device.</p>
                 </div>
             </div>
         </div>
@@ -1539,7 +1568,7 @@
             <div class="section-header">
                 <p class="section-label">How It Works</p>
                 <h2 class="section-title">Scan Receipts to YNAB in 4 Easy Steps</h2>
-                <p class="section-description">A simple 4-step process to digitize any receipt.</p>
+                <p class="section-description">A simple 4-step process from paper to YNAB.</p>
             </div>
 
             <div class="steps">
@@ -1563,8 +1592,8 @@
 
                 <div class="step scroll-reveal">
                     <div class="step-number">4</div>
-                    <h3>Sync</h3>
-                    <p>One tap to create the transaction in YNAB</p>
+                    <h3>Save & Sync</h3>
+                    <p>Save locally, then upload to YNAB when ready</p>
                 </div>
             </div>
         </div>
@@ -1580,6 +1609,13 @@
             </div>
 
             <div class="screenshots-gallery">
+                <div class="screenshot-item scroll-reveal">
+                    <video autoplay loop muted playsinline
+                           poster="assets/screenshot-home.png">
+                        <source src="assets/screenrecording01.mp4" type="video/mp4">
+                    </video>
+                    <p class="screenshot-caption">AI scanning in action</p>
+                </div>
                 <div class="screenshot-item scroll-reveal">
                     <img class="img-dark" src="assets/screenshot-home.png" alt="Receipt scanner app home screen with quick capture buttons for camera, photo library, and document scanner">
                     <img class="img-light" src="assets/screenshot-home-light.png" alt="Receipt scanner app home screen with quick capture buttons for camera, photo library, and document scanner">
@@ -1743,7 +1779,7 @@
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                             </svg>
-                            Requires Apple Intelligence device
+                            Requires Apple Intelligence (iPhone 15 Pro+ or iPad with M1/A17 Pro)
                         </li>
                     </ul>
                     <a href="https://apps.apple.com/us/app/receipts-for-ynab/id6755055273" class="btn-primary pricing-cta">Start Free Trial</a>
@@ -1791,7 +1827,7 @@
 
                 <div class="feature-card scroll-reveal">
                     <h3>What devices are supported?</h3>
-                    <p>Any iPhone running iOS 26. AI scanning requires Apple Intelligence—iPhone 15 Pro or newer. Older iPhones can use manual entry.</p>
+                    <p>iPhone and iPad running iOS 26 or iPadOS 26. AI scanning requires Apple Intelligence — iPhone 15 Pro or newer, iPad Pro (M1+), iPad Air (M1+), or iPad mini (A17 Pro). Other devices can use manual entry.</p>
                 </div>
 
                 <div class="feature-card scroll-reveal">
@@ -1902,18 +1938,13 @@
         "@context": "https://schema.org",
         "@type": "MobileApplication",
         "name": "Receipts for YNAB",
-        "operatingSystem": "iOS 26+",
+        "operatingSystem": "iOS 26+, iPadOS 26+",
         "applicationCategory": "FinanceApplication",
         "description": "Transform paper receipts into YNAB transactions with Apple Intelligence. 100% on-device AI processing for privacy.",
         "offers": {
             "@type": "Offer",
             "price": "0",
             "priceCurrency": "USD"
-        },
-        "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "5",
-            "ratingCount": "1"
         },
         "author": {
             "@type": "Organization",
@@ -1946,10 +1977,10 @@
             },
             {
                 "@type": "Question",
-                "name": "What iPhone models support AI scanning?",
+                "name": "What devices support AI scanning?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "AI-powered scanning requires an Apple Intelligence compatible device: iPhone 15 Pro, iPhone 15 Pro Max, or newer models running iOS 26+. Manual entry works on all iPhones running iOS 26+."
+                    "text": "AI-powered scanning requires an Apple Intelligence compatible device: iPhone 15 Pro or newer, iPad Pro (M1+), iPad Air (M1+), or iPad mini (A17 Pro), running iOS 26+ or iPadOS 26+. Manual entry works on all iPhones and iPads running iOS 26+ or iPadOS 26+."
                 }
             },
             {
