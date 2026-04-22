@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-B9VXRP5RNW"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-B9VXRP5RNW');
+    </script>
+
+    <title>What's New - Receipts for YNAB | Version History</title>
+    <meta name="description" content="See what's new in Receipts for YNAB. Version history, release notes, and recent improvements to the AI-powered receipt scanner for YNAB.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://eturea.github.io/Receipts-for-YNAB-site/changelog">
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://eturea.github.io/Receipts-for-YNAB-site/changelog">
+    <meta property="og:title" content="What's New - Receipts for YNAB">
+    <meta property="og:description" content="Version history and release notes for Receipts for YNAB.">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="What's New - Receipts for YNAB">
+    <meta name="twitter:description" content="Version history and release notes for Receipts for YNAB.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+    <!-- Smart App Banner (iOS Safari) -->
+    <meta name="apple-itunes-app" content="app-id=6755055273">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --gradient-orange: #FF6B35;
+            --gradient-pink: #F72585;
+            --gradient-purple: #7B2CBF;
+            --gradient-blue: #3A86FF;
+            --gradient-cyan: #4CC9F0;
+
+            --bg-primary: #0A0A0F;
+            --bg-secondary: #12121A;
+            --bg-card: #1A1A24;
+
+            --text-primary: #FAFAFA;
+            --text-secondary: #A0A0B0;
+            --text-muted: #606070;
+
+            --accent-primary: #4CC9F0;
+            --accent-secondary: #F72585;
+            --accent-success: #34D399;
+
+            --border-subtle: rgba(255, 255, 255, 0.08);
+            --border-strong: rgba(255, 255, 255, 0.15);
+        }
+
+        /* Light theme overrides */
+        [data-theme="light"] {
+            --bg-primary: #FAFAFA;
+            --bg-secondary: #F0F0F5;
+            --bg-card: #FFFFFF;
+            --bg-card-hover: #F5F5FA;
+            --text-primary: #1A1A24;
+            --text-secondary: #5A5A6A;
+            --text-muted: #8A8A9A;
+            --border-subtle: rgba(0, 0, 0, 0.08);
+            --border-strong: rgba(0, 0, 0, 0.15);
+        }
+
+        /* System preference detection */
+        @media (prefers-color-scheme: light) {
+            :root:not([data-theme="dark"]) {
+                --bg-primary: #FAFAFA;
+                --bg-secondary: #F0F0F5;
+                --bg-card: #FFFFFF;
+                --bg-card-hover: #F5F5FA;
+                --text-primary: #1A1A24;
+                --text-secondary: #5A5A6A;
+                --text-muted: #8A8A9A;
+                --border-subtle: rgba(0, 0, 0, 0.08);
+                --border-strong: rgba(0, 0, 0, 0.15);
+            }
+        }
+
+        :root {
+            --font-display: 'Outfit', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-display);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+
+        /* Animated Background */
+        .bg-gradient {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .bg-gradient::before {
+            content: '';
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            top: -25%;
+            left: -25%;
+            background:
+                radial-gradient(ellipse at 20% 20%, rgba(247, 37, 133, 0.12) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 30%, rgba(255, 107, 53, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 60% 80%, rgba(123, 44, 191, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 10% 70%, rgba(76, 201, 240, 0.1) 0%, transparent 50%);
+            animation: gradientFloat 20s ease-in-out infinite;
+        }
+
+        @keyframes gradientFloat {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(2%, -2%) rotate(1deg); }
+            66% { transform: translate(-1%, 1%) rotate(-1deg); }
+        }
+
+        /* Noise overlay */
+        .noise {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            opacity: 0.03;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 1rem 0;
+            backdrop-filter: blur(20px);
+            background: rgba(10, 10, 15, 0.85);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        [data-theme="light"] nav {
+            background: rgba(250, 250, 250, 0.85);
+        }
+
+        @media (prefers-color-scheme: light) {
+            :root:not([data-theme="dark"]) nav {
+                background: rgba(250, 250, 250, 0.85);
+            }
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.25rem;
+            background: linear-gradient(135deg, var(--gradient-cyan), var(--gradient-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, var(--gradient-blue), var(--gradient-cyan));
+            color: white !important;
+            padding: 0.6rem 1.2rem;
+            border-radius: 100px;
+            font-weight: 600;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(76, 201, 240, 0.3);
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            padding: 0;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .theme-toggle:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-strong);
+            transform: translateY(-2px);
+        }
+
+        .theme-icon-light { display: none; }
+        .theme-icon-dark { display: inline; }
+
+        [data-theme="light"] .theme-icon-light { display: inline; }
+        [data-theme="light"] .theme-icon-dark { display: none; }
+
+        @media (prefers-color-scheme: light) {
+            :root:not([data-theme="dark"]) .theme-icon-light { display: inline; }
+            :root:not([data-theme="dark"]) .theme-icon-dark { display: none; }
+        }
+
+        /* Main Content */
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 8rem 1.5rem 4rem;
+        }
+
+        /* Header */
+        .page-header {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .page-header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        /* Version Entry */
+        .version-entry {
+            margin-bottom: 2.5rem;
+            padding: 2rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            transition: border-color 0.3s ease;
+        }
+
+        .version-entry:hover {
+            border-color: var(--border-strong);
+        }
+
+        .version-entry.latest {
+            border-color: var(--accent-primary);
+            background: linear-gradient(180deg, rgba(76, 201, 240, 0.06) 0%, var(--bg-card) 100%);
+        }
+
+        .version-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.25rem;
+            flex-wrap: wrap;
+        }
+
+        .version-number {
+            font-family: var(--font-mono);
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--accent-primary);
+        }
+
+        .version-date {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .version-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.2rem 0.75rem;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .badge-latest {
+            background: linear-gradient(135deg, var(--gradient-blue), var(--gradient-cyan));
+            color: white;
+        }
+
+        .version-summary {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .version-changes {
+            list-style: none;
+            padding: 0;
+        }
+
+        .version-changes li {
+            padding: 0.4rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .version-changes li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.85rem;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent-primary);
+        }
+
+        .version-changes li strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .change-tag {
+            display: inline-block;
+            padding: 0.1rem 0.5rem;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            margin-right: 0.25rem;
+            vertical-align: middle;
+        }
+
+        .tag-new {
+            background: rgba(52, 211, 153, 0.15);
+            color: var(--accent-success);
+        }
+
+        .tag-improved {
+            background: rgba(76, 201, 240, 0.15);
+            color: var(--accent-primary);
+        }
+
+        .tag-fixed {
+            background: rgba(255, 107, 53, 0.15);
+            color: var(--gradient-orange);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-toggle {
+            display: none;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 8px;
+            padding: 0.5rem;
+            cursor: pointer;
+            color: var(--text-primary);
+        }
+
+        .mobile-menu-toggle svg {
+            width: 24px;
+            height: 24px;
+            display: block;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 60px;
+            left: 0;
+            right: 0;
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 1.5rem;
+            z-index: 99;
+            backdrop-filter: blur(20px);
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        .mobile-menu a {
+            display: block;
+            padding: 1rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .mobile-menu a:hover {
+            background: var(--bg-card);
+            color: var(--text-primary);
+        }
+
+        .mobile-menu .mobile-cta {
+            display: block;
+            text-align: center;
+            margin-top: 1rem;
+            background: linear-gradient(135deg, var(--gradient-blue), var(--gradient-cyan));
+            color: white;
+            padding: 1rem;
+            border-radius: 100px;
+            font-weight: 600;
+        }
+
+        .mobile-theme-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 1.5rem;
+            border-top: 1px solid var(--border-subtle);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-primary);
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .page-header h1 {
+                font-size: 1.75rem;
+            }
+
+            .version-entry {
+                padding: 1.5rem;
+            }
+
+            .version-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-gradient"></div>
+    <div class="noise"></div>
+
+    <nav>
+        <div class="container nav-content">
+            <a href="./" class="logo">Receipts for YNAB</a>
+            <button class="mobile-menu-toggle" aria-label="Open menu" aria-expanded="false">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+            <ul class="nav-links">
+                <li><a href="./">Home</a></li>
+                <li><a href="./privacy.html">Privacy</a></li>
+                <li><a href="./terms.html">Terms</a></li>
+                <li><a href="./licenses.html">Licenses</a></li>
+                <li><a href="./changelog.html">What's New</a></li>
+                <li>
+                    <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle light/dark mode">
+                        <span class="theme-icon-light">&#9728;</span>
+                        <span class="theme-icon-dark">&#9790;</span>
+                    </button>
+                </li>
+                <li><a href="https://apps.apple.com/us/app/receipts-for-ynab/id6755055273" class="nav-cta">Download</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="./">Home</a>
+        <a href="./privacy.html">Privacy</a>
+        <a href="./terms.html">Terms</a>
+        <a href="./licenses.html">Licenses</a>
+        <a href="./changelog.html">What's New</a>
+        <div class="mobile-theme-toggle">
+            <span>Theme</span>
+            <button class="theme-toggle" aria-label="Toggle dark mode">
+                <span class="theme-icon-light">&#9728;</span>
+                <span class="theme-icon-dark">&#9790;</span>
+            </button>
+        </div>
+        <a href="https://apps.apple.com/us/app/receipts-for-ynab/id6755055273" class="mobile-cta">Download</a>
+    </div>
+
+    <main>
+        <div class="page-header">
+            <h1>What's New</h1>
+            <p>Every update to Receipts for YNAB, from launch to today. Built by a solo developer and fellow YNAB budgeter, shaped by user feedback.</p>
+        </div>
+
+        <!-- v1.0.9 -->
+        <div class="version-entry latest">
+            <div class="version-header">
+                <span class="version-number">v1.0.9</span>
+                <span class="version-date">April 21, 2026</span>
+                <span class="version-badge badge-latest">Latest</span>
+            </div>
+            <p class="version-summary">Better scanning for long receipts and stability improvements.</p>
+            <ul class="version-changes">
+                <li><span class="change-tag tag-new">New</span> <strong>Long receipt scanning</strong> — Grocery hauls and other tall receipts now scan more accurately with adaptive processing that breaks them into optimized sections</li>
+                <li><span class="change-tag tag-improved">Improved</span> <strong>YNAB merchant names</strong> — Long merchant names are now handled gracefully when syncing to YNAB</li>
+                <li><span class="change-tag tag-fixed">Fixed</span> <strong>Upgrade stability</strong> — Resolved a crash that could occur when updating from older versions of the app</li>
+                <li><span class="change-tag tag-improved">Improved</span> <strong>Scan cancellation</strong> — Cancelling a scan mid-process is now faster and more reliable</li>
+            </ul>
+        </div>
+
+        <!-- v1.0.8 -->
+        <div class="version-entry">
+            <div class="version-header">
+                <span class="version-number">v1.0.8</span>
+                <span class="version-date">March 17, 2026</span>
+            </div>
+            <p class="version-summary">Fractional quantities, gas station receipts, and scanning accuracy improvements.</p>
+            <ul class="version-changes">
+                <li><span class="change-tag tag-new">New</span> <strong>Fractional quantities</strong> — Enter weighted items like 0.335 kg of produce. Quantities are no longer limited to whole numbers</li>
+                <li><span class="change-tag tag-new">New</span> <strong>Gas station receipts</strong> — Dedicated detection for fuel receipts. Correctly extracts fuel grade, total, and ignores volume/unit price</li>
+                <li><span class="change-tag tag-improved">Improved</span> <strong>Price extraction accuracy</strong> — Fixed currency values being split across lines (e.g., "$85." and "50" now correctly read as $85.50)</li>
+                <li><span class="change-tag tag-improved">Improved</span> <strong>Quantity accuracy</strong> — The AI no longer fabricates quantities by merging same-named items. Each receipt line is extracted individually</li>
+                <li><span class="change-tag tag-fixed">Fixed</span> <strong>Upload to YNAB button</strong> — Redesigned toolbar for easier access. Now always visible for local receipts, with a helpful prompt if no account is selected</li>
+                <li><span class="change-tag tag-improved">Improved</span> <strong>Accessibility</strong> — Better VoiceOver grouping for line items, improved notification announcements, and Reduce Motion support throughout</li>
+            </ul>
+        </div>
+
+        <!-- v1.0.7 -->
+        <div class="version-entry">
+            <div class="version-header">
+                <span class="version-number">v1.0.7</span>
+                <span class="version-date">March 3, 2026</span>
+            </div>
+            <p class="version-summary">AI model status, higher accuracy, and a simplified save flow.</p>
+            <ul class="version-changes">
+                <li><span class="change-tag tag-new">New</span> <strong>AI Model Status Indicator</strong> — A card tells you when Apple Intelligence is still downloading, with a success toast when the model is ready</li>
+                <li><span class="change-tag tag-improved">Improved</span> <strong>Scanning accuracy</strong> — Neural Engine document detection with perspective correction. Overall accuracy up from 73% to 85%, price extraction from 86% to 98%</li>
+                <li><span class="change-tag tag-improved">Improved</span> <strong>Save flow simplified</strong> — Receipts now always save locally first. Upload to YNAB when you're ready from the receipt detail view</li>
+                <li><span class="change-tag tag-fixed">Fixed</span> <strong>Bilingual receipts</strong> — IKEA and other multilingual receipts no longer blocked by language detection</li>
+                <li><span class="change-tag tag-improved">Improved</span> <strong>Accessibility</strong> — WCAG AA contrast fixes, VoiceOver improvements for notifications and action cards, Reduce Motion support</li>
+            </ul>
+        </div>
+
+        <!-- v1.0.6 -->
+        <div class="version-entry">
+            <div class="version-header">
+                <span class="version-number">v1.0.6</span>
+                <span class="version-date">February 18, 2026</span>
+            </div>
+            <p class="version-summary">Complete Settings redesign and Liquid Glass polish.</p>
+            <ul class="version-changes">
+                <li><span class="change-tag tag-new">New</span> <strong>Settings redesign</strong> — Reorganized into clean sub-pages: YNAB Account, Scanning & AI, Subscription, Data & Storage, and About</li>
+                <li><span class="change-tag tag-improved">Improved</span> <strong>Liquid Glass polish</strong> — Tab bar and toolbar transitions now use proper glass-aware styling</li>
+                <li><span class="change-tag tag-fixed">Fixed</span> <strong>Subscription purchases</strong> — Fixed a bug where purchase buttons could stop responding. Resubscription for returning users now works correctly</li>
+                <li><span class="change-tag tag-fixed">Fixed</span> <strong>Localization</strong> — Fixed 408 entries that could display raw keys instead of English text</li>
+                <li><span class="change-tag tag-improved">Improved</span> <strong>Accessibility</strong> — 30+ VoiceOver, Switch Control, and Dynamic Type improvements across the entire app</li>
+            </ul>
+        </div>
+
+        <!-- v1.0.5 -->
+        <div class="version-entry">
+            <div class="version-header">
+                <span class="version-number">v1.0.5</span>
+                <span class="version-date">February 11, 2026</span>
+            </div>
+            <p class="version-summary">Multi-budget awareness and a better receipt browsing experience.</p>
+            <ul class="version-changes">
+                <li><span class="change-tag tag-new">New</span> <strong>Multi-budget awareness</strong> — Budget name shows under the Receipts title. Filter receipts by budget. Budget and account names saved with each receipt</li>
+                <li><span class="change-tag tag-new">New</span> <strong>Connection status badge</strong> — Orange indicator on Settings tab when using cached data offline</li>
+                <li><span class="change-tag tag-improved">Improved</span> <strong>Accounts & Categories</strong> — Redesigned selection views with better layout</li>
+                <li><span class="change-tag tag-improved">Improved</span> <strong>Amount fields</strong> — Text selects all on tap with visible currency symbol</li>
+                <li><span class="change-tag tag-fixed">Fixed</span> <strong>Line item amount doubling</strong> — Syncing from YNAB no longer doubles amounts when quantity is greater than 1</li>
+            </ul>
+        </div>
+
+        <!-- v1.0.4 -->
+        <div class="version-entry">
+            <div class="version-header">
+                <span class="version-number">v1.0.4</span>
+                <span class="version-date">February 4, 2026</span>
+            </div>
+            <p class="version-summary">Bank import matching and smarter error handling.</p>
+            <ul class="version-changes">
+                <li><span class="change-tag tag-new">New</span> <strong>Bank import matching</strong> — Receipts automatically match with bank imports in YNAB. No more duplicate transactions cluttering your budget</li>
+                <li><span class="change-tag tag-new">New</span> <strong>Smart error messages</strong> — YNAB API errors now show clear explanations with one-tap actions: edit the receipt, reconnect YNAB, or retry automatically</li>
+                <li><span class="change-tag tag-new">New</span> <strong>Auto-retry for rate limits</strong> — If YNAB is busy, the app retries automatically with backoff</li>
+                <li><span class="change-tag tag-fixed">Fixed</span> <strong>Paywall purchase buttons</strong> — Fixed a regression where subscription purchase buttons stopped responding</li>
+            </ul>
+        </div>
+
+        <!-- v1.0.3 -->
+        <div class="version-entry">
+            <div class="version-header">
+                <span class="version-number">v1.0.3</span>
+                <span class="version-date">January 27, 2026</span>
+            </div>
+            <p class="version-summary">On-device category learning and smarter tax handling.</p>
+            <ul class="version-changes">
+                <li><span class="change-tag tag-new">New</span> <strong>Category learning experience</strong> — Progress badge shows how the on-device learning model is training on your preferences. First-scan tooltip explains how it works</li>
+                <li><span class="change-tag tag-new">New</span> <strong>Category groups</strong> — Pickers now mirror your YNAB category group ordering instead of flat alphabetical lists</li>
+                <li><span class="change-tag tag-improved">Improved</span> <strong>Tax handling</strong> — Clearer explanation when item totals don't match the receipt total (tax, fees, and rounding differences)</li>
+                <li><span class="change-tag tag-fixed">Fixed</span> <strong>New line item defaults</strong> — New line items now start at $0.00 instead of the receipt total</li>
+                <li><span class="change-tag tag-fixed">Fixed</span> <strong>Sheet dismiss protection</strong> — Receipt verification can no longer be accidentally dismissed by tapping outside</li>
+            </ul>
+        </div>
+
+        <!-- v1.0.2 -->
+        <div class="version-entry">
+            <div class="version-header">
+                <span class="version-number">v1.0.2</span>
+                <span class="version-date">January 19, 2026</span>
+            </div>
+            <p class="version-summary">Improved onboarding experience.</p>
+            <ul class="version-changes">
+                <li><span class="change-tag tag-improved">Improved</span> <strong>Onboarding redesign</strong> — New messaging that better explains receipt splitting, privacy-first processing, and the value of AI scanning</li>
+            </ul>
+        </div>
+
+        <!-- v1.0.1 -->
+        <div class="version-entry">
+            <div class="version-header">
+                <span class="version-number">v1.0.1</span>
+                <span class="version-date">January 15, 2026</span>
+            </div>
+            <p class="version-summary">On-device category learning and offline access.</p>
+            <ul class="version-changes">
+                <li><span class="change-tag tag-new">New</span> <strong>On-device category learning</strong> — The app learns your categorization preferences using on-device AI. Predictions get smarter with every receipt you categorize</li>
+                <li><span class="change-tag tag-new">New</span> <strong>Offline category access</strong> — Categories and accounts remain available even when your YNAB session expires. Scan and categorize offline, sync later</li>
+                <li><span class="change-tag tag-new">New</span> <strong>Glass tile animations</strong> — Beautiful glass-lucent scan action tiles with gyroscopic tilt and sparkle effects</li>
+                <li><span class="change-tag tag-new">New</span> <strong>Smart scan limits</strong> — Prorated free tier when a subscription expires mid-month, so you always get fair usage</li>
+            </ul>
+        </div>
+
+        <!-- v1.0.0 -->
+        <div class="version-entry">
+            <div class="version-header">
+                <span class="version-number">v1.0.0</span>
+                <span class="version-date">January 2026</span>
+            </div>
+            <p class="version-summary">Initial release.</p>
+            <ul class="version-changes">
+                <li><span class="change-tag tag-new">New</span> <strong>AI-powered receipt scanning</strong> — Scan receipts with Apple Intelligence. Extracts merchant, date, total, and individual line items automatically</li>
+                <li><span class="change-tag tag-new">New</span> <strong>YNAB sync</strong> — One-tap sync to create split transactions in YNAB with line items as subtransactions</li>
+                <li><span class="change-tag tag-new">New</span> <strong>100% on-device processing</strong> — All scanning happens on your device using Apple Intelligence. No cloud uploads, no data collection</li>
+                <li><span class="change-tag tag-new">New</span> <strong>Receipt vault</strong> — Store and browse receipts locally for warranties, returns, and expense tracking</li>
+                <li><span class="change-tag tag-new">New</span> <strong>Confidence scoring</strong> — See how accurate each scan is before syncing, with the option to review and edit</li>
+                <li><span class="change-tag tag-new">New</span> <strong>Multiple capture modes</strong> — Camera, photo library, or document scanner</li>
+            </ul>
+        </div>
+
+        <div style="text-align: center; padding: 2rem 0; color: var(--text-muted); font-size: 0.9rem;">
+            <p>Available on the <a href="https://apps.apple.com/us/app/receipts-for-ynab/id6755055273" style="color: var(--accent-primary); text-decoration: none;">App Store</a></p>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-links">
+            <a href="./">Home</a>
+            <a href="./privacy.html">Privacy Policy</a>
+            <a href="./terms.html">Terms of Service</a>
+            <a href="./licenses.html">Licenses</a>
+            <a href="./changelog.html">What's New</a>
+            <a href="mailto:receiptsforynab.app@gmail.com">Contact</a>
+        </div>
+        <p style="margin-bottom: 0.5rem;">&copy; 2025-2026 eTurea. All rights reserved.</p>
+        <p style="font-size: 0.8rem; color: var(--text-muted);">Crafted with &#10084;&#65039; by an independent iOS developer and fellow YNAB budgeter.</p>
+    </footer>
+
+    <!-- Mobile Menu Script -->
+    <script>
+        (function() {
+            const menuToggle = document.querySelector('.mobile-menu-toggle');
+            const mobileMenu = document.getElementById('mobileMenu');
+
+            if (menuToggle && mobileMenu) {
+                menuToggle.addEventListener('click', function() {
+                    const isOpen = mobileMenu.classList.toggle('active');
+                    menuToggle.setAttribute('aria-expanded', isOpen);
+                    menuToggle.innerHTML = isOpen
+                        ? '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>'
+                        : '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>';
+                });
+
+                mobileMenu.querySelectorAll('a').forEach(function(link) {
+                    link.addEventListener('click', function() {
+                        mobileMenu.classList.remove('active');
+                        menuToggle.setAttribute('aria-expanded', 'false');
+                        menuToggle.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>';
+                    });
+                });
+            }
+        })();
+
+        // Theme toggle
+        (function() {
+            function setTheme(theme) {
+                document.documentElement.setAttribute('data-theme', theme);
+                localStorage.setItem('theme', theme);
+            }
+
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                setTheme(savedTheme);
+            }
+
+            document.querySelectorAll('.theme-toggle').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    const current = document.documentElement.getAttribute('data-theme');
+                    const isDark = current === 'dark' || (!current && window.matchMedia('(prefers-color-scheme: dark)').matches);
+                    setTheme(isDark ? 'light' : 'dark');
+                });
+            });
+        })();
+    </script>
+</body>
+</html>

@@ -16,7 +16,7 @@
     <!-- SEO Meta Tags -->
     <title>Receipts for YNAB - Scan Receipts to YNAB with Apple Intelligence</title>
     <meta name="description" content="Transform paper receipts into YNAB transactions instantly. Powered by Apple Intelligence for 100% on-device processing. Privacy-first receipt scanning for iPhone and iPad.">
-    <meta name="keywords" content="YNAB, receipt scanner, Apple Intelligence, iOS app, budgeting, expense tracking, receipt to YNAB, on-device AI, iPad receipt scanner, multi-budget YNAB, receipt vault, receipt storage, grocery receipt scanner, line item splitting, YNAB categories, Neural Engine">
+    <meta name="keywords" content="YNAB, receipt scanner, Apple Intelligence, iOS app, budgeting, expense tracking, receipt to YNAB, on-device AI, iPad receipt scanner, multi-budget YNAB, receipt vault, receipt storage, grocery receipt scanner, line item splitting, YNAB categories, Neural Engine, bank import matching, offline receipt scanner, receipt search">
     <meta name="author" content="eTurea">
     <meta name="robots" content="index, follow">
 
@@ -1362,6 +1362,7 @@
                 <li><a href="#how-it-works">How It Works</a></li>
                 <li><a href="#pricing">Pricing</a></li>
                 <li><a href="#faq">FAQ</a></li>
+                <li><a href="./changelog.html">What's New</a></li>
                 <li>
                     <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle light/dark mode">
                         <span class="theme-icon-light">&#9728;</span>
@@ -1379,6 +1380,7 @@
         <a href="#how-it-works">How It Works</a>
         <a href="#pricing">Pricing</a>
         <a href="#faq">FAQ</a>
+        <a href="./changelog.html">What's New</a>
         <div class="mobile-theme-toggle">
             <span>Theme</span>
             <button class="theme-toggle mobile-theme-btn" aria-label="Toggle dark mode">
@@ -1516,15 +1518,15 @@
                         <span>&#128260;</span>
                     </div>
                     <h3>Seamless YNAB Sync</h3>
-                    <p>Save receipts locally and upload to YNAB when you're ready. Line items become subtransactions with categories from your budget.</p>
+                    <p>Save receipts locally and upload to YNAB when you're ready. Line items become subtransactions with categories from your budget. Matches with bank imports automatically.</p>
                 </div>
 
                 <div class="feature-card scroll-reveal">
-                    <div class="feature-icon scan">
-                        <span>&#128247;</span>
+                    <div class="feature-icon sync">
+                        <span>&#128179;</span>
                     </div>
-                    <h3>Smart Capture</h3>
-                    <p>Use camera, photo library, or document scanner. Quality validation ensures clear scans for accurate extraction.</p>
+                    <h3>Bank Import Matching</h3>
+                    <p>Receipts automatically match with your bank imports in YNAB — no more duplicates cluttering your budget. Detailed line items replace vague bank descriptions.</p>
                 </div>
 
                 <div class="feature-card scroll-reveal">
@@ -1556,7 +1558,15 @@
                         <span>&#128451;</span>
                     </div>
                     <h3>Receipt Vault</h3>
-                    <p>Store receipts locally for warranties, returns, and expense tracking — even without a YNAB account. Your personal receipt archive, always on your device.</p>
+                    <p>Browse receipts by merchant, date, or amount. Search your purchase history for warranties, returns, and expenses — even without a YNAB account. Always on your device.</p>
+                </div>
+
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-icon scan">
+                        <span>&#9992;&#65039;</span>
+                    </div>
+                    <h3>Works Offline</h3>
+                    <p>Scan receipts anywhere — airplane, subway, camping trip. All processing happens on-device. Sync to YNAB when you're back online.</p>
                 </div>
             </div>
         </div>
@@ -1841,6 +1851,11 @@
                 </div>
 
                 <div class="feature-card scroll-reveal">
+                    <h3>Will receipts create duplicate transactions?</h3>
+                    <p>No. When you sync a receipt, it automatically matches with existing bank imports in YNAB. Your receipt's detailed line items replace the vague bank description — no duplicates.</p>
+                </div>
+
+                <div class="feature-card scroll-reveal">
                     <h3>Does it work offline?</h3>
                     <p>Receipt scanning works completely offline. An internet connection is only needed to sync to YNAB.</p>
                 </div>
@@ -1884,6 +1899,7 @@
                         <li><a href="./privacy.html">Privacy Policy</a></li>
                         <li><a href="./terms.html">Terms of Service</a></li>
                         <li><a href="./licenses.html">Licenses</a></li>
+                        <li><a href="./changelog.html">What's New</a></li>
                     </ul>
                 </div>
 
@@ -1908,6 +1924,7 @@
                     <a href="./privacy.html">Privacy</a>
                     <a href="./terms.html">Terms</a>
                     <a href="./licenses.html">Licenses</a>
+                    <a href="./changelog.html">What's New</a>
                 </div>
                 <p class="footer-attribution">We are not affiliated, associated, or in any way officially connected with YNAB or any of its subsidiaries or affiliates. The official YNAB website can be found at <a href="https://www.ynab.com" target="_blank" rel="noopener">ynab.com</a>. The names YNAB and You Need A Budget, as well as related names, marks, and images are registered trademarks of YNAB.</p>
             </div>
@@ -1940,7 +1957,8 @@
         "name": "Receipts for YNAB",
         "operatingSystem": "iOS 26+, iPadOS 26+",
         "applicationCategory": "FinanceApplication",
-        "description": "Transform paper receipts into YNAB transactions with Apple Intelligence. 100% on-device AI processing for privacy.",
+        "softwareVersion": "1.0.9",
+        "description": "Transform paper receipts into YNAB transactions with Apple Intelligence. 100% on-device AI processing for privacy. Auto-matches with bank imports.",
         "offers": {
             "@type": "Offer",
             "price": "0",
@@ -1997,6 +2015,14 @@
                 "acceptedAnswer": {
                     "@type": "Answer",
                     "text": "Only transaction details (merchant name, date, amount, category) are sent when you explicitly sync. Your receipt images are never uploaded to YNAB or any other server."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Will syncing receipts create duplicate transactions in YNAB?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "No. When you sync a receipt to YNAB, it automatically matches with existing bank imports. Your receipt's detailed line items and categories replace the vague bank description, so you never get duplicate transactions."
                 }
             },
             {

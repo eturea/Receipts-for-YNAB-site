@@ -35,7 +35,7 @@ For questions about the website content, contact: eTurea
 
 ---
 
-**Last Updated:** 2026-01-13
-**App Version:** 1.0 (Build 1)
+**Last Updated:** 2026-04-21
+**App Version:** 1.0.9
 **Status:** Live on App Store
 **App Store:** https://apps.apple.com/us/app/receipts-for-ynab/id6755055273
