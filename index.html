@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- Prevent scroll jump on reload -->
+    <script>if ('scrollRestoration' in history) history.scrollRestoration = 'manual';</script>
+
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-B9VXRP5RNW"></script>
     <script>
@@ -42,8 +45,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
     <!-- Canonical URL -->
     <link rel="canonical" href="https://eturea.github.io/Receipts-for-YNAB-site/">
@@ -1933,6 +1935,22 @@
 
     <!-- Scroll Reveal Script -->
     <script>
+        // Make elements already in viewport visible immediately (no animation)
+        // to prevent the page from "jumping" on load
+        document.querySelectorAll('.scroll-reveal').forEach(el => {
+            const rect = el.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+                el.style.transition = 'none';
+                el.classList.add('visible');
+                // Re-enable transitions after paint
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => {
+                        el.style.transition = '';
+                    });
+                });
+            }
+        });
+
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -1941,10 +1959,10 @@
             });
         }, { threshold: 0.1 });
 
-        document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+        document.querySelectorAll('.scroll-reveal:not(.visible)').forEach(el => observer.observe(el));
 
-        // Stagger feature cards
-        document.querySelectorAll('.feature-card').forEach((card, index) => {
+        // Stagger feature cards (only those not yet visible)
+        document.querySelectorAll('.feature-card:not(.visible)').forEach((card, index) => {
             card.style.transitionDelay = `${index * 0.1}s`;
         });
     </script>
