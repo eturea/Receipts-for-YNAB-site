@@ -1490,7 +1490,7 @@
 
             <div style="max-width: 760px; margin: 0 auto; text-align: left;">
                 <p style="color: var(--text-secondary); margin-bottom: var(--space-md); line-height: 1.7;">
-                    YNAB now lets you attach receipt photos directly to your transactions — a great option if you want everything in one place. But some people would rather not have YNAB collect the receipt image, the location and device metadata embedded in it, or any personal information visible on the receipt itself. Per <a href="https://www.ynab.com/privacy-policy" target="_blank" rel="noopener" style="color: var(--gradient-pink); text-decoration: underline;">YNAB's privacy policy</a>, that data may also be shared with YNAB Together members and with third-party apps connected via the YNAB API — and YNAB's policy notes the use of AI tools to improve their services. For people who'd prefer to keep their receipt images on their own device, Receipts for YNAB offers that option.
+                    YNAB now lets you attach receipt photos directly to your transactions — a great option if you want everything in one place. But some people would rather not have YNAB collect the receipt image, the location and device metadata embedded in it, or any personal information visible on the receipt itself. Per <a href="https://www.ynab.com/privacy-policy" target="_blank" rel="noopener" style="color: var(--gradient-pink); text-decoration: underline;">YNAB's privacy policy</a>, that data may also be shared with YNAB Together members (if you've enabled YNAB Together) and with third-party apps connected via the YNAB API (if you've authorized them) — and YNAB's policy notes the use of AI tools to improve their services. For people who'd prefer to keep their receipt images on their own device, Receipts for YNAB offers that option.
                 </p>
                 <p style="color: var(--text-secondary); margin-bottom: var(--space-md); line-height: 1.7;">
                     When you sync a receipt, only a short code — something like <code style="font-family: var(--font-mono); background: var(--bg-card); padding: 0.15rem 0.5rem; border-radius: 6px; color: var(--gradient-pink); font-size: 0.95em;">[RFY:20260511183022]</code> — is added to the transaction's memo. The receipt photo stays on your iPhone. Months later, copy the code from YNAB, paste it into the app, and your receipt opens instantly.
@@ -1876,7 +1876,7 @@
 
                 <div class="feature-card scroll-reveal">
                     <h3>What data goes to YNAB?</h3>
-                    <p>Only transaction details (merchant, date, amount, category) when you explicitly sync. Never your receipt images.</p>
+                    <p>Only transaction details (merchant, date, amount, category) when you explicitly sync, plus a short reference code in the transaction memo so you can find the receipt later — that's a 14-digit timestamp, not personal data. Never your receipt images.</p>
                 </div>
 
                 <div class="feature-card scroll-reveal">
@@ -2067,7 +2067,7 @@
                 "name": "What data is sent to YNAB?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Only transaction details (merchant name, date, amount, category) are sent when you explicitly sync. Your receipt images are never uploaded to YNAB or any other server."
+                    "text": "Only transaction details (merchant name, date, amount, category) are sent when you explicitly sync, plus a short reference code in the transaction memo so you can find the receipt later — that's a 14-digit timestamp, not personal data. Your receipt images are never uploaded to YNAB or any other server."
                 }
             },
             {
