@@ -1,6 +1,6 @@
-#title: Receipts for YNAB
+title: Receipts for YNAB
 description: Privacy-first receipt scanner for YNAB using Apple Intelligence
-theme: minima
+theme: jekyll-theme-minimal
 baseurl: "/Receipts-for-YNAB-site"
 url: "https://eturea.github.io"
 
@@ -15,6 +15,13 @@ exclude:
   - README.md
   - Gemfile
   - Gemfile.lock
+  # Obsolete Markdown versions of the published HTML pages.
+  # The hand-written .html files are canonical; excluding the .md prevents
+  # Jekyll from converting them and colliding at the public URL.
+  - privacy.md
+  - terms.md
+  - licenses.md
+  - index.md
 
 # Navigation
 plugins:

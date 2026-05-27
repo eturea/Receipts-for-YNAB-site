@@ -4,10 +4,13 @@ This directory contains the legal and informational pages for the **Receipts for
 
 ## Files
 
-- **index.md** - Main landing page with app overview and features
-- **privacy.md** - Privacy Policy (effective date: October 15, 2025)
-- **terms.md** - Terms of Service
-- **licenses.md** - Third-party software licenses and attributions
+- **index.html** - Main landing page with app overview and features
+- **privacy.html** - Privacy Policy (canonical)
+- **terms.html** - Terms of Service
+- **licenses.html** - Third-party software licenses and attributions
+- **changelog.html** - What's New / release notes
+
+> **Note:** The `.md` versions of these files (`index.md`, `privacy.md`, `terms.md`, `licenses.md`) are obsolete. Do not edit them — they are excluded from the Jekyll build via `_config.yml`. The hand-written `.html` files above are what's served at the public URLs.
 
 ## Publishing
 
@@ -24,10 +27,11 @@ These files are managed manually by the repository owner. They are kept in this 
 - App capabilities or requirements
 
 **You must update the relevant files in this directory:**
-1. Update `privacy.md` for any data handling changes
-2. Update `terms.md` for service changes
-3. Update `licenses.md` when adding/removing dependencies
-4. Update `index.md` for feature additions or changes
+1. Update `privacy.html` for any data handling changes
+2. Update `terms.html` for service changes
+3. Update `licenses.html` when adding/removing dependencies
+4. Update `index.html` for feature additions or changes
+5. Update `changelog.html` when shipping a new release
 
 ## Contact
 
