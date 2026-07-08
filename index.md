@@ -419,6 +419,12 @@ Our mission is to create apps that:
 
 ### Version History
 
+**Version 1.0.1** (January 2026)
+- 🔧 Database migration stability improvements
+- 🛡️ Pre-emptive database reset for incompatible schemas
+- ⚡ Swift 6 concurrency compliance
+- 🐛 Fixed beta upgrade path issues
+
 **Version 1.0** (December 2025)
 - 🎉 Initial release
 - 🧠 Apple Intelligence integration for receipt scanning
@@ -475,7 +481,7 @@ Browse, search, and manage all your scanned receipts.
 
 ---
 
-**© 2025 eTurea. All rights reserved.**
+**© 2025-2026 eTurea. All rights reserved.**
 
 We are not affiliated, associated, or in any way officially connected with YNAB or any of its subsidiaries or affiliates. The official YNAB website can be found at [https://www.ynab.com](https://www.ynab.com).
 

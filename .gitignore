@@ -1,0 +1,13 @@
+# macOS noise
+.DS_Store
+
+# Working material — private/bulky, not part of the published site (owner call 2026-07-08)
+reddit_users/
+app_store_assets/
+app_icon/
+changelog/
+process_screenshot.py
+assets/screenrecording01.mov
+Website-Update-Requirements.md
+Website-Update-Requirements-20260213.md
+Website-Update-Requirements-20260303.md
