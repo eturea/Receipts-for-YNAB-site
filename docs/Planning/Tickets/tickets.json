@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-08",
+  "generated_at": "2026-07-31",
   "app": "rfy-site",
   "project": "Receipts-for-YNAB-site",
   "current_build": "",
@@ -17,17 +17,17 @@
   },
   "summary": {
     "app": "rfy-site",
-    "total": 1,
+    "total": 2,
     "by_status": {
       "open": 1,
       "in-progress": 0,
       "deferred": 0,
-      "done": 0,
+      "done": 1,
       "wontfix": 0
     },
     "by_severity": {
       "P1": 0,
-      "P2": 1,
+      "P2": 2,
       "P3": 0
     },
     "open_by_severity": {
@@ -38,13 +38,30 @@
   },
   "tickets": [
     {
+      "id": "SITE_RELEASE_V1_1_3",
+      "title": "Update site copy for the v1.1.3 release",
+      "status": "done",
+      "severity": "P2",
+      "opened": "2026-07-31",
+      "app": "rfy-site",
+      "closed": "2026-07-31",
+      "age_days": 0,
+      "milestone": "v1.1.3",
+      "effort": "evening",
+      "risk": "low",
+      "area": "site",
+      "file": "docs/Planning/Tickets/done/TICKET_SITE_RELEASE_V1_1_3.md",
+      "summary": "The site led with v1.1.2 copy after v1.1.3 shipped on 2026-07-31. `changelog.html` topped out at the v1.1.2 entry (July 24, 2026) holding the \"Latest\" badge, the `index.html` hero callout read \"New in v1.1.2\", and the JSON-LD structured...",
+      "body": "# TICKET — Update site copy for the v1.1.3 release\n\n**Opened:** 2026-07-31\n**Priority:** P2 — marketing accuracy. The live site advertised v1.1.2 while v1.1.3 shipped.\n**Related:** commit `35819a7` (this repo, `main`).\n\n---\n\n## Problem\n\nThe site led with v1.1.2 copy after v1.1.3 shipped on 2026-07-31. `changelog.html`\ntopped out at the v1.1.2 entry (July 24, 2026) holding the \"Latest\" badge, the\n`index.html` hero callout read \"New in v1.1.2\", and the JSON-LD structured data\nstill declared `softwareVersion: 1.1.2`. Visitors and search engines saw a\nrelease behind.\n\nFiled retroactively for traceability: the work was requested and completed in one\nsitting, so this ticket opens and closes the same day.\n\n## Proposed fix\n\nAdd the v1.1.3 changelog entry, move the \"Latest\" badge, and refresh the\nhomepage version references. Content only, no structural or CSS changes.\n\n## Acceptance\n\n- [x] `changelog.html` carries a v1.1.3 entry (July 31, 2026) above v1.1.2.\n- [x] \"Latest\" badge moved from v1.1.2 to v1.1.3; exactly one badge on the page.\n- [x] `index.html` hero callout updated to v1.1.3 copy, markup and link behavior unchanged.\n- [x] No stale v1.1.2 references remain in `index.html`.\n- [x] Renders correctly in both light and dark themes.\n- [x] Privacy claims untouched; no iOS 27 promises beyond storage readiness.\n- [n/a] Commit references this ticket ID. The shipping commit `35819a7` predates\n  this retroactively filed ticket and does not name it; the link is recorded\n  here instead, and the ticket-filing commit carries the ID.\n\n## Resolution\n\nShipped in `35819a7` (\"Update site for v1.1.3 release\"), fast-forwarded onto\n`main` and pushed to `origin/main`. Two files, +20/-4.\n\n**Changes**\n\n- `changelog.html` — new `v1.1.3` entry (July 31, 2026) inserted above v1.1.2,\n  reusing the existing `version-entry latest` / `version-header` /\n  `change-tag` markup and only the three tag classes already present in the file\n  (`tag-fixed`, `tag-improved`). v1.1.2 demoted to a plain `version-entry` with\n  its badge removed. Five bullets: accurate connection status, offline viewing\n  plus restore after signing back in, iOS 27-ready line item storage migration,\n  redirect validation, and dropping the date field from transaction updates.\n- `index.html` — hero callout text updated to v1.1.3; JSON-LD `softwareVersion`\n  bumped to `1.1.3`. Pricing, FAQ, screenshots, and the feature list untouched.\n\n**Verification**\n\n- Precondition checked before editing: v1.1.2 / July 24, 2026 / `badge-latest`\n  confirmed as the prior top entry, so no earlier update had been skipped.\n- Headless Chrome renders of both files in light and dark themes. New entry\n  shows the accent border and gradient wash in both; `FIXED` and `IMPROVED`\n  chips legible on both backgrounds.\n- Post-deploy: live pages fetched from\n  `https://eturea.github.io/Receipts-for-YNAB-site/` are byte-identical to the\n  committed local files (`diff -q` clean), with `v1.1.3` holding the Latest\n  badge and `softwareVersion: 1.1.3` served.\n- Copy review: session-expiry wording frames sessions ending as normal by-design\n  behavior rather than a YNAB fault; privacy claims (on-device processing, no\n  data collection, images never leave the device) unchanged; iOS 27 language\n  limited to storage format readiness.\n\n**Not in scope**\n\nThe separate open ticket `TICKET_SITE_SYNC_CURRENT_VERSION` is unaffected. Its\nacceptance items (duplicate site tree in the app repo, obsolete `.md` files,\nprivacy/terms verification, `Website-Update-Requirements-*.md` backlog) all\nremain outstanding.\n"
+    },
+    {
       "id": "SITE_SYNC_CURRENT_VERSION",
       "title": "Verify RFY site currency and resolve the duplicate site directory",
       "status": "open",
       "severity": "P2",
       "opened": "2026-07-02",
       "app": "rfy-site",
-      "age_days": 6,
+      "age_days": 29,
       "effort": "evening",
       "risk": "low",
       "area": "site",
