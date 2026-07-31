@@ -2,23 +2,24 @@
 
 Canonical reference for the ticket frontmatter schema and the
 `regenerate-tickets-json.py` validator. This document is intentionally
-**repo-neutral and byte-identical across all four repos — Beheld, Receipts for
-YNAB, Beheld-site, and Receipts-for-YNAB-site** — each repo's `CLAUDE.md`
+**repo-neutral and byte-identical across all five repos — Beheld, Receipts for
+YNAB, Étude, Beheld-site, and Receipts-for-YNAB-site** — each repo's `CLAUDE.md`
 carries the repo-specific bits (ticket directories, the regen command path, the
-triage pointer). Edit all four copies together.
+triage pointer). Edit all five copies together.
 
 `tickets.json` is generated — **never edit it by hand**. Edit the source
 `TICKET_*.md` and re-run the regen script (no flags) to validate + rewrite
-`tickets.json` and refresh the combined two-app dashboard.
+`tickets.json` and refresh the combined dashboard.
 
 ## Computed fields (not frontmatter)
 
 Each ticket record also carries two fields injected by the regen script:
 
-- `app` — the owning repo (`beheld` / `rfy` / `beheld-site` / `rfy-site`), from
-  the script's `CONFIG` block. The combined dashboard maps the site repos onto
-  their parent app (`beheld-site` → `beheld`, `rfy-site` → `rfy`) so the
-  dashboard still reads as two apps.
+- `app` — the owning repo (`beheld` / `rfy` / `etude` / `beheld-site` /
+  `rfy-site`), from the script's `CONFIG` block. The combined dashboard maps the
+  site repos onto their parent app (`beheld-site` → `beheld`, `rfy-site` →
+  `rfy`) so those two still read as one app each. Étude has no site repo and
+  contributes app tickets only.
 - `age_days` — `today − opened` for active tickets; `closed − opened` for terminal ones.
 
 ## Frontmatter schema
