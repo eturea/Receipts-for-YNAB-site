@@ -590,12 +590,28 @@
             <p>Every update to Receipts for YNAB, from launch to today. Built by a solo developer and fellow YNAB budgeter, shaped by user feedback.</p>
         </div>
 
-        <!-- v1.1.2 -->
+        <!-- v1.1.3 -->
         <div class="version-entry latest">
+            <div class="version-header">
+                <span class="version-number">v1.1.3</span>
+                <span class="version-date">July 31, 2026</span>
+                <span class="version-badge badge-latest">Latest</span>
+            </div>
+            <p class="version-summary">An honest YNAB connection, and storage that is ready for iOS 27.</p>
+            <ul class="version-changes">
+                <li><span class="change-tag tag-fixed">Fixed</span> <strong>Accurate connection status</strong>: YNAB sign-in sessions end routinely by design. When that happens, the app now tells you and offers to sign back in, instead of showing a connected account while uploads and syncs quietly fail. This includes tokens revoked by YNAB.</li>
+                <li><span class="change-tag tag-improved">Improved</span> <strong>A clear way back</strong>: after a session ends, your receipts, budgets, and account names stay viewable offline, and signing back in restores everything, including the account picker.</li>
+                <li><span class="change-tag tag-improved">Improved</span> <strong>Ready for iOS 27</strong>: receipt line items are now stored in a future-proof format with stable ordering. The migration is automatic, keeps all your data, and requires nothing from you.</li>
+                <li><span class="change-tag tag-improved">Improved</span> <strong>Security</strong>: the sign-in callback is now validated against the complete configured redirect address rather than just parts of it.</li>
+                <li><span class="change-tag tag-fixed">Fixed</span> <strong>Reliability</strong>: transaction updates no longer send the date field, which YNAB fixes at creation and ignores afterward.</li>
+            </ul>
+        </div>
+
+        <!-- v1.1.2 -->
+        <div class="version-entry">
             <div class="version-header">
                 <span class="version-number">v1.1.2</span>
                 <span class="version-date">July 24, 2026</span>
-                <span class="version-badge badge-latest">Latest</span>
             </div>
             <p class="version-summary">One screen to scan, edit, and upload - with live YNAB status on every receipt.</p>
             <ul class="version-changes">
