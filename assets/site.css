@@ -157,17 +157,9 @@ img, video { max-width: 100%; }
   text-wrap: pretty;
 }
 .hero-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 20px; margin-top: 36px; }
-.app-store-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  background: var(--btn-bg);
-  color: var(--btn-fg);
-  padding: 13px 24px;
-  border-radius: 12px;
-  font-size: 17px;
-  font-weight: 600;
-}
+/* Apple's official badge: black in dark mode, white in light mode, unmodified, 48px tall (Apple's minimum is 40). */
+.app-store-badge { display: inline-flex; }
+.app-store-badge img { height: 48px; width: auto; }
 .hero-price { font-size: 14px; color: var(--mute); }
 .hero-release { display: inline-block; margin-top: 16px; font-size: 14px; color: var(--mute); }
 .hero-release span { color: var(--sub); }

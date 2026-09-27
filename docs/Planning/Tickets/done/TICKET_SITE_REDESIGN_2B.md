@@ -56,6 +56,7 @@ Also removed from `main`: `index.md`, `privacy.md`, `terms.md`, `licenses.md` (c
 acceptance line of `TICKET_SITE_SYNC_CURRENT_VERSION`). No longer referenced but left in place:
 the `*-light.png` and `*-web.png` screenshot variants and the three `Screenshot 2026-01-16` files.
 
-**Not done, deliberately:** the official Apple "Download on the App Store" badge SVG. The button
-ships as designed (text button); swapping in Apple's badge needs the artwork from Apple's
-marketing tools.
+**App Store badge (added 2026-09-27, after the first push):** the text button was replaced by
+Apple's official US/UK "Download on the App Store" badges, supplied by the owner from Apple's
+marketing resources: `assets/app-store-badge-black.svg` in dark mode, `assets/app-store-badge-white.svg`
+in light mode, unmodified, 48 px tall (Apple's on-screen minimum is 40 px).
