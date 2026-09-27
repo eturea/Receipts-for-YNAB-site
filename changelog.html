@@ -590,12 +590,35 @@
             <p>Every update to Receipts for YNAB, from launch to today. Built by a solo developer and fellow YNAB budgeter, shaped by user feedback.</p>
         </div>
 
-        <!-- v1.1.4 -->
+        <!-- v1.1.5 -->
         <div class="version-entry latest">
+            <div class="version-header">
+                <span class="version-number">v1.1.5</span>
+                <span class="version-date">September 27, 2026</span>
+                <span class="version-badge badge-latest">Latest</span>
+            </div>
+            <p class="version-summary">Deletion you can trust, and scanning ready for iOS 27.</p>
+            <ul class="version-changes">
+                <li><span class="change-tag tag-fixed">Fixed</span> <strong>Delete All Data finishes cleanly</strong>: it no longer reports a failure over a leftover receipt photo. A photo left behind by an interrupted save is now removed during the wipe, and the result is still checked afterwards.</li>
+                <li><span class="change-tag tag-fixed">Fixed</span> <strong>A failed deletion tells the truth</strong>: if a deletion does fail, the receipts list and the alert now agree that your data is still there.</li>
+                <li><span class="change-tag tag-fixed">Fixed</span> <strong>Reinstalling asks you to sign in</strong>: reinstalling the app asks you to sign in to YNAB again, instead of silently reconnecting to the previous account.</li>
+                <li><span class="change-tag tag-fixed">Fixed</span> <strong>Long receipts on iOS 27</strong>: long receipts no longer fail after a long wait, because lines read twice where scanned sections overlap are now removed. A total misread as "54-00" is repaired to "54.00".</li>
+                <li><span class="change-tag tag-improved">Improved</span> <strong>Clear messages on iOS 27</strong>: a receipt too large for the on-device model says so and points you to Manual Entry. If the model is busy, the app asks you to try again later.</li>
+                <li><span class="change-tag tag-fixed">Fixed</span> <strong>No crash when retrying a deletion on iOS 27</strong>: retrying a deletion after a failed save no longer crashes the app. It asks you to quit and reopen instead, and nothing is removed.</li>
+                <li><span class="change-tag tag-fixed">Fixed</span> <strong>Unsaved line items</strong>: a line item you typed but did not save is refused and highlighted, not silently dropped. A $0.00 item is shown and refused the same way.</li>
+                <li><span class="change-tag tag-fixed">Fixed</span> <strong>Cleaner uploads to YNAB</strong>: line breaks in a merchant or item name no longer reach YNAB, and a very long item name is capped at YNAB's memo limit instead of failing the upload.</li>
+                <li><span class="change-tag tag-fixed">Fixed</span> <strong>No false budget warning</strong>: the app no longer warns that your budget was deleted every time you return to it.</li>
+                <li><span class="change-tag tag-improved">Improved</span> <strong>Accessibility</strong>: VoiceOver reads totals in your local currency and names the account each toggle controls, screens reflow at the largest text sizes, and small controls meet the 44pt tap target.</li>
+                <li><span class="change-tag tag-improved">Improved</span> <strong>Privacy</strong>: the privacy cover hides your receipts in the app switcher on every screen.</li>
+                <li><span class="change-tag tag-improved">Improved</span> <strong>Reliability</strong>: improvements under the hood.</li>
+            </ul>
+        </div>
+
+        <!-- v1.1.4 -->
+        <div class="version-entry">
             <div class="version-header">
                 <span class="version-number">v1.1.4</span>
                 <span class="version-date">August 26, 2026</span>
-                <span class="version-badge badge-latest">Latest</span>
             </div>
             <p class="version-summary">Truthful results: the app now does what it tells you it did.</p>
             <ul class="version-changes">
