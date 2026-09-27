@@ -9,8 +9,12 @@ framework, no Xcode tooling. The app repo's `CLAUDE.md` carries the app-side
 context; this repo is site content only.
 
 The HTML pages (`index.html`, `privacy.html`, `terms.html`, `licenses.html`,
-`changelog.html`) are canonical; the sibling `.md` files are obsolete Jekyll
-sources kept only until the site-sync ticket removes them — edit the HTML.
+`changelog.html`) are canonical and share `assets/site.css` and `assets/site.js`
+(the "2b" design, 2026-09-27; spec in `TICKET_SITE_REDESIGN_2B`). The pre-redesign
+site is preserved in tag `site-legacy-2026` and branch `archive/2026-legacy`.
+**`.nojekyll` is present, so GitHub Pages serves every committed file as-is:**
+an `_`-prefixed folder or a `_config.yml` `exclude:` hides nothing. Keep
+private or draft material out of `main`.
 
 ## Ticket System
 

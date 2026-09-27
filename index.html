@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- Theme: applied before paint so there is no flash -->
+    <script>(function(){var t=null;try{t=localStorage.getItem('receipts-ynab-theme')}catch(e){}if(t!=='light'&&t!=='dark')t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';document.documentElement.setAttribute('data-theme',t)})();</script>
+
     <!-- Prevent scroll jump on reload -->
     <script>if ('scrollRestoration' in history) history.scrollRestoration = 'manual';</script>
 
@@ -42,1959 +45,12 @@
     <!-- Smart App Banner (iOS Safari) -->
     <meta name="apple-itunes-app" content="app-id=6755055273">
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-
     <!-- Canonical URL -->
     <link rel="canonical" href="https://eturea.github.io/Receipts-for-YNAB-site/">
 
-    <style>
-        :root {
-            /* Apple Intelligence inspired colors */
-            --gradient-orange: #FF6B35;
-            --gradient-pink: #F72585;
-            --gradient-purple: #7B2CBF;
-            --gradient-blue: #3A86FF;
-            --gradient-cyan: #4CC9F0;
+    <link rel="stylesheet" href="assets/site.css">
 
-            /* Theme colors */
-            --bg-primary: #0A0A0F;
-            --bg-secondary: #12121A;
-            --bg-card: #1A1A24;
-            --bg-card-hover: #22222E;
-
-            --text-primary: #FAFAFA;
-            --text-secondary: #A0A0B0;
-            --text-muted: #606070;
-
-            --accent-primary: #4CC9F0;
-            --accent-secondary: #F72585;
-            --accent-success: #34D399;
-
-            --border-subtle: rgba(255, 255, 255, 0.08);
-            --border-strong: rgba(255, 255, 255, 0.15);
-        }
-
-        /* Light theme overrides */
-        [data-theme="light"] {
-            --bg-primary: #FAFAFA;
-            --bg-secondary: #F0F0F5;
-            --bg-card: #FFFFFF;
-            --bg-card-hover: #F5F5FA;
-            --text-primary: #1A1A24;
-            --text-secondary: #5A5A6A;
-            --text-muted: #8A8A9A;
-            --border-subtle: rgba(0, 0, 0, 0.08);
-            --border-strong: rgba(0, 0, 0, 0.15);
-        }
-
-        /* System preference detection (when no manual preference set) */
-        @media (prefers-color-scheme: light) {
-            :root:not([data-theme="dark"]) {
-                --bg-primary: #FAFAFA;
-                --bg-secondary: #F0F0F5;
-                --bg-card: #FFFFFF;
-                --bg-card-hover: #F5F5FA;
-                --text-primary: #1A1A24;
-                --text-secondary: #5A5A6A;
-                --text-muted: #8A8A9A;
-                --border-subtle: rgba(0, 0, 0, 0.08);
-                --border-strong: rgba(0, 0, 0, 0.15);
-            }
-        }
-
-        :root {
-            /* Spacing */
-            --space-xs: 0.5rem;
-            --space-sm: 1rem;
-            --space-md: 1.5rem;
-            --space-lg: 2rem;
-            --space-xl: 3rem;
-            --space-2xl: 5rem;
-            --space-3xl: 8rem;
-
-            /* Typography */
-            --font-display: 'Outfit', sans-serif;
-            --font-mono: 'JetBrains Mono', monospace;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: var(--font-display);
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* Animated Background */
-        .bg-gradient {
-            position: fixed;
-            inset: 0;
-            z-index: -1;
-            overflow: hidden;
-        }
-
-        .bg-gradient::before {
-            content: '';
-            position: absolute;
-            width: 150%;
-            height: 150%;
-            top: -25%;
-            left: -25%;
-            background:
-                radial-gradient(ellipse at 20% 20%, rgba(247, 37, 133, 0.12) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 30%, rgba(255, 107, 53, 0.1) 0%, transparent 50%),
-                radial-gradient(ellipse at 60% 80%, rgba(123, 44, 191, 0.08) 0%, transparent 50%),
-                radial-gradient(ellipse at 10% 70%, rgba(76, 201, 240, 0.1) 0%, transparent 50%);
-            animation: gradientFloat 20s ease-in-out infinite;
-        }
-
-        @keyframes gradientFloat {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            33% { transform: translate(2%, -2%) rotate(1deg); }
-            66% { transform: translate(-1%, 1%) rotate(-1deg); }
-        }
-
-        /* Noise overlay */
-        .noise {
-            position: fixed;
-            inset: 0;
-            z-index: -1;
-            opacity: 0.03;
-            pointer-events: none;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-        }
-
-        /* Container */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 var(--space-md);
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
-            padding: var(--space-sm) 0;
-            backdrop-filter: blur(20px);
-            background: rgba(10, 10, 15, 0.8);
-            border-bottom: 1px solid var(--border-subtle);
-        }
-
-        [data-theme="light"] nav {
-            background: rgba(250, 250, 250, 0.85);
-        }
-
-        @media (prefers-color-scheme: light) {
-            :root:not([data-theme="dark"]) nav {
-                background: rgba(250, 250, 250, 0.85);
-            }
-        }
-
-        .nav-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-weight: 700;
-            font-size: 1.25rem;
-            background: linear-gradient(135deg, var(--gradient-cyan), var(--gradient-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-decoration: none;
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: var(--space-lg);
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: color 0.2s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--text-primary);
-        }
-
-        .nav-cta {
-            background: linear-gradient(135deg, var(--gradient-blue), var(--gradient-cyan));
-            color: white !important;
-            padding: 0.6rem 1.2rem;
-            border-radius: 100px;
-            font-weight: 600;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .nav-cta:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(76, 201, 240, 0.3);
-        }
-
-        /* Theme Toggle */
-        .theme-toggle {
-            background: var(--bg-card);
-            border: 1px solid var(--border-subtle);
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            padding: 0;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            font-size: 1.1rem;
-            flex-shrink: 0;
-        }
-
-        .theme-toggle:hover {
-            background: var(--bg-card-hover);
-            border-color: var(--border-strong);
-            transform: translateY(-2px);
-        }
-
-        /* Show sun in dark mode, moon in light mode */
-        .theme-icon-light {
-            display: none;
-        }
-        .theme-icon-dark {
-            display: inline;
-        }
-
-        [data-theme="light"] .theme-icon-light {
-            display: inline;
-        }
-        [data-theme="light"] .theme-icon-dark {
-            display: none;
-        }
-
-        @media (prefers-color-scheme: light) {
-            :root:not([data-theme="dark"]) .theme-icon-light {
-                display: inline;
-            }
-            :root:not([data-theme="dark"]) .theme-icon-dark {
-                display: none;
-            }
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: var(--space-3xl) 0 var(--space-2xl);
-            position: relative;
-        }
-
-        .hero-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: var(--space-2xl);
-            align-items: center;
-        }
-
-        .hero-text {
-            opacity: 0;
-            animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            background: rgba(76, 201, 240, 0.1);
-            border: 1px solid rgba(76, 201, 240, 0.2);
-            border-radius: 100px;
-            font-size: 0.85rem;
-            color: var(--accent-primary);
-            margin-bottom: var(--space-md);
-            font-weight: 500;
-        }
-
-        .hero-badge svg {
-            width: 16px;
-            height: 16px;
-        }
-
-        h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: var(--space-md);
-            letter-spacing: -0.03em;
-        }
-
-        .gradient-text {
-            background: linear-gradient(135deg, var(--gradient-orange), var(--gradient-pink), var(--gradient-purple), var(--gradient-blue));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            background-size: 300% 300%;
-            animation: gradientShift 8s ease infinite;
-        }
-
-        @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        .hero-description {
-            font-size: 1.25rem;
-            color: var(--text-secondary);
-            margin-bottom: var(--space-lg);
-            max-width: 500px;
-        }
-
-        .hero-ctas {
-            display: flex;
-            gap: var(--space-sm);
-            flex-wrap: wrap;
-        }
-
-        .btn-primary {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 1rem 2rem;
-            background: linear-gradient(135deg, var(--gradient-blue), var(--gradient-cyan));
-            color: white;
-            text-decoration: none;
-            border-radius: 100px;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(76, 201, 240, 0.35);
-        }
-
-        .btn-primary:active {
-            transform: translateY(-1px);
-        }
-
-        .btn-primary svg {
-            width: 20px;
-            height: 20px;
-        }
-
-        .btn-secondary {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 1rem 2rem;
-            background: transparent;
-            color: var(--text-primary);
-            text-decoration: none;
-            border-radius: 100px;
-            font-weight: 600;
-            font-size: 1rem;
-            border: 1px solid var(--border-strong);
-            transition: all 0.2s ease;
-            cursor: pointer;
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(255, 255, 255, 0.25);
-        }
-
-        [data-theme="light"] .btn-secondary:hover {
-            background: rgba(0, 0, 0, 0.05);
-            border-color: rgba(0, 0, 0, 0.2);
-        }
-
-        @media (prefers-color-scheme: light) {
-            :root:not([data-theme="dark"]) .btn-secondary:hover {
-                background: rgba(0, 0, 0, 0.05);
-                border-color: rgba(0, 0, 0, 0.2);
-            }
-        }
-
-        /* Hero Image */
-        .hero-image {
-            position: relative;
-            opacity: 0;
-            animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
-        }
-
-        .phone-mockup {
-            position: relative;
-            max-width: 320px;
-            margin: 0 auto;
-            transform: perspective(1000px) rotateY(-5deg) rotateX(5deg);
-            transition: transform 0.3s ease;
-        }
-
-        .phone-mockup:hover {
-            transform: perspective(1000px) rotateY(0deg) rotateX(0deg);
-        }
-
-        .phone-mockup img {
-            width: 100%;
-            height: auto;
-            border-radius: 40px;
-            box-shadow:
-                0 50px 100px -20px rgba(0, 0, 0, 0.5),
-                0 30px 60px -30px rgba(0, 0, 0, 0.6);
-        }
-
-        .phone-glow {
-            position: absolute;
-            inset: -20%;
-            background: radial-gradient(circle, rgba(76, 201, 240, 0.2) 0%, transparent 70%);
-            z-index: -1;
-            filter: blur(60px);
-        }
-
-        /* Trust Badges */
-        .trust-section {
-            padding: var(--space-xl) 0;
-            border-top: 1px solid var(--border-subtle);
-            border-bottom: 1px solid var(--border-subtle);
-        }
-
-        .trust-badges {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: var(--space-2xl);
-            flex-wrap: wrap;
-        }
-
-        .trust-item {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-        }
-
-        .trust-item svg {
-            width: 24px;
-            height: 24px;
-            color: var(--accent-success);
-        }
-
-        .ynab-badge {
-            text-decoration: none;
-            transition: transform 0.2s ease, opacity 0.2s ease;
-        }
-
-        .ynab-badge:hover {
-            transform: translateY(-2px);
-            opacity: 0.9;
-        }
-
-        .ynab-badge img {
-            height: 32px;
-            width: auto;
-        }
-
-        /* Availability Banner */
-        .availability-banner {
-            padding: var(--space-md) 0;
-            text-align: center;
-        }
-
-        .availability-content {
-            display: inline-flex;
-            flex-direction: column;
-            align-items: center;
-            gap: var(--space-xs);
-        }
-
-        .availability-label {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .availability-label svg {
-            width: 18px;
-            height: 18px;
-            color: var(--accent-success);
-        }
-
-        .availability-flags {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 0.5rem 1rem;
-            font-size: 0.9rem;
-        }
-
-        .availability-flags span {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.35rem;
-            color: var(--text-secondary);
-            white-space: nowrap;
-        }
-
-        .availability-flags .flag {
-            font-size: 1.1rem;
-        }
-
-        @media (max-width: 640px) {
-            .availability-flags {
-                gap: 0.4rem 0.8rem;
-                font-size: 0.8rem;
-            }
-
-            .availability-flags .flag {
-                font-size: 1rem;
-            }
-        }
-
-        /* Features Section */
-        .features {
-            padding: var(--space-3xl) 0;
-        }
-
-        .section-header {
-            text-align: center;
-            max-width: 700px;
-            margin: 0 auto var(--space-2xl);
-        }
-
-        .section-label {
-            font-family: var(--font-mono);
-            font-size: 0.85rem;
-            color: var(--accent-primary);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: var(--space-sm);
-        }
-
-        .section-title {
-            font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 700;
-            margin-bottom: var(--space-md);
-            letter-spacing: -0.02em;
-        }
-
-        .section-description {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: var(--space-lg);
-        }
-
-        .feature-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-subtle);
-            border-radius: 20px;
-            padding: var(--space-lg);
-            transition: all 0.3s ease;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        .feature-card.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .feature-card:hover {
-            background: var(--bg-card-hover);
-            border-color: var(--border-strong);
-            transform: translateY(-5px);
-        }
-
-        .feature-icon {
-            width: 56px;
-            height: 56px;
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: var(--space-md);
-            font-size: 1.5rem;
-        }
-
-        .feature-icon.ai {
-            background: linear-gradient(135deg, rgba(247, 37, 133, 0.2), rgba(123, 44, 191, 0.2));
-        }
-
-        .feature-icon.privacy {
-            background: linear-gradient(135deg, rgba(52, 211, 153, 0.2), rgba(76, 201, 240, 0.2));
-        }
-
-        .feature-icon.sync {
-            background: linear-gradient(135deg, rgba(58, 134, 255, 0.2), rgba(76, 201, 240, 0.2));
-        }
-
-        .feature-icon.scan {
-            background: linear-gradient(135deg, rgba(255, 107, 53, 0.2), rgba(247, 37, 133, 0.2));
-        }
-
-        .feature-card h3 {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: var(--space-xs);
-        }
-
-        .feature-card p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-        }
-
-        /* How It Works */
-        .how-it-works {
-            padding: var(--space-3xl) 0;
-            background: var(--bg-secondary);
-            position: relative;
-        }
-
-        .steps {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: var(--space-lg);
-            margin-top: var(--space-2xl);
-        }
-
-        .step {
-            text-align: center;
-            position: relative;
-        }
-
-        .step-number {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--gradient-blue), var(--gradient-cyan));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 1.25rem;
-            margin: 0 auto var(--space-md);
-        }
-
-        .step h3 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: var(--space-xs);
-        }
-
-        .step p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        /* Screenshots Gallery */
-        .screenshots {
-            padding: var(--space-3xl) 0;
-        }
-
-        .screenshots-gallery {
-            display: flex;
-            justify-content: center;
-            align-items: flex-end;
-            gap: var(--space-lg);
-            margin-top: var(--space-2xl);
-            perspective: 1000px;
-        }
-
-        .screenshot-item {
-            width: 280px;
-            max-width: 280px;
-            transition: transform 0.4s ease;
-        }
-
-        .screenshot-item:nth-child(1) {
-            transform: rotateY(12deg) translateZ(-60px);
-        }
-
-        .screenshot-item:nth-child(2) {
-            transform: rotateY(4deg) translateZ(20px) scale(1.03);
-            z-index: 2;
-        }
-
-        .screenshot-item:nth-child(3) {
-            transform: rotateY(-4deg) translateZ(20px) scale(1.03);
-            z-index: 2;
-        }
-
-        .screenshot-item:nth-child(4) {
-            transform: rotateY(-12deg) translateZ(-60px);
-        }
-
-        .screenshot-item:hover {
-            transform: scale(1.08) translateZ(100px);
-            z-index: 3;
-        }
-
-        .screenshot-item img,
-        .screenshot-item video {
-            width: 100%;
-            border-radius: 30px;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
-        }
-
-        .screenshot-item video {
-            aspect-ratio: 1206 / 2482;
-            object-fit: cover;
-        }
-
-        .screenshot-caption {
-            text-align: center;
-            margin-top: var(--space-sm);
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-        }
-
-        /* Theme-aware screenshots */
-        .img-dark { display: block; }
-        .img-light { display: none; }
-
-        [data-theme="light"] .img-dark { display: none; }
-        [data-theme="light"] .img-light { display: block; }
-
-        @media (prefers-color-scheme: light) {
-            :root:not([data-theme="dark"]) .img-dark { display: none; }
-            :root:not([data-theme="dark"]) .img-light { display: block; }
-        }
-
-        /* Testimonials */
-        .testimonials {
-            padding: var(--space-3xl) 0;
-            background: var(--bg-secondary);
-            border-top: 1px solid var(--border-subtle);
-        }
-
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: var(--space-lg);
-            margin-top: var(--space-2xl);
-        }
-
-        .testimonial-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-subtle);
-            border-radius: 20px;
-            padding: var(--space-lg);
-            position: relative;
-        }
-
-        .testimonial-card::before {
-            content: '"';
-            position: absolute;
-            top: var(--space-sm);
-            left: var(--space-md);
-            font-size: 4rem;
-            font-weight: 800;
-            line-height: 1;
-            background: linear-gradient(135deg, var(--gradient-cyan), var(--gradient-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            opacity: 0.3;
-        }
-
-        .testimonial-content {
-            font-size: 1.05rem;
-            color: var(--text-secondary);
-            line-height: 1.7;
-            margin-bottom: var(--space-md);
-            position: relative;
-            z-index: 1;
-            padding-top: var(--space-md);
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: var(--space-sm);
-        }
-
-        .testimonial-avatar {
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--gradient-blue), var(--gradient-cyan));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 1rem;
-        }
-
-        .testimonial-info h4 {
-            font-size: 0.95rem;
-            font-weight: 600;
-            margin-bottom: 0.15rem;
-        }
-
-        .testimonial-info p {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-
-        .testimonial-stars {
-            display: flex;
-            gap: 0.15rem;
-            margin-bottom: var(--space-sm);
-        }
-
-        .testimonial-stars svg {
-            width: 16px;
-            height: 16px;
-            fill: #FFB800;
-        }
-
-        /* Pricing */
-        .pricing {
-            padding: var(--space-3xl) 0;
-            background: var(--bg-secondary);
-        }
-
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: var(--space-lg);
-            max-width: 1100px;
-            margin: var(--space-2xl) auto 0;
-        }
-
-        .pricing-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-subtle);
-            border-radius: 24px;
-            padding: var(--space-xl);
-            position: relative;
-            transition: all 0.3s ease;
-        }
-
-        .pricing-card:hover {
-            border-color: var(--border-strong);
-            transform: translateY(-5px);
-        }
-
-        /* Equalize pricing card heights */
-        .pricing-grid {
-            align-items: stretch;
-        }
-
-        .pricing-card {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .pricing-features {
-            flex-grow: 1;
-        }
-
-        .pricing-card.featured {
-            border-color: var(--accent-secondary);
-            background: linear-gradient(180deg, rgba(247, 37, 133, 0.08) 0%, var(--bg-card) 100%);
-        }
-
-        .pricing-subtitle {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            margin-bottom: var(--space-sm);
-        }
-
-        .pricing-annual {
-            font-size: 0.85rem;
-            color: var(--accent-success);
-            margin-top: 0.25rem;
-        }
-
-        .pricing-trial {
-            display: inline-block;
-            margin-top: 0.5rem;
-            padding: 0.25rem 0.75rem;
-            background: rgba(52, 211, 153, 0.15);
-            border-radius: 100px;
-            font-size: 0.8rem;
-            color: var(--accent-success);
-        }
-
-        .pricing-note {
-            text-align: center;
-            margin-top: var(--space-lg);
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        @media (max-width: 900px) {
-            .pricing-grid {
-                grid-template-columns: 1fr;
-                max-width: 400px;
-            }
-        }
-
-        .pricing-name {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: var(--space-xs);
-        }
-
-        .pricing-price {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: var(--space-sm);
-        }
-
-        .pricing-price span {
-            font-size: 1rem;
-            font-weight: 400;
-            color: var(--text-secondary);
-        }
-
-        .pricing-features {
-            list-style: none;
-            margin: var(--space-lg) 0;
-        }
-
-        .pricing-features li {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 0.5rem 0;
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-        }
-
-        .pricing-features li svg {
-            width: 18px;
-            height: 18px;
-            color: var(--accent-success);
-            flex-shrink: 0;
-        }
-
-        .pricing-cta {
-            width: 100%;
-            padding: 1rem;
-            border-radius: 12px;
-            font-weight: 600;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        /* CTA Section */
-        .cta-section {
-            padding: var(--space-3xl) 0;
-            text-align: center;
-        }
-
-        .cta-box {
-            background: linear-gradient(135deg, rgba(247, 37, 133, 0.1), rgba(123, 44, 191, 0.1), rgba(76, 201, 240, 0.1));
-            border: 1px solid var(--border-subtle);
-            border-radius: 32px;
-            padding: var(--space-2xl);
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .cta-title {
-            font-size: clamp(1.75rem, 3vw, 2.5rem);
-            font-weight: 700;
-            margin-bottom: var(--space-md);
-        }
-
-        .cta-description {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            margin-bottom: var(--space-lg);
-            max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* Footer */
-        footer {
-            padding: var(--space-2xl) 0 var(--space-lg);
-            border-top: 1px solid var(--border-subtle);
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: var(--space-2xl);
-            margin-bottom: var(--space-2xl);
-        }
-
-        .footer-brand p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            margin-top: var(--space-sm);
-            max-width: 300px;
-        }
-
-        .footer-column h4 {
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: var(--space-md);
-            color: var(--text-primary);
-        }
-
-        .footer-column ul {
-            list-style: none;
-        }
-
-        .footer-column li {
-            margin-bottom: var(--space-xs);
-        }
-
-        .footer-column a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.2s ease;
-        }
-
-        .footer-column a:hover {
-            color: var(--text-primary);
-        }
-
-        .footer-bottom {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding-top: var(--space-lg);
-            border-top: 1px solid var(--border-subtle);
-            gap: var(--space-sm);
-            text-align: center;
-        }
-
-        .footer-ynab-badge {
-            margin-bottom: var(--space-xs);
-        }
-
-        .footer-ynab-badge a {
-            display: inline-block;
-            transition: transform 0.2s ease, opacity 0.2s ease;
-        }
-
-        .footer-ynab-badge a:hover {
-            transform: translateY(-2px);
-            opacity: 0.9;
-        }
-
-        .footer-ynab-badge img {
-            height: 28px;
-            width: auto;
-        }
-
-        .footer-bottom p {
-            color: var(--text-muted);
-            font-size: 0.85rem;
-        }
-
-        .footer-attribution {
-            max-width: 700px;
-            font-size: 0.75rem !important;
-            line-height: 1.5;
-            margin-top: var(--space-sm);
-        }
-
-        .footer-attribution a {
-            color: var(--text-muted);
-            text-decoration: underline;
-            transition: color 0.2s ease;
-        }
-
-        .footer-attribution a:hover {
-            color: var(--text-secondary);
-        }
-
-        .footer-legal {
-            display: flex;
-            gap: var(--space-md);
-        }
-
-        .footer-legal a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.85rem;
-            transition: color 0.2s ease;
-        }
-
-        .footer-legal a:hover {
-            color: var(--text-secondary);
-        }
-
-        /* Animations */
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Mobile Responsive */
-        @media (max-width: 968px) {
-            .hero-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .hero-description {
-                margin-left: auto;
-                margin-right: auto;
-            }
-
-            .hero-ctas {
-                justify-content: center;
-            }
-
-            .hero-image {
-                order: -1;
-            }
-
-            .phone-mockup {
-                max-width: 260px;
-                transform: none;
-            }
-
-            .steps {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .screenshots-gallery {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .screenshot-item,
-            .screenshot-item:nth-child(1),
-            .screenshot-item:nth-child(2),
-            .screenshot-item:nth-child(3),
-            .screenshot-item:nth-child(4) {
-                transform: none;
-                max-width: 250px;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        /* Mobile Menu */
-        .mobile-menu-toggle {
-            display: none;
-            background: var(--bg-card);
-            border: 1px solid var(--border-subtle);
-            border-radius: 8px;
-            padding: 0.5rem;
-            cursor: pointer;
-            color: var(--text-primary);
-        }
-
-        .mobile-menu-toggle svg {
-            width: 24px;
-            height: 24px;
-            display: block;
-        }
-
-        .mobile-menu {
-            display: none;
-            position: fixed;
-            top: 60px;
-            left: 0;
-            right: 0;
-            background: var(--bg-primary);
-            border-bottom: 1px solid var(--border-subtle);
-            padding: var(--space-md);
-            z-index: 99;
-            backdrop-filter: blur(20px);
-        }
-
-        .mobile-menu.active {
-            display: block;
-        }
-
-        .mobile-menu a {
-            display: block;
-            padding: var(--space-sm);
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 1rem;
-            font-weight: 500;
-            border-radius: 8px;
-            transition: all 0.2s ease;
-        }
-
-        .mobile-menu a:hover {
-            background: var(--bg-card);
-            color: var(--text-primary);
-        }
-
-        .mobile-menu .mobile-cta {
-            display: block;
-            text-align: center;
-            margin-top: var(--space-sm);
-            background: linear-gradient(135deg, var(--gradient-blue), var(--gradient-cyan));
-            color: white;
-            padding: var(--space-sm);
-            border-radius: 100px;
-            font-weight: 600;
-        }
-
-        .mobile-theme-toggle {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: var(--space-sm);
-            color: var(--text-secondary);
-            font-weight: 500;
-        }
-
-        @media (max-width: 640px) {
-            .nav-links {
-                display: none;
-            }
-
-            .mobile-menu-toggle {
-                display: block;
-            }
-
-            .trust-badges {
-                flex-direction: column;
-                gap: var(--space-md);
-            }
-
-            .steps {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-bottom {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .footer-attribution {
-                font-size: 0.7rem !important;
-            }
-        }
-
-        /* Scroll reveal */
-        .scroll-reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .scroll-reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
-</head>
-<body>
-    <div class="bg-gradient"></div>
-    <div class="noise"></div>
-
-    <!-- Navigation -->
-    <nav>
-        <div class="container nav-content">
-            <a href="#" class="logo">Receipts for YNAB</a>
-            <button class="mobile-menu-toggle" aria-label="Open menu" aria-expanded="false">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-            </button>
-            <ul class="nav-links">
-                <li><a href="#features">Features</a></li>
-                <li><a href="#how-it-works">How It Works</a></li>
-                <li><a href="#pricing">Pricing</a></li>
-                <li><a href="#faq">FAQ</a></li>
-                <li><a href="./changelog.html">What's New</a></li>
-                <li>
-                    <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle light/dark mode">
-                        <span class="theme-icon-light">&#9728;</span>
-                        <span class="theme-icon-dark">&#9790;</span>
-                    </button>
-                </li>
-                <li><a href="https://apps.apple.com/us/app/receipts-for-ynab/id6755055273" class="nav-cta">Download</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <!-- Mobile Menu -->
-    <div class="mobile-menu" id="mobileMenu">
-        <a href="#features">Features</a>
-        <a href="#how-it-works">How It Works</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#faq">FAQ</a>
-        <a href="./changelog.html">What's New</a>
-        <div class="mobile-theme-toggle">
-            <span>Theme</span>
-            <button class="theme-toggle mobile-theme-btn" aria-label="Toggle dark mode">
-                <span class="theme-icon-light">&#9728;</span>
-                <span class="theme-icon-dark">&#9790;</span>
-            </button>
-        </div>
-        <a href="https://apps.apple.com/us/app/receipts-for-ynab/id6755055273" class="mobile-cta">Download</a>
-    </div>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <div class="hero-badge" style="background: linear-gradient(135deg, rgba(255, 107, 53, 0.15), rgba(247, 37, 133, 0.15)); border-color: rgba(247, 37, 133, 0.3);">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="color: var(--gradient-pink);">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
-                        </svg>
-                        <span style="color: var(--gradient-orange);">🔒 New in v1.1.5 - Delete All Data finishes cleanly, and long receipts no longer fail on iOS 27</span>
-                    </div>
-                    <h1>Scan Receipts.<br><span class="gradient-text">Sync to YNAB.</span></h1>
-                    <p class="hero-description">Tired of splitting your Costco haul across 5 YNAB categories? Scan your receipt, let Apple Intelligence sort the line items, and sync to YNAB. Want to keep the receipt photo on your iPhone? Private Receipt Links let you find it again from any YNAB transaction.</p>
-                    <div class="hero-ctas">
-                        <a href="https://apps.apple.com/us/app/receipts-for-ynab/id6755055273" class="btn-primary">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
-                            </svg>
-                            Download Free
-                        </a>
-                        <a href="#how-it-works" class="btn-secondary">See How It Works</a>
-                    </div>
-                    <p style="margin-top: var(--space-sm); font-size: 0.9rem; color: var(--text-muted);">Free to download • 10 AI scans included • No credit card required</p>
-                </div>
-                <div class="hero-image">
-                    <div class="phone-mockup">
-                        <div class="phone-glow"></div>
-                        <img class="img-dark" src="assets/screenshot-home.png" alt="Receipts for YNAB iOS app home screen showing camera, photo library, and document scanner capture options for receipt scanning" loading="eager">
-                        <img class="img-light" src="assets/screenshot-home-light.png" alt="Receipts for YNAB iOS app home screen showing camera, photo library, and document scanner capture options for receipt scanning" loading="eager">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Trust Section -->
-    <section class="trust-section">
-        <div class="container">
-            <div class="trust-badges">
-                <div class="trust-item">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                    </svg>
-                    100% On-Device Processing
-                </div>
-                <div class="trust-item">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                    </svg>
-                    No Data Collection
-                </div>
-                <div class="trust-item">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                    GDPR & CCPA Compliant
-                </div>
-                <div class="trust-item">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                    </svg>
-                    Instant Sync
-                </div>
-                <div class="trust-item">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
-                    </svg>
-                    Receipts Stay on Your Device
-                </div>
-                <a href="https://api.ynab.com" target="_blank" rel="noopener" class="trust-item ynab-badge" title="Works with YNAB">
-                    <img src="https://api.ynab.com/papi/works_with_ynab.svg" alt="Works with YNAB" height="32">
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Availability Banner -->
-    <section class="availability-banner">
-        <div class="container">
-            <div class="availability-content">
-                <p class="availability-label">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    Now available in 10 countries
-                </p>
-                <div class="availability-flags">
-                    <span><span class="flag">🇺🇸</span> US</span>
-                    <span><span class="flag">🇬🇧</span> UK</span>
-                    <span><span class="flag">🇨🇦</span> Canada</span>
-                    <span><span class="flag">🇦🇺</span> Australia</span>
-                    <span><span class="flag">🇳🇿</span> New Zealand</span>
-                    <span><span class="flag">🇵🇭</span> Philippines</span>
-                    <span><span class="flag">🇸🇬</span> Singapore</span>
-                    <span><span class="flag">🇮🇳</span> India</span>
-                    <span><span class="flag">🇮🇪</span> Ireland</span>
-                    <span><span class="flag">🇿🇦</span> South Africa</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Private Receipt Links Section -->
-    <section id="receipt-links" class="features" style="border-top: 1px solid var(--border-subtle);">
-        <div class="container">
-            <div class="section-header">
-                <p class="section-label" style="color: var(--gradient-pink);">Private Receipt Links</p>
-                <h2 class="section-title">A private way to keep your receipts close to your YNAB transactions.</h2>
-            </div>
-
-            <div style="max-width: 760px; margin: 0 auto; text-align: left;">
-                <p style="color: var(--text-secondary); margin-bottom: var(--space-md); line-height: 1.7;">
-                    YNAB now lets you attach receipt photos directly to your transactions — a great option if you want everything in one place. But some people would rather not have YNAB collect the receipt image, the location and device metadata embedded in it, or any personal information visible on the receipt itself. Per <a href="https://www.ynab.com/privacy-policy" target="_blank" rel="noopener" style="color: var(--gradient-pink); text-decoration: underline;">YNAB's privacy policy</a>, that data may also be shared with YNAB Together members (if you've enabled YNAB Together) and with third-party apps connected via the YNAB API (if you've authorized them) — and YNAB's policy notes the use of AI tools to improve their services. For people who'd prefer to keep their receipt images on their own device, Receipts for YNAB offers that option.
-                </p>
-                <p style="color: var(--text-secondary); margin-bottom: var(--space-md); line-height: 1.7;">
-                    When you sync a receipt, only a short code — something like <code style="font-family: var(--font-mono); background: var(--bg-card); padding: 0.15rem 0.5rem; border-radius: 6px; color: var(--gradient-pink); font-size: 0.95em;">[RFY:20260511183022]</code> — is added to the transaction's memo. The receipt photo stays on your iPhone. Months later, copy the code from YNAB, paste it into the app, and your receipt opens instantly.
-                </p>
-                <p style="color: var(--text-primary); font-weight: 500; line-height: 1.7;">
-                    Same outcome — your receipt is one tap away from any YNAB transaction. The image just never leaves your phone.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section id="features" class="features">
-        <div class="container">
-            <div class="section-header">
-                <p class="section-label">Features</p>
-                <h2 class="section-title">Smart Receipt Scanner Features for YNAB</h2>
-                <p class="section-description">Built for YNAB users who want fast, private, and accurate receipt scanning.</p>
-            </div>
-
-            <div class="features-grid">
-                <div class="feature-card scroll-reveal" style="border-color: var(--accent-secondary); background: linear-gradient(180deg, rgba(247, 37, 133, 0.08) 0%, var(--bg-card) 100%);">
-                    <div class="feature-icon" style="background: linear-gradient(135deg, rgba(247, 37, 133, 0.2), rgba(123, 44, 191, 0.2));">
-                        <span>&#128279;</span>
-                    </div>
-                    <h3>Private Receipt Links</h3>
-                    <p>A small code (not a photo) ties each receipt to its YNAB transaction. Paste the code in the app months later and your receipt opens instantly — the photo stays on your iPhone the whole time.</p>
-                </div>
-
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-icon ai">
-                        <span>&#129302;</span>
-                    </div>
-                    <h3>Apple Intelligence Powered</h3>
-                    <p>Extracts merchant names, dates, amounts, and line items automatically. Neural Engine document detection with perspective correction delivers 98% price extraction accuracy.</p>
-                </div>
-
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-icon privacy">
-                        <span>&#128274;</span>
-                    </div>
-                    <h3>Privacy-First Design</h3>
-                    <p>Your receipts never leave your device. All processing happens on-device with no cloud uploads or external servers.</p>
-                </div>
-
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-icon sync">
-                        <span>&#128260;</span>
-                    </div>
-                    <h3>Seamless YNAB Sync</h3>
-                    <p>Save receipts locally and upload to YNAB when you're ready. Line items become subtransactions with categories from your budget. Matches with bank imports automatically.</p>
-                </div>
-
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-icon sync">
-                        <span>&#128179;</span>
-                    </div>
-                    <h3>Bank Import Matching</h3>
-                    <p>Receipts automatically match with your bank imports in YNAB — no more duplicates cluttering your budget. Detailed line items replace vague bank descriptions.</p>
-                </div>
-
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-icon ai">
-                        <span>&#128202;</span>
-                    </div>
-                    <h3>Confidence Scoring</h3>
-                    <p>See exactly how accurate each extraction is before syncing. Review the AI's breakdown and edit if needed.</p>
-                </div>
-
-                <div class="feature-card scroll-reveal" style="border-color: var(--accent-secondary); background: linear-gradient(180deg, rgba(247, 37, 133, 0.08) 0%, var(--bg-card) 100%);">
-                    <div class="feature-icon" style="background: linear-gradient(135deg, rgba(247, 37, 133, 0.2), rgba(255, 107, 53, 0.2));">
-                        <span>✂️</span>
-                    </div>
-                    <h3>Smart Splits for Complex Receipts</h3>
-                    <p>Apple Intelligence learns your preferences to categorize line items into groceries, household, pets, gifts, and more. All learning happens on-device — the app gets smarter with every receipt, privately.</p>
-                </div>
-
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-icon sync">
-                        <span>&#128218;</span>
-                    </div>
-                    <h3>Multi-Budget Support</h3>
-                    <p>Connect multiple YNAB budgets and switch between them. Each budget keeps its own accounts, categories, and preferences.</p>
-                </div>
-
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-icon privacy">
-                        <span>&#128451;</span>
-                    </div>
-                    <h3>Receipt Vault</h3>
-                    <p>Browse receipts by merchant, date, or amount. Search your purchase history for warranties, returns, and expenses — even without a YNAB account. Always on your device.</p>
-                </div>
-
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-icon scan">
-                        <span>&#9992;&#65039;</span>
-                    </div>
-                    <h3>Works Offline</h3>
-                    <p>Scan receipts anywhere — airplane, subway, camping trip. All processing happens on-device. Sync to YNAB when you're back online.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- How It Works -->
-    <section id="how-it-works" class="how-it-works">
-        <div class="container">
-            <div class="section-header">
-                <p class="section-label">How It Works</p>
-                <h2 class="section-title">Scan Receipts to YNAB in 4 Easy Steps</h2>
-                <p class="section-description">A simple 4-step process from paper to YNAB.</p>
-            </div>
-
-            <div class="steps">
-                <div class="step scroll-reveal">
-                    <div class="step-number">1</div>
-                    <h3>Capture</h3>
-                    <p>Take a photo using camera, library, or document scanner</p>
-                </div>
-
-                <div class="step scroll-reveal">
-                    <div class="step-number">2</div>
-                    <h3>Extract</h3>
-                    <p>Apple Intelligence reads the receipt on-device</p>
-                </div>
-
-                <div class="step scroll-reveal">
-                    <div class="step-number">3</div>
-                    <h3>Review</h3>
-                    <p>Check confidence score and edit any fields</p>
-                </div>
-
-                <div class="step scroll-reveal">
-                    <div class="step-number">4</div>
-                    <h3>Save & Sync</h3>
-                    <p>Save locally, then upload to YNAB when ready</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Screenshots -->
-    <section class="screenshots">
-        <div class="container">
-            <div class="section-header">
-                <p class="section-label">App Preview</p>
-                <h2 class="section-title">Beautiful iOS Receipt Scanner App</h2>
-                <p class="section-description">A beautiful, native iOS experience that fits naturally into your workflow.</p>
-            </div>
-
-            <div class="screenshots-gallery">
-                <div class="screenshot-item scroll-reveal">
-                    <video autoplay loop muted playsinline
-                           poster="assets/screenshot-home.png">
-                        <source src="assets/screenrecording01.mp4" type="video/mp4">
-                    </video>
-                    <p class="screenshot-caption">AI scanning in action</p>
-                </div>
-                <div class="screenshot-item scroll-reveal">
-                    <img class="img-dark" src="assets/screenshot-home.png" alt="Receipt scanner app home screen with quick capture buttons for camera, photo library, and document scanner">
-                    <img class="img-light" src="assets/screenshot-home-light.png" alt="Receipt scanner app home screen with quick capture buttons for camera, photo library, and document scanner">
-                    <p class="screenshot-caption">Quick capture options</p>
-                </div>
-                <div class="screenshot-item scroll-reveal">
-                    <img class="img-dark" src="assets/screenshot-hero.png" alt="Apple Intelligence scanning a grocery receipt and extracting merchant name, date, total, and line items automatically">
-                    <img class="img-light" src="assets/screenshot-hero-light.png" alt="Apple Intelligence scanning a grocery receipt and extracting merchant name, date, total, and line items automatically">
-                    <p class="screenshot-caption">AI-powered scanning</p>
-                </div>
-                <div class="screenshot-item scroll-reveal">
-                    <img class="img-dark" src="assets/screenshot-detail.png" alt="Receipt detail view showing extracted transaction data with confidence scores and one-tap YNAB sync button">
-                    <img class="img-light" src="assets/screenshot-detail-light.png" alt="Receipt detail view showing extracted transaction data with confidence scores and one-tap YNAB sync button">
-                    <p class="screenshot-caption">Extracted details & sync</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials -->
-    <section class="testimonials">
-        <div class="container">
-            <div class="section-header">
-                <p class="section-label">Community Voices</p>
-                <h2 class="section-title">Built with feedback from r/YNAB</h2>
-                <p class="section-description">Real pain points from real YNAB users shaped how this app works.</p>
-            </div>
-
-            <div class="testimonials-grid">
-                <div class="testimonial-card scroll-reveal">
-                    <p class="testimonial-content">"I don't know why in today's age YNAB can't have a photo import tool. Snap the picture of the receipt and it enters the data into the fields."</p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar" style="background: linear-gradient(135deg, #FF4500, #FF6B35);">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/></svg>
-                        </div>
-                        <div class="testimonial-info">
-                            <h4>YNAB user on Reddit</h4>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="testimonial-card scroll-reveal">
-                    <p class="testimonial-content">"My problem is usually a long grocery receipt with lots of different categories (groceries, household, treats, etc.)... Do you just put the whole thing under one category, or do you actually split things out?"</p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar" style="background: linear-gradient(135deg, #FF4500, #FF6B35);">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/></svg>
-                        </div>
-                        <div class="testimonial-info">
-                            <h4>YNAB user on Reddit</h4>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="testimonial-card scroll-reveal">
-                    <p class="testimonial-content">"For receipts that have a lot of categories I'll pick one for the time being then correct it when I get home with the receipt... it's more work to do that later."</p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar" style="background: linear-gradient(135deg, #FF4500, #FF6B35);">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/></svg>
-                        </div>
-                        <div class="testimonial-info">
-                            <h4>YNAB user on Reddit</h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pricing -->
-    <section id="pricing" class="pricing">
-        <div class="container">
-            <div class="section-header">
-                <p class="section-label">Pricing</p>
-                <h2 class="section-title">Simple, Transparent Pricing</h2>
-                <p class="section-description">Start with 10 AI scans and 5 YNAB uploads per month. Need more? Choose a plan that fits your budgeting style.</p>
-            </div>
-
-            <div class="pricing-grid">
-                <!-- Free Tier -->
-                <div class="pricing-card">
-                    <h3 class="pricing-name">Free</h3>
-                    <p class="pricing-price">$0</p>
-                    <p class="pricing-subtitle">Forever free</p>
-                    <ul class="pricing-features">
-                        <li>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                            </svg>
-                            10 AI scans per month
-                        </li>
-                        <li>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                            </svg>
-                            5 YNAB uploads per month
-                        </li>
-                        <li>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                            </svg>
-                            On-device processing
-                        </li>
-                    </ul>
-                    <a href="https://apps.apple.com/us/app/receipts-for-ynab/id6755055273" class="btn-secondary pricing-cta">Get Started</a>
-                </div>
-
-                <!-- Manual Entry Tier -->
-                <div class="pricing-card">
-                    <h3 class="pricing-name">Manual Entry</h3>
-                    <p class="pricing-price">$0.99 <span>/ month</span></p>
-                    <p class="pricing-annual">or $9.99/year (2 months free!)</p>
-                    <span class="pricing-trial">14-day free trial</span>
-                    <ul class="pricing-features">
-                        <li>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                            </svg>
-                            Unlimited manual entry
-                        </li>
-                        <li>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                            </svg>
-                            Unlimited YNAB syncing
-                        </li>
-                        <li>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                            </svg>
-                            Works on all iOS 26+ devices
-                        </li>
-                        <li style="color: var(--text-muted);">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="color: var(--text-muted);">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                            No AI scanning included
-                        </li>
-                    </ul>
-                    <a href="https://apps.apple.com/us/app/receipts-for-ynab/id6755055273" class="btn-secondary pricing-cta">Subscribe</a>
-                </div>
-
-                <!-- AI Scanning Tier (Featured) -->
-                <div class="pricing-card featured">
-                    <h3 class="pricing-name">AI Scanning</h3>
-                    <p class="pricing-price">$2.99 <span>/ month</span></p>
-                    <p class="pricing-annual">or $29.99/year (save ~16%)</p>
-                    <span class="pricing-trial">14-day free trial</span>
-                    <ul class="pricing-features">
-                        <li>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                            </svg>
-                            Unlimited AI-powered scanning
-                        </li>
-                        <li>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                            </svg>
-                            Unlimited YNAB syncing
-                        </li>
-                        <li>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                            </svg>
-                            Requires Apple Intelligence (iPhone 15 Pro+ or iPad with M1/A17 Pro)
-                        </li>
-                    </ul>
-                    <a href="https://apps.apple.com/us/app/receipts-for-ynab/id6755055273" class="btn-primary pricing-cta">Start Free Trial</a>
-                </div>
-            </div>
-
-            <p class="pricing-note">14-day free trial applies to monthly and yearly plans. No ads. No hidden fees. Cancel anytime from your Apple ID settings.<br>A YNAB subscription is required separately to sync receipts.</p>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta-section">
-        <div class="container">
-            <div class="cta-box scroll-reveal">
-                <h2 class="cta-title">Ready to simplify your receipt tracking?</h2>
-                <p class="cta-description">Download Receipts for YNAB and start scanning today. No credit card required.</p>
-                <a href="https://apps.apple.com/us/app/receipts-for-ynab/id6755055273" class="btn-primary">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
-                    </svg>
-                    Download on App Store
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section id="faq" class="features" style="border-top: 1px solid var(--border-subtle);">
-        <div class="container">
-            <div class="section-header">
-                <p class="section-label">FAQ</p>
-                <h2 class="section-title">Frequently Asked Questions</h2>
-            </div>
-
-            <div class="features-grid">
-                <div class="feature-card scroll-reveal" style="border-color: var(--accent-secondary);">
-                    <h3>YNAB now lets me attach receipt photos to transactions. Why use Receipts for YNAB instead?</h3>
-                    <p>Both approaches work — it's a matter of preference. YNAB's built-in attachments are convenient if you want everything stored together in YNAB. Receipts for YNAB is for people who'd rather keep their receipt images on their iPhone and just leave a small reference code in the transaction memo. You still get one-tap access from YNAB back to the receipt; the image just never leaves your device.</p>
-                </div>
-
-                <div class="feature-card scroll-reveal">
-                    <h3>Do I need a YNAB account?</h3>
-                    <p>Yes, an active YNAB subscription is required to sync receipts. You can scan and store locally without YNAB.</p>
-                </div>
-
-                <div class="feature-card scroll-reveal">
-                    <h3>Is this affiliated with YNAB?</h3>
-                    <p>No. Receipts for YNAB is an independent app by eTurea. We are not affiliated with or endorsed by YNAB.</p>
-                </div>
-
-                <div class="feature-card scroll-reveal">
-                    <h3>What devices are supported?</h3>
-                    <p>iPhone and iPad running iOS 26 or iPadOS 26. AI scanning requires Apple Intelligence — iPhone 15 Pro or newer, iPad Pro (M1+), iPad Air (M1+), or iPad mini (A17 Pro). Other devices can use manual entry.</p>
-                </div>
-
-                <div class="feature-card scroll-reveal">
-                    <h3>Are my receipts uploaded?</h3>
-                    <p>Never. All processing happens on your device using Apple Intelligence. We don't operate any servers that collect your data.</p>
-                </div>
-
-                <div class="feature-card scroll-reveal">
-                    <h3>What data goes to YNAB?</h3>
-                    <p>Only transaction details (merchant, date, amount, category) when you explicitly sync, plus a short reference code in the transaction memo so you can find the receipt later — that's a 14-digit timestamp, not personal data. Never your receipt images.</p>
-                </div>
-
-                <div class="feature-card scroll-reveal">
-                    <h3>Will receipts create duplicate transactions?</h3>
-                    <p>No. When you sync a receipt, it automatically matches with existing bank imports in YNAB. Your receipt's detailed line items replace the vague bank description — no duplicates.</p>
-                </div>
-
-                <div class="feature-card scroll-reveal">
-                    <h3>Does it work offline?</h3>
-                    <p>Receipt scanning works completely offline. An internet connection is only needed to sync to YNAB.</p>
-                </div>
-
-                <div class="feature-card scroll-reveal">
-                    <h3>Which countries is the app available in?</h3>
-                    <p>Receipts for YNAB is available in the US, UK, Canada, Australia, New Zealand, Philippines, Singapore, India, Ireland, and South Africa. We're working on expanding to more regions!</p>
-                </div>
-
-                <div class="feature-card scroll-reveal">
-                    <h3>How do you handle sales tax?</h3>
-                    <p>The app extracts line items, not tax directly. When syncing to YNAB, it calculates the difference between the total and item sum, creating a separate "Tax/Fees/Rounding" line automatically.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <a href="#" class="logo">Receipts for YNAB</a>
-                    <p>The intelligent receipt scanner for YNAB users. Powered by Apple Intelligence, built for privacy.</p>
-                    <p style="margin-top: var(--space-sm); font-size: 0.8rem; color: var(--text-muted);">Crafted with ❤️ by an independent iOS developer and fellow YNAB budgeter.</p>
-                </div>
-
-                <div class="footer-column">
-                    <h4>Product</h4>
-                    <ul>
-                        <li><a href="#features">Features</a></li>
-                        <li><a href="#pricing">Pricing</a></li>
-                        <li><a href="#faq">FAQ</a></li>
-                        <li><a href="https://apps.apple.com/us/app/receipts-for-ynab/id6755055273">Download</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-column">
-                    <h4>Legal</h4>
-                    <ul>
-                        <li><a href="./privacy.html">Privacy Policy</a></li>
-                        <li><a href="./terms.html">Terms of Service</a></li>
-                        <li><a href="./licenses.html">Licenses</a></li>
-                        <li><a href="./changelog.html">What's New</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-column">
-                    <h4>Support</h4>
-                    <ul>
-                        <li><a href="mailto:receiptsforynab.app@gmail.com">Contact</a></li>
-                        <li><a href="mailto:receiptsforynab.app@gmail.com">Report a Bug</a></li>
-                        <li><a href="mailto:receiptsforynab.app@gmail.com">Feature Request</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="footer-bottom">
-                <div class="footer-ynab-badge">
-                    <a href="https://api.ynab.com" target="_blank" rel="noopener" title="Works with YNAB">
-                        <img src="https://api.ynab.com/papi/works_with_ynab.svg" alt="Works with YNAB" height="28">
-                    </a>
-                </div>
-                <p>&copy; 2025-2026 eTurea. All rights reserved.</p>
-                <div class="footer-legal">
-                    <a href="./privacy.html">Privacy</a>
-                    <a href="./terms.html">Terms</a>
-                    <a href="./licenses.html">Licenses</a>
-                    <a href="./changelog.html">What's New</a>
-                </div>
-                <p class="footer-attribution">We are not affiliated, associated, or in any way officially connected with YNAB or any of its subsidiaries or affiliates. The official YNAB website can be found at <a href="https://www.ynab.com" target="_blank" rel="noopener">ynab.com</a>. The names YNAB and You Need A Budget, as well as related names, marks, and images are registered trademarks of YNAB.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Scroll Reveal Script -->
-    <script>
-        // Make elements already in viewport visible immediately (no animation)
-        // to prevent the page from "jumping" on load
-        document.querySelectorAll('.scroll-reveal').forEach(el => {
-            const rect = el.getBoundingClientRect();
-            if (rect.top < window.innerHeight && rect.bottom > 0) {
-                el.style.transition = 'none';
-                el.classList.add('visible');
-                // Re-enable transitions after paint
-                requestAnimationFrame(() => {
-                    requestAnimationFrame(() => {
-                        el.style.transition = '';
-                    });
-                });
-            }
-        });
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.scroll-reveal:not(.visible)').forEach(el => observer.observe(el));
-
-        // Stagger feature cards (only those not yet visible)
-        document.querySelectorAll('.feature-card:not(.visible)').forEach((card, index) => {
-            card.style.transitionDelay = `${index * 0.1}s`;
-        });
-    </script>
-
-    <!-- Structured Data for SEO -->
+    <!-- Structured Data -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -2015,172 +71,217 @@
         }
     }
     </script>
-
-    <!-- FAQ Schema for Rich Snippets -->
     <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-            {
-                "@type": "Question",
-                "name": "YNAB now lets me attach receipt photos to transactions. Why use Receipts for YNAB instead?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Both approaches work — it's a matter of preference. YNAB's built-in attachments are convenient if you want everything stored together in YNAB. Receipts for YNAB is for people who'd rather keep their receipt images on their iPhone and just leave a small reference code in the transaction memo. You still get one-tap access from YNAB back to the receipt; the image just never leaves your device."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "Do I need a YNAB account to use Receipts for YNAB?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Yes, an active YNAB subscription is required to sync receipts to your budget. However, you can still scan and store receipts locally without YNAB."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "Is Receipts for YNAB affiliated with YNAB?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "No. Receipts for YNAB is an independent app created by eTurea. We are not affiliated with or endorsed by YNAB."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "What devices support AI scanning?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "AI-powered scanning requires an Apple Intelligence compatible device: iPhone 15 Pro or newer, iPad Pro (M1+), iPad Air (M1+), or iPad mini (A17 Pro), running iOS 26+ or iPadOS 26+. Manual entry works on all iPhones and iPads running iOS 26+ or iPadOS 26+."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "Are my receipt images uploaded to any server?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Never. All processing happens entirely on your device using Apple Intelligence. We don't operate any servers that collect your receipt images or personal data."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "What data is sent to YNAB?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Only transaction details (merchant name, date, amount, category) are sent when you explicitly sync, plus a short reference code in the transaction memo so you can find the receipt later — that's a 14-digit timestamp, not personal data. Your receipt images are never uploaded to YNAB or any other server."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "Will syncing receipts create duplicate transactions in YNAB?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "No. When you sync a receipt to YNAB, it automatically matches with existing bank imports. Your receipt's detailed line items and categories replace the vague bank description, so you never get duplicate transactions."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "Does the app work offline?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Yes! Receipt scanning and AI extraction work completely offline. An internet connection is only required when syncing transactions to YNAB."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "Which countries is Receipts for YNAB available in?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Receipts for YNAB is currently available in the United States, United Kingdom, Canada, Australia, New Zealand, Philippines, Singapore, India, Ireland, and South Africa. We're working on expanding to more regions."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "How does Receipts for YNAB handle sales tax?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "The app extracts line items from the receipt, not tax directly (since tax rates vary by region). When syncing to YNAB, it automatically calculates the difference between the receipt total and the sum of all items, creating a separate line with the memo 'Tax/Fees/Rounding'. You don't have to do anything manually."
-                }
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+        {
+            "@type": "Question",
+            "name": "Will receipts create duplicate transactions?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. When you sync a receipt, it automatically matches with existing bank imports in YNAB. Your receipt's detailed line items replace the vague bank description — no duplicates."
             }
-        ]
-    }
+        },
+        {
+            "@type": "Question",
+            "name": "YNAB now lets me attach receipt photos to transactions. Why use Receipts for YNAB instead?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Both approaches work — it's a matter of preference. YNAB's built-in attachments are convenient if you want everything stored together in YNAB. Receipts for YNAB is for people who'd rather keep their receipt images on their iPhone and just leave a small reference code in the transaction memo. You still get one-tap access from YNAB back to the receipt; the image just never leaves your device."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Do I need a YNAB account?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes, an active YNAB subscription is required to sync receipts. You can scan and store locally without YNAB."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "What devices are supported?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "iPhone and iPad running iOS 26 or iPadOS 26. AI scanning requires Apple Intelligence — iPhone 15 Pro or newer, iPad Pro (M1+), iPad Air (M1+), or iPad mini (A17 Pro). Other devices can use manual entry."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Are my receipts uploaded?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Never. All processing happens on your device using Apple Intelligence. We don't operate any servers that collect your data."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "What data goes to YNAB?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Only transaction details (merchant, date, amount, category) when you explicitly sync, plus a short reference code in the transaction memo so you can find the receipt later — that's a 14-digit timestamp, not personal data. Never your receipt images."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Does it work offline?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Receipt scanning works completely offline. An internet connection is only needed to sync to YNAB."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "How do you handle sales tax?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "The app extracts line items, not tax directly. When syncing to YNAB, it calculates the difference between the total and item sum, creating a separate \"Tax/Fees/Rounding\" line automatically."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Which countries is the app available in?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Receipts for YNAB is available in the US, UK, Canada, Australia, New Zealand, Philippines, Singapore, India, Ireland, and South Africa. We're working on expanding to more regions!"
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Is this affiliated with YNAB?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. Receipts for YNAB is an independent app by eTurea. We are not affiliated with or endorsed by YNAB."
+            }
+        }
+    ]
+}
     </script>
+</head>
+<body class="page-home">
+    <nav class="site-nav">
+        <div class="site-nav-inner">
+            <a class="site-logo" href="index.html"><img src="assets/apple-touch-icon.png" alt="">Receipts for YNAB</a>
+            <div class="site-links">
+                <a href="#pricing">Pricing</a>
+                <a href="#faq">FAQ</a>
+                <a href="changelog.html">What's New</a>
+                <button class="theme-toggle" type="button" aria-label="Toggle light/dark mode"><span class="only-dark">☀︎</span><span class="only-dark">Light</span><span class="only-light">☾</span><span class="only-light">Dark</span></button>
+            </div>
+        </div>
+    </nav>
 
-    <!-- Mobile Menu Script -->
-    <script>
-        (function() {
-            const menuToggle = document.querySelector('.mobile-menu-toggle');
-            const mobileMenu = document.getElementById('mobileMenu');
+    <main class="home">
+        <section class="hero">
+            <div class="hero-copy">
+                <img class="hero-icon" src="assets/apple-touch-icon.png" alt="Receipts for YNAB app icon">
+                <h1>Receipts in.<br>Line items out.</h1>
+                <p class="hero-lead">Scan a receipt and Apple Intelligence extracts every item on your iPhone. Keep it locally, or sync it to YNAB split across your categories.</p>
+                <div class="hero-cta">
+                    <a class="app-store-btn" href="https://apps.apple.com/us/app/receipts-for-ynab/id6755055273">Download on the App Store</a>
+                    <span class="hero-price">Free · 10 AI scans a month</span>
+                </div>
+                <a class="hero-release" href="changelog.html">v1.1.5 is out · <span>See what's new ›</span></a>
+                <div class="hero-facts">
+                    <div class="hero-fact"><span>On-device</span><span>Extraction runs on the Neural Engine. Works offline.</span></div>
+                    <div class="hero-fact"><span>Private</span><span>Photos stay on your iPhone. YNAB gets a short code.</span></div>
+                    <div class="hero-fact"><span>YNAB-aware</span><span>Splits by category and matches bank imports.</span></div>
+                </div>
+            </div>
+            <div class="hero-media">
+                <div class="hero-glow"></div>
+                <div class="phone">
+                    <video src="assets/screenrecording01.mp4" muted playsinline preload="metadata" aria-label="Screen recording: scanning a receipt and extracting line items"></video>
+                    <button class="phone-still" type="button" aria-label="Play screen recording">
+                        <img class="only-dark" src="assets/rec-still-dark.png" alt="" loading="lazy">
+                        <img class="only-light" src="assets/rec-still-light.png" alt="" loading="lazy">
+                        <span class="play-pill"><span class="play-dot" aria-hidden="true">▶</span>See it in action</span>
+                    </button>
+                </div>
+            </div>
+        </section>
 
-            if (menuToggle && mobileMenu) {
-                menuToggle.addEventListener('click', function() {
-                    const isOpen = mobileMenu.classList.toggle('active');
-                    menuToggle.setAttribute('aria-expanded', isOpen);
+        <section class="steps" id="how-it-works">
+            <div class="step"><img src="assets/screenshot-home.png" alt="Capture options: document scanner, camera, photos, file"><p><strong>Scan.</strong> <span>Camera, library, or document scanner.</span></p></div>
+            <div class="step"><img src="assets/screenshot-hero.png" alt="Processing with Apple Intelligence"><p><strong>Extract.</strong> <span>Apple Intelligence reads it on-device.</span></p></div>
+            <div class="step"><img src="assets/screenshot-detail.png" alt="Receipt detail linked to YNAB with line items"><p><strong>Save or sync.</strong> <span>Keep it in the vault, or send it to YNAB.</span></p></div>
+        </section>
 
-                    // Update icon
-                    if (isOpen) {
-                        menuToggle.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>';
-                    } else {
-                        menuToggle.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>';
-                    }
-                });
+        <section class="pricing-faq">
+            <div id="pricing">
+                <h2>Pricing</h2>
+                <div class="price-row"><span>Free</span><span>10 scans · 5 uploads / mo</span></div>
+                <div class="price-row"><span>Manual Entry</span><span>$0.99/mo · $9.99/yr</span></div>
+                <div class="price-row"><span>AI Scanning</span><span>$2.99/mo · $29.99/yr</span></div>
+                <p class="price-note">14-day free trial on paid plans. AI Scanning needs Apple Intelligence (iPhone 15 Pro+ or iPad with M1/A17 Pro). No ads. Cancel anytime from your Apple ID settings. A YNAB subscription is required separately to sync receipts.</p>
+            </div>
+            <div id="faq">
+                <h2>FAQ</h2>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <button class="faq-q" type="button" aria-expanded="true" aria-controls="faq-a-1"><span>Will receipts create duplicate transactions?</span><span class="faq-sign" aria-hidden="true">−</span></button>
+                        <p class="faq-a" id="faq-a-1">No. When you sync a receipt, it automatically matches with existing bank imports in YNAB. Your receipt's detailed line items replace the vague bank description — no duplicates.</p>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a-2"><span>YNAB now lets me attach receipt photos to transactions. Why use Receipts for YNAB instead?</span><span class="faq-sign" aria-hidden="true">+</span></button>
+                        <p class="faq-a" id="faq-a-2" hidden>Both approaches work — it's a matter of preference. YNAB's built-in attachments are convenient if you want everything stored together in YNAB. Receipts for YNAB is for people who'd rather keep their receipt images on their iPhone and just leave a small reference code in the transaction memo. You still get one-tap access from YNAB back to the receipt; the image just never leaves your device.</p>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a-3"><span>Do I need a YNAB account?</span><span class="faq-sign" aria-hidden="true">+</span></button>
+                        <p class="faq-a" id="faq-a-3" hidden>Yes, an active YNAB subscription is required to sync receipts. You can scan and store locally without YNAB.</p>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a-4"><span>What devices are supported?</span><span class="faq-sign" aria-hidden="true">+</span></button>
+                        <p class="faq-a" id="faq-a-4" hidden>iPhone and iPad running iOS 26 or iPadOS 26. AI scanning requires Apple Intelligence — iPhone 15 Pro or newer, iPad Pro (M1+), iPad Air (M1+), or iPad mini (A17 Pro). Other devices can use manual entry.</p>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a-5"><span>Are my receipts uploaded?</span><span class="faq-sign" aria-hidden="true">+</span></button>
+                        <p class="faq-a" id="faq-a-5" hidden>Never. All processing happens on your device using Apple Intelligence. We don't operate any servers that collect your data.</p>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a-6"><span>What data goes to YNAB?</span><span class="faq-sign" aria-hidden="true">+</span></button>
+                        <p class="faq-a" id="faq-a-6" hidden>Only transaction details (merchant, date, amount, category) when you explicitly sync, plus a short reference code in the transaction memo so you can find the receipt later — that's a 14-digit timestamp, not personal data. Never your receipt images.</p>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a-7"><span>Does it work offline?</span><span class="faq-sign" aria-hidden="true">+</span></button>
+                        <p class="faq-a" id="faq-a-7" hidden>Receipt scanning works completely offline. An internet connection is only needed to sync to YNAB.</p>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a-8"><span>How do you handle sales tax?</span><span class="faq-sign" aria-hidden="true">+</span></button>
+                        <p class="faq-a" id="faq-a-8" hidden>The app extracts line items, not tax directly. When syncing to YNAB, it calculates the difference between the total and item sum, creating a separate "Tax/Fees/Rounding" line automatically.</p>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a-9"><span>Which countries is the app available in?</span><span class="faq-sign" aria-hidden="true">+</span></button>
+                        <p class="faq-a" id="faq-a-9" hidden>Receipts for YNAB is available in the US, UK, Canada, Australia, New Zealand, Philippines, Singapore, India, Ireland, and South Africa. We're working on expanding to more regions!</p>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a-10"><span>Is this affiliated with YNAB?</span><span class="faq-sign" aria-hidden="true">+</span></button>
+                        <p class="faq-a" id="faq-a-10" hidden>No. Receipts for YNAB is an independent app by eTurea. We are not affiliated with or endorsed by YNAB.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
-                // Close menu when clicking a link
-                mobileMenu.querySelectorAll('a').forEach(function(link) {
-                    link.addEventListener('click', function() {
-                        mobileMenu.classList.remove('active');
-                        menuToggle.setAttribute('aria-expanded', 'false');
-                        menuToggle.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>';
-                    });
-                });
-            }
-        })();
-    </script>
+    <footer class="site-footer">
+        <div class="site-footer-inner">
+            <div class="site-footer-row">
+                <a href="https://api.ynab.com" target="_blank" rel="noopener" title="Works with YNAB"><img src="assets/works_with_ynab.svg" alt="Works with YNAB"></a>
+                <div class="site-footer-links">
+                    <a href="privacy.html">Privacy</a>
+                    <a href="terms.html">Terms</a>
+                    <a href="licenses.html">Licenses</a>
+                    <a href="changelog.html">What's New</a>
+                    <a href="mailto:receiptsforynab.app@gmail.com">Contact</a>
+                    <a href="mailto:receiptsforynab.app@gmail.com">Report a Bug</a>
+                </div>
+            </div>
+            <p class="site-footer-legal">© 2025-2026 eTurea. All rights reserved. We are not affiliated, associated, or in any way officially connected with YNAB or any of its subsidiaries or affiliates. The official YNAB website can be found at <a href="https://www.ynab.com" target="_blank" rel="noopener">ynab.com</a>. The names YNAB and You Need A Budget, as well as related names, marks, and images are registered trademarks of YNAB.</p>
+        </div>
+    </footer>
 
-    <!-- Theme Toggle Script -->
-    <script>
-        (function() {
-            const root = document.documentElement;
-            const toggles = document.querySelectorAll('.theme-toggle');
-            const STORAGE_KEY = 'receipts-ynab-theme';
-
-            // Get user's preferred theme
-            function getPreferredTheme() {
-                // Check localStorage first
-                const stored = localStorage.getItem(STORAGE_KEY);
-                if (stored) return stored;
-
-                // Fall back to system preference
-                return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-            }
-
-            // Apply theme to document
-            function setTheme(theme) {
-                root.setAttribute('data-theme', theme);
-                localStorage.setItem(STORAGE_KEY, theme);
-            }
-
-            // Initialize theme on page load
-            setTheme(getPreferredTheme());
-
-            // Toggle button click handlers (both desktop and mobile)
-            toggles.forEach(function(toggle) {
-                toggle.addEventListener('click', function() {
-                    const current = root.getAttribute('data-theme');
-                    const newTheme = current === 'light' ? 'dark' : 'light';
-                    setTheme(newTheme);
-                });
-            });
-
-            // Listen for system preference changes
-            window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', function(e) {
-                // Only auto-switch if user hasn't manually set a preference
-                const stored = localStorage.getItem(STORAGE_KEY);
-                if (!stored) {
-                    setTheme(e.matches ? 'light' : 'dark');
-                }
-            });
-        })();
-    </script>
+    <script src="assets/site.js"></script>
 </body>
 </html>

@@ -11,3 +11,6 @@ assets/screenrecording01.mov
 Website-Update-Requirements.md
 Website-Update-Requirements-20260213.md
 Website-Update-Requirements-20260303.md
+
+# Design handoff bundles: local reference only, never published (owner call 2026-09-27)
+docs/*.zip

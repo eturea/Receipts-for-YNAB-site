@@ -41,5 +41,5 @@ The canonical site is **already current** for the live app — but there are **t
 - [ ] Duplicate resolved: one canonical site, no drifted in-repo copy (owner picks remove vs. pointer).
 - [ ] privacy.html / terms.html confirmed to cover v1.1.0; dates bumped only if copy changed.
 - [ ] No outstanding items from the `Website-Update-Requirements-*.md` backlog.
-- [ ] Obsolete `privacy.md` / `terms.md` / `licenses.md` / `index.md` deleted from this repo (or synced).
+- [x] Obsolete `privacy.md` / `terms.md` / `licenses.md` / `index.md` deleted from this repo (or synced). Removed from `main` 2026-09-27 with the 2b redesign; preserved in tag `site-legacy-2026` and branch `archive/2026-legacy` (`TICKET_SITE_REDESIGN_2B`).
 - [ ] Commit references this ticket ID.
