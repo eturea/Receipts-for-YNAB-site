@@ -48,6 +48,8 @@ sources of truth above, in the same voice as the earlier entries.
 - `index.html`: hero callout "New in v1.1.5 - Delete All Data finishes cleanly, and long receipts no longer fail on iOS 27"; JSON-LD `softwareVersion` `1.1.5`.
 - `changelog/CHANGELOG.md`: matching `[1.1.5]` entry above `[1.1.4]`.
 
+**Revision (2026-09-27, owner):** three bullets reworded to match the revised Reddit comment, describing only what the user sees. Removed: the overlapping-sections mechanism, the "54-00" example, and the interrupted-save detail. The iOS 27 retry bullet no longer frames it as a crash fix. The App Store What's New still carries the original wording; this page no longer mirrors it line by line on those three items.
+
 **Verification**
 
 - Precondition: v1.1.4 / August 26, 2026 / `badge-latest` confirmed as the prior top entry; hero and JSON-LD confirmed at 1.1.4.
