@@ -38,7 +38,7 @@ Each ticket record also carries two fields injected by the regen script:
 | `rollup` | optional | `true` on milestone-rollup gates. Validator warns if a `rollup: true` ticket has no `depends_on`. |
 | `effort` | optional | `evening` / `weekend` / `multi-day` — what time slot the work fits. Warn-only enum. |
 | `risk` | optional | `low` / `high` — `high` = data-destructive / release / migration / schema change. Warn-only enum. |
-| `area` | optional | `app` (default if omitted) / `site` / `marketing`. Warn-only enum. **Site work is ticketed in the site repo's own ticket system** (`~/my_works/Beheld-site`, `~/my_works/Receipts-for-YNAB-site`); the combined dashboard maps site-repo tickets to the parent app with `area: site` default, so site tickets may omit the field. *(Reversed 2026-07-08, PLAN-TIME Phase 0 — site/marketing tickets previously lived in the app repos.)* |
+| `area` | optional | `app` (default if omitted) / `site` / `marketing`. Warn-only enum. **Site work is ticketed in the site repo's own ticket system** (`~/my_works/Beheld-site`, `~/projects/rfy/site`); the combined dashboard maps site-repo tickets to the parent app with `area: site` default, so site tickets may omit the field. *(Reversed 2026-07-08, PLAN-TIME Phase 0 — site/marketing tickets previously lived in the app repos.)* |
 
 ## Validator behavior
 
