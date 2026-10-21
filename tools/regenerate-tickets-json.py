@@ -873,7 +873,7 @@ def main() -> int:
 # hook re-merges BOTH repos into the shared dashboard; it soft-fails so a
 # missing dashboard / merge error never blocks the regenerator or its hooks.
 MERGE_HOOK_ENABLED = True
-MERGE_SCRIPT = Path.home() / "my_works" / "tickets-dashboard" / "merge-tickets.py"
+MERGE_SCRIPT = Path.home() / "projects" / "tools" / "tickets-dashboard" / "merge-tickets.py"
 
 
 def refresh_dashboard() -> None:
