@@ -16,27 +16,14 @@ site is preserved in tag `site-legacy-2026` and branch `archive/2026-legacy`.
 an `_`-prefixed folder or a `_config.yml` `exclude:` hides nothing. Keep
 private or draft material out of `main`.
 
-## Ticket System
+## Work tracking
 
-The single source of truth for outstanding **site** work is
-`docs/Planning/Tickets/`. Three folders by status: top-level (`open` /
-`in-progress` / `deferred`), `done/`, `wontfix/`. **Folder must match
-frontmatter `status:`** — enforced. Site tickets live HERE, in this repo — not
-in the app repo (rule reversed 2026-07-08; app-repo tickets that predate that
-carry a pointer).
+Since 2026-10-21 the site's work is tracked as **GitHub issues in the app's private repo,
+`eturea/Receipts-for-YNAB`, with Area = Site**, on the Work Project
+(https://github.com/users/eturea/projects/4). This repo is public, so its issues would be too; file
+site work there instead, with its Project fields:
+`python3 ~/projects/workbench/tracker/issue.py new --repo eturea/Receipts-for-YNAB --area Site ...`. A commit or PR here closes it with `Fixes eturea/Receipts-for-YNAB#N`.
 
-```bash
-./tools/regenerate-tickets-json.py --new <SLUG>   # scaffold a new ticket
-./tools/regenerate-tickets-json.py                # validate + write tickets.json + refresh dashboard
-./tools/regenerate-tickets-json.py --check        # CI mode: exit 1 if json would change
-```
-
-The regen script also refreshes the **combined two-app dashboard** at
-`~/projects/tools/tickets-dashboard/index.html` (via `tickets-dashboard/merge-tickets.py`),
-which maps this repo's tickets onto the parent app (`rfy`) with `area: site`
-default — so tickets here may omit `area:`. **Never edit `tickets.json` by
-hand** — edit the source `TICKET_*.md` and re-run.
-
-**Frontmatter schema + validator behavior**: `docs/Planning/Tickets/README.md`
-— canonical and byte-identical across all four repos (Beheld, Receipts for
-YNAB, and both site repos). Edit all four copies together.
+`docs/Planning/Tickets/` is the archive: `done/` and `wontfix/` keep the closed site tickets, and an
+imported ticket's file is a pointer to its issue. `tickets.json` is frozen, and
+`tools/regenerate-tickets-json.py` no longer runs.
