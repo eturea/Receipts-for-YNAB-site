@@ -18,12 +18,13 @@ private or draft material out of `main`.
 
 ## Work tracking
 
-Since 2026-10-21 the site's work is tracked as **GitHub issues in the app's private repo,
-`eturea/Receipts-for-YNAB`, with Area = Site**, on the Work Project
-(https://github.com/users/eturea/projects/4). This repo is public, so its issues would be too; file
-site work there instead, with its Project fields:
-`python3 ~/projects/workbench/tracker/issue.py new --repo eturea/Receipts-for-YNAB --area Site ...`. A commit or PR here closes it with `Fixes eturea/Receipts-for-YNAB#N`.
+Work for this site is filed in `eturea/Receipts-for-YNAB` with Area = Site, on the Work Project
+(https://github.com/users/eturea/projects/4); nothing is filed here. `docs/Planning/Tickets/` is
+the archive.
 
-`docs/Planning/Tickets/` is the archive: `done/` and `wontfix/` keep the closed site tickets, and an
-imported ticket's file is a pointer to its issue. `tickets.json` is frozen, and
-`tools/regenerate-tickets-json.py` no longer runs.
+Each issue gets its own branch from `main` (`gh ticket start N --worktree`, a neutral slug, never
+the title) and lands by one PR into `main` from `gh ticket pr N`, whose body says
+`Fixes eturea/Receipts-for-YNAB#N` and what changed in the site. The session merges it with
+`gh ticket merge N` after a clean review and green checks. Nobody commits on `main`: the
+`pre-commit`, `pre-push` and `reference-transaction` git hooks are the authority, the Claude
+`git-policy` hook the early warning.
