@@ -24,7 +24,8 @@ Universal rules, every repository:
 PR rules, only in the opted-in repositories (hooks/opt-in.txt next to this file, plus the
 repository a per-repo copy is committed in), unless the file git-policy-off exists in the
 repository's common git dir:
-  P1  commit, merge, rebase, cherry-pick, am, revert, and pull without --ff-only, on main or develop
+  P1  commit, rebase, cherry-pick, am, revert, and a merge or pull that is not a fast-forward (--ff-only, or
+      pull with pull.ff=only), on main or develop
   P2  a push that names no refspec ("name the refspec": git push -u origin <branch>), whatever the
       config would send; a push that would update main or develop (creating develop while origin
       lacks it is allowed)
@@ -310,15 +311,19 @@ def check_push(repo, args, configs, opted):
     if "--delete" in args or "-d" in args:
         raise Deny("U4", "deleting a remote branch needs the owner's yes; he runs it")
     tags = "--tags" in args or "--follow-tags" in args
-    positional, i = [], 0
+    positional, repo_opt, i = [], None, 0
     while i < len(args):
         a = args[i]
         if a in PUSH_OPTS_WITH_VALUE:
+            if a == "--repo" and i + 1 < len(args):
+                repo_opt = args[i + 1]
             i += 2; continue
+        if a.startswith("--repo="):
+            repo_opt = a.split("=", 1)[1]
         if a.startswith("-"):
             i += 1; continue
         positional.append(a); i += 1
-    remote = positional[0] if positional else "origin"
+    remote = positional[0] if positional else repo_opt or "origin"   # git: a positional remote wins over --repo
     if opted and not positional[1:]:
         raise Deny("P2", "a push in this repository names what it sends: git push -u origin <branch> (name the refspec; "
                          "the config's remote.<r>.push, push.default, pushRemote and pushDefault are not consulted)")
@@ -448,10 +453,22 @@ def check_git(toks, cwd):
     if not opted:
         return
     on_integration = repo.branch in INTEGRATION
-    if sub in ("commit", "merge", "rebase", "cherry-pick", "am", "revert") and on_integration:
+    if on_integration and sub in ("merge", "pull"):               # a fast-forward makes no commit: allowed
+        def ff_flag(a):                                            # git takes unique abbreviations: --ff-o, --no-f
+            if a == "--ff": return a
+            if len(a) >= 5 and "--ff-only".startswith(a): return "--ff-only"
+            if len(a) >= 6 and "--no-ff".startswith(a): return "--no-ff"
+            return None
+        last = [f for f in map(ff_flag, args) if f]                 # git honours the last one given
+        if last:
+            ff_only = last[-1] == "--ff-only"
+        else:
+            ff_only = sub == "pull" and (config_value(repo, configs, "pull.ff") or "").lower() == "only"
+        if not ff_only:
+            raise Deny("P1", f"{repo.branch} moves only by PR merge and a fast-forward (git pull --ff-only, "
+                             "git merge --ff-only, or pull.ff=only)")
+    if sub in ("commit", "rebase", "cherry-pick", "am", "revert") and on_integration:
         raise Deny("P1", f"no commits on {repo.branch}: work on an issue branch from gh ticket start N")
-    if sub == "pull" and on_integration and "--ff-only" not in args:
-        raise Deny("P1", f"{repo.branch} moves only by PR merge and git pull --ff-only")
     if push_info:
         remote, refspecs, sources = push_info
         for t in push_targets(repo, refspecs, sources):
@@ -469,7 +486,14 @@ def check_git(toks, cwd):
 
 def check_gh(toks, cwd):
     args = toks[1:]
-    if len(args) >= 2 and args[0] == "ticket" and args[1] == "merge" and "--no-codex" in args:
+    words, i = [], 0                                   # the words without gh's -R/--repo and its value
+    while i < len(args):
+        if args[i] in ("-R", "--repo"):
+            i += 2; continue
+        if not args[i].startswith("--repo="):
+            words.append(args[i])
+        i += 1
+    if words[:2] == ["ticket", "merge"] and "--no-codex" in words:
         raise Deny("U5", "gh ticket merge --no-codex is the owner's, from his own terminal: fix or answer the Codex findings "
                          "and rereview instead")
     if "pr" in args and {"create", "merge"} & set(args[args.index("pr") + 1:]):
