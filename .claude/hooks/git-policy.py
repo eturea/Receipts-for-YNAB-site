@@ -53,6 +53,19 @@ BRANCH_OK = re.compile(r"^(fix|feat|chore|worker)/\d+-[A-Za-z0-9._-]+$|^(probe|s
                        r"|^worktree-[A-Za-z0-9._-]+$")       # worktree-agent-<hex>: Claude Code's worktree isolation
 GIT_OPTS_WITH_VALUE = {"-C", "-c", "--git-dir", "--work-tree", "--namespace", "--exec-path", "--super-prefix",
                        "--config-env", "--list-cmds", "--attr-source"}
+# merge and pull options that take the next word, pull's fetch-side ones included (git fetch --help);
+# -S, --gpg-sign, --log, --rebase and --recurse-submodules attach theirs with = and take no separate word
+MERGE_LONG_WITH_VALUE = ("--message", "--file", "--strategy", "--strategy-option", "--cleanup", "--into-name",
+                         "--server-option", "--upload-pack", "--depth", "--deepen", "--shallow-since", "--shallow-exclude",
+                         "--negotiation-tip", "--refmap", "--jobs", "--filter")
+MERGE_OPTS_WITH_VALUE = {"-m", "-F", "-s", "-X", "-o", "-j", *MERGE_LONG_WITH_VALUE}
+
+
+def merge_opt_takes_value(a):
+    """-m, --message, and any unique abbreviation git accepts (--mess); never an --opt=value form."""
+    if a in MERGE_OPTS_WITH_VALUE:
+        return True
+    return a.startswith("--") and len(a) >= 3 and "=" not in a and any(o.startswith(a) for o in MERGE_LONG_WITH_VALUE)
 PUSH_OPTS_WITH_VALUE = {"-o", "--push-option", "--repo", "--receive-pack", "--exec", "--recurse-submodules"}
 # --signed[=(yes|no|if-asked)] takes its value attached only: a standalone --signed consumes nothing.
 HERE = Path(__file__).resolve().parent
@@ -459,11 +472,22 @@ def check_git(toks, cwd):
             if len(a) >= 5 and "--ff-only".startswith(a): return "--ff-only"
             if len(a) >= 6 and "--no-ff".startswith(a): return "--no-ff"
             return None
-        last = [f for f in map(ff_flag, args) if f]                 # git honours the last one given
+        last, skip = [], False                                     # git honours the last one given
+        for a in args:
+            if a == "--": break                                     # the end of the options: what follows is a ref
+            if skip: skip = False; continue
+            if merge_opt_takes_value(a): skip = True; continue    # the value is not a flag: -m --ff-only
+            f = ff_flag(a)
+            if f: last.append(f)
         if last:
             ff_only = last[-1] == "--ff-only"
-        else:
-            ff_only = sub == "pull" and (config_value(repo, configs, "pull.ff") or "").lower() == "only"
+        else:                                                      # pull.ff=only holds unless --rebase/--no-rebase overrides it
+            def rebase_opt(a):                                     # -r, --reb[=mode], --no-reb and longer
+                a = a.split("=", 1)[0]
+                return a.startswith("-r") and not a.startswith("--") or \
+                    (len(a) >= 5 and "--rebase".startswith(a)) or (len(a) >= 8 and "--no-rebase".startswith(a))   # -r, -r0, -rtrue
+            mode = any(rebase_opt(a) for a in args)
+            ff_only = sub == "pull" and not mode and (config_value(repo, configs, "pull.ff") or "").lower() == "only"
         if not ff_only:
             raise Deny("P1", f"{repo.branch} moves only by PR merge and a fast-forward (git pull --ff-only, "
                              "git merge --ff-only, or pull.ff=only)")
@@ -490,7 +514,7 @@ def check_gh(toks, cwd):
     while i < len(args):
         if args[i] in ("-R", "--repo"):
             i += 2; continue
-        if not args[i].startswith("--repo="):
+        if not (args[i].startswith("--repo=") or (args[i].startswith("-R") and len(args[i]) > 2)):   # -Rx, -R=x
             words.append(args[i])
         i += 1
     if words[:2] == ["ticket", "merge"] and "--no-codex" in words:
