@@ -21,7 +21,7 @@
 
     <!-- SEO Meta Tags -->
     <title>Receipts for YNAB - Scan Receipts to YNAB with Apple Intelligence</title>
-    <meta name="description" content="Transform paper receipts into YNAB transactions instantly. Powered by Apple Intelligence for 100% on-device processing. New: link receipts to YNAB transactions and keep the photo on your iPhone.">
+    <meta name="description" content="Transform paper receipts into YNAB transactions instantly. Powered by Apple Intelligence. Processing on your iPhone by default. New: link receipts to YNAB transactions and keep the photo on your iPhone.">
     <meta name="keywords" content="YNAB, receipt scanner, Apple Intelligence, iOS app, budgeting, expense tracking, receipt to YNAB, on-device AI, iPad receipt scanner, multi-budget YNAB, receipt vault, receipt storage, grocery receipt scanner, line item splitting, YNAB categories, Neural Engine, bank import matching, offline receipt scanner, receipt search, local receipt storage YNAB, link receipts to YNAB, on-device receipt vault, YNAB transaction memo code, find receipt from YNAB transaction, private receipt links">
     <meta name="author" content="eTurea">
     <meta name="robots" content="index, follow">
@@ -59,7 +59,7 @@
         "operatingSystem": "iOS 26+, iPadOS 26+",
         "applicationCategory": "FinanceApplication",
         "softwareVersion": "1.1.5",
-        "description": "Transform paper receipts into YNAB transactions with Apple Intelligence. 100% on-device AI processing for privacy. Private Receipt Links keep the photo on your iPhone and add a reference code to the YNAB transaction memo.",
+        "description": "Transform paper receipts into YNAB transactions with Apple Intelligence. Powered by Apple Intelligence. Processing on your iPhone by default. Private Receipt Links keep the photo on your iPhone and add a reference code to the YNAB transaction memo.",
         "offers": {
             "@type": "Offer",
             "price": "0",
@@ -89,7 +89,7 @@
             "name": "YNAB now lets me attach receipt photos to transactions. Why use Receipts for YNAB instead?",
             "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Both approaches work — it's a matter of preference. YNAB's built-in attachments are convenient if you want everything stored together in YNAB. Receipts for YNAB is for people who'd rather keep their receipt images on their iPhone and just leave a small reference code in the transaction memo. You still get one-tap access from YNAB back to the receipt; the image just never leaves your device."
+                "text": "Both approaches work, it's a matter of preference. YNAB's built-in attachments are convenient if you want everything stored together in YNAB. Receipts for YNAB is for people who'd rather keep their receipt images on their iPhone and just leave a small reference code in the transaction memo. You still get one-tap access from YNAB back to the receipt; the image stays on your iPhone (unless you choose Private Cloud Compute reading)."
             }
         },
         {
@@ -113,7 +113,7 @@
             "name": "Are my receipts uploaded?",
             "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Never. All processing happens on your device using Apple Intelligence. We don't operate any servers that collect your data."
+                "text": "Not by default. Receipts are read on your iPhone. If you choose AI with Private Cloud Compute in Settings, your receipt photo is read by Apple's Private Cloud Compute. Apple states that it cannot access your receipt and does not store it. We don't operate any servers that collect your data."
             }
         },
         {
@@ -129,7 +129,7 @@
             "name": "Does it work offline?",
             "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Receipt scanning works completely offline. An internet connection is only needed to sync to YNAB."
+                "text": "Receipt scanning works offline when receipts are read on your iPhone, which is the default. An internet connection is needed to sync to YNAB, and for Private Cloud Compute reading if you choose it."
             }
         },
         {
@@ -178,15 +178,15 @@
             <div class="hero-copy">
                 <img class="hero-icon" src="assets/apple-touch-icon.png" alt="Receipts for YNAB app icon">
                 <h1>Receipts in.<br>Line items out.</h1>
-                <p class="hero-lead">Scan a receipt and Apple Intelligence extracts every item on your iPhone. Keep it locally, or sync it to YNAB split across your categories.</p>
+                <p class="hero-lead">Scan a receipt and Apple Intelligence extracts every item, on your iPhone by default. Keep it locally, or sync it to YNAB split across your categories.</p>
                 <div class="hero-cta">
                     <a class="app-store-badge" href="https://apps.apple.com/us/app/receipts-for-ynab/id6755055273"><img class="only-dark" src="assets/app-store-badge-black.svg" alt="Download on the App Store" width="144" height="48"><img class="only-light" src="assets/app-store-badge-white.svg" alt="Download on the App Store" width="144" height="48"></a>
                     <span class="hero-price">Free · 10 AI scans a month</span>
                 </div>
                 <a class="hero-release" href="changelog.html">v1.1.5 is out · <span>See what's new ›</span></a>
                 <div class="hero-facts">
-                    <div class="hero-fact"><span>On-device</span><span>Extraction runs on the Neural Engine. Works offline.</span></div>
-                    <div class="hero-fact"><span>Private</span><span>Photos stay on your iPhone. YNAB gets a short code.</span></div>
+                    <div class="hero-fact"><span>On your iPhone</span><span>extraction runs on the Neural Engine by default. Works offline.</span></div>
+                    <div class="hero-fact"><span>Private</span><span>photos stay on your iPhone unless you choose Private Cloud Compute reading. YNAB gets a short code.</span></div>
                     <div class="hero-fact"><span>YNAB-aware</span><span>Splits by category and matches bank imports.</span></div>
                 </div>
             </div>
@@ -205,7 +205,7 @@
 
         <section class="steps" id="how-it-works">
             <div class="step"><img src="assets/screenshot-home.png" alt="Capture options: document scanner, camera, photos, file"><p><strong>Scan.</strong> <span>Camera, library, or document scanner.</span></p></div>
-            <div class="step"><img src="assets/screenshot-hero.png" alt="Processing with Apple Intelligence"><p><strong>Extract.</strong> <span>Apple Intelligence reads it on-device.</span></p></div>
+            <div class="step"><img src="assets/screenshot-hero.png" alt="Processing with Apple Intelligence"><p><strong>Extract.</strong> <span>Apple Intelligence reads it, on your iPhone by default.</span></p></div>
             <div class="step"><img src="assets/screenshot-detail.png" alt="Receipt detail linked to YNAB with line items"><p><strong>Save or sync.</strong> <span>Keep it in the vault, or send it to YNAB.</span></p></div>
         </section>
 
@@ -226,7 +226,7 @@
                     </div>
                     <div class="faq-item">
                         <button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a-2"><span>YNAB now lets me attach receipt photos to transactions. Why use Receipts for YNAB instead?</span><span class="faq-sign" aria-hidden="true">+</span></button>
-                        <p class="faq-a" id="faq-a-2" hidden>Both approaches work — it's a matter of preference. YNAB's built-in attachments are convenient if you want everything stored together in YNAB. Receipts for YNAB is for people who'd rather keep their receipt images on their iPhone and just leave a small reference code in the transaction memo. You still get one-tap access from YNAB back to the receipt; the image just never leaves your device.</p>
+                        <p class="faq-a" id="faq-a-2" hidden>Both approaches work, it's a matter of preference. YNAB's built-in attachments are convenient if you want everything stored together in YNAB. Receipts for YNAB is for people who'd rather keep their receipt images on their iPhone and just leave a small reference code in the transaction memo. You still get one-tap access from YNAB back to the receipt; the image stays on your iPhone (unless you choose Private Cloud Compute reading).</p>
                     </div>
                     <div class="faq-item">
                         <button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a-3"><span>Do I need a YNAB account?</span><span class="faq-sign" aria-hidden="true">+</span></button>
@@ -238,7 +238,7 @@
                     </div>
                     <div class="faq-item">
                         <button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a-5"><span>Are my receipts uploaded?</span><span class="faq-sign" aria-hidden="true">+</span></button>
-                        <p class="faq-a" id="faq-a-5" hidden>Never. All processing happens on your device using Apple Intelligence. We don't operate any servers that collect your data.</p>
+                        <p class="faq-a" id="faq-a-5" hidden>Not by default. Receipts are read on your iPhone. If you choose AI with Private Cloud Compute in Settings, your receipt photo is read by Apple's Private Cloud Compute. Apple states that it cannot access your receipt and does not store it. We don't operate any servers that collect your data.</p>
                     </div>
                     <div class="faq-item">
                         <button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a-6"><span>What data goes to YNAB?</span><span class="faq-sign" aria-hidden="true">+</span></button>
@@ -246,7 +246,7 @@
                     </div>
                     <div class="faq-item">
                         <button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a-7"><span>Does it work offline?</span><span class="faq-sign" aria-hidden="true">+</span></button>
-                        <p class="faq-a" id="faq-a-7" hidden>Receipt scanning works completely offline. An internet connection is only needed to sync to YNAB.</p>
+                        <p class="faq-a" id="faq-a-7" hidden>Receipt scanning works offline when receipts are read on your iPhone, which is the default. An internet connection is needed to sync to YNAB, and for Private Cloud Compute reading if you choose it.</p>
                     </div>
                     <div class="faq-item">
                         <button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a-8"><span>How do you handle sales tax?</span><span class="faq-sign" aria-hidden="true">+</span></button>
