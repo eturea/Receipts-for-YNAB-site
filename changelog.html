@@ -60,12 +60,34 @@
             <p>Every update to Receipts for YNAB, from launch to today. Built by a solo developer and fellow YNAB budgeter, shaped by user feedback.</p>
         </div>
 
-        <!-- v1.1.5 -->
+        <!-- v1.1.6 -->
         <div class="version-entry latest">
+            <div class="version-header">
+                <span class="version-number">v1.1.6</span>
+                <span class="version-date">November 13, 2026</span>
+                <span class="version-badge badge-latest">Latest</span>
+            </div>
+            <p class="version-summary">French receipts in France, and fixes for receipt dates, link codes and the free plan.</p>
+            <ul class="version-changes">
+                <li><span class="change-tag tag-new">New</span> <strong>French receipts</strong>: on iOS 27, with your iPhone set to French and the region France, receipts are read with the merchant and item names as printed, the total you paid and the date in day-first order. The app itself stays in English.</li>
+                <li><span class="change-tag tag-fixed">Fixed</span> <strong>Receipt dates match YNAB</strong>: receipt dates no longer show a day off from YNAB. If an older receipt still looks a day early, tap Sync from YNAB.</li>
+                <li><span class="change-tag tag-fixed">Fixed</span> <strong>Day-first dates on iOS 27</strong>: a date printed day first, as in the UK, no longer has its day and month swapped.</li>
+                <li><span class="change-tag tag-fixed">Fixed</span> <strong>Product codes on iOS 27</strong>: lines of long product codes on some store receipts no longer stop the receipt from scanning.</li>
+                <li><span class="change-tag tag-fixed">Fixed</span> <strong>Adding link codes</strong>: Add Link Codes to Existing Receipts now changes only the memo in YNAB, and pauses if YNAB asks it to slow down.</li>
+                <li><span class="change-tag tag-fixed">Fixed</span> <strong>Free limits</strong>: scans and uploads count toward the free limits only on the Free plan, and subscribers no longer see the upgrade screen while the app confirms their plan at launch.</li>
+                <li><span class="change-tag tag-improved">Improved</span> <strong>Clear limit message</strong>: at 10 of 10 free scans, the Scan tab now says Monthly Limit Reached.</li>
+                <li><span class="change-tag tag-improved">Improved</span> <strong>Privacy</strong>: the app no longer keeps a copy of YNAB's web responses on your iPhone, and Delete All Data and Sign Out clear any copy an earlier version kept. Sign Out still keeps your budget, account and category names for offline use; Delete All Data removes them.</li>
+                <li><span class="change-tag tag-improved">Improved</span> <strong>PDF receipts</strong>: PDF receipts chosen from Files are read at full resolution.</li>
+                <li><span class="change-tag tag-improved">Improved</span> <strong>Accessibility</strong>: VoiceOver announces when a transaction ID is copied.</li>
+                <li><span class="change-tag tag-improved">Improved</span> <strong>Reliability</strong>: improvements under the hood.</li>
+            </ul>
+        </div>
+
+        <!-- v1.1.5 -->
+        <div class="version-entry">
             <div class="version-header">
                 <span class="version-number">v1.1.5</span>
                 <span class="version-date">September 27, 2026</span>
-                <span class="version-badge badge-latest">Latest</span>
             </div>
             <p class="version-summary">Deletion you can trust, and scanning ready for iOS 27.</p>
             <ul class="version-changes">
