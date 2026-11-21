@@ -22,10 +22,12 @@ Universal rules, every repository:
       branch (PROTECTED_BRANCHES)
   U5  gh ticket merge --no-codex, or a prefix of it at least 3 long (--n, --no-c: argparse takes
       them): the owner's, from his own terminal
-  U6  any gh invocation whose words include pr followed by create or merge, wherever the flags
-      sit: use gh ticket pr / gh ticket merge; except one of four help lines given as the whole
-      command text: gh pr merge|create --help|-h (gh-ticket#30). gh help pr merge|create stays
-      refused: a gh alias named help can shadow the built-in help command
+  U6  any gh invocation whose words include pr followed by create, merge or revert (gh 2.83.0's
+      revert opens a PR on GitHub, gh-ticket#112), wherever the flags sit: use gh ticket pr / gh ticket
+      merge, and to revert, git revert on an issue branch from gh ticket start N --worktree, then gh
+      ticket pr N; except one of six help lines given as the whole command text: gh pr
+      merge|create|revert --help|-h (gh-ticket#30). gh help pr merge|create|revert stays refused: a
+      gh alias named help can shadow the built-in help command
   U7  a gh or git command whose argv xargs assembles from stdin, or a script from its arguments
       ($@, $1), when a word that decides U1 to U6 or P1 to P3 cannot be read: name it on the line
   U8  a command word git-policy cannot read (gh-ticket#44): the head of any command the parser yields
@@ -86,10 +88,10 @@ too: quote it. No word is exempt, a shell's data after its -c script included (b
 git commit), and any -S STR is read as a split string (git log -S 'git push --force' is
 refused). After the parse, a raw-text backstop (gh only) refuses a pipeline
 (backslash-newlines joined, then split at ; && || & and newlines, never at |, ignoring quotes,
-heredoc bodies included) whose case-insensitive whole words name gh, pr and merge
-or create (U6), or gh, ticket, merge and a --no-codex prefix (U5), whatever its shape: put such
+heredoc bodies included) whose case-insensitive whole words name gh, pr and merge,
+create or revert (U6), or gh, ticket, merge and a --no-codex prefix (U5), whatever its shape: put such
 text in a file, or search with the Grep tool. Its refusal speaks before U7's and U8's. The backstop skips
-only those four U6 help lines.
+only those six U6 help lines.
 PR rules, only in the opted-in repositories (hooks/opt-in.txt next to this file, plus the
 repository a per-repo copy is committed in), unless the file git-policy-off exists in the
 repository's common git dir:
@@ -1260,11 +1262,13 @@ def no_codex(w):
     return len(w) >= 3 and "--no-codex".startswith(w)
 
 
-# U6's one exception (gh-ticket#30): four help lines, each the whole command text. HELP_TEXT reads the raw text,
+# U6's one exception (gh-ticket#30, revert gh-ticket#112): six help lines, each the whole command text. HELP_TEXT reads the raw text,
 # HELP_ARGV the head command's argv; both must agree, so no wrapper, prefix, quote, expansion, redirection or second
 # command fits. gh help pr X is not one: a gh alias named help can shadow the built-in help (no alias shadows pr).
-HELP_TEXT = re.compile(r"[ \t]*gh[ \t]+pr[ \t]+(?:merge|create)[ \t]+(?:--help|-h)[ \t]*")
-HELP_ARGV = {("pr", "merge", "--help"), ("pr", "merge", "-h"), ("pr", "create", "--help"), ("pr", "create", "-h")}
+U6_ACTIONS = ("merge", "create", "revert")              # gh pr revert opens a PR on GitHub (gh 2.83.0, gh-ticket#112)
+HELP_TEXT = re.compile(r"[ \t]*gh[ \t]+pr[ \t]+(?:" + "|".join(U6_ACTIONS) + r")[ \t]+(?:--help|-h)[ \t]*")
+HELP_ARGV = {("pr", a, h) for a in U6_ACTIONS for h in ("--help", "-h")}
+U6_REVERT = "to revert, git revert on an issue branch from gh ticket start N --worktree, then gh ticket pr N"
 
 
 def check_gh(toks, help_ok=False):
@@ -1275,9 +1279,10 @@ def check_gh(toks, help_ok=False):
                          "and rereview instead")
     if help_ok and toks[0] == "gh" and tuple(args) in HELP_ARGV:
         return                                                     # help_ok: the whole text is one help line, at the head
-    if "pr" in args and {"create", "merge"} & set(args[args.index("pr") + 1:]):
-        raise Deny("U6", "open and merge PRs with gh ticket pr N and gh ticket merge N, never gh pr create or gh pr merge "
-                         "(every repository; gh ticket pushes, sets the base and the body, and merges in the right style)")
+    if "pr" in args and set(U6_ACTIONS) & set(args[args.index("pr") + 1:]):
+        raise Deny("U6", "open and merge PRs with gh ticket pr N and gh ticket merge N, never gh pr create, gh pr merge or "
+                         "gh pr revert (every repository; gh ticket pushes, sets the base and the body, and merges in the "
+                         f"right style); {U6_REVERT}")
 
 
 # ---------------------------------------------------------------- main
@@ -1323,7 +1328,7 @@ def check_fed(suffix, fed):
             shape, what = "gh", "subcommand"
         elif first in ("pr", "ticket") and not visible(second):
             shape, what = f"gh {first}", "subcommand"
-        elif first == "ticket" and second == "merge" or first == "pr" and second in ("create", "merge"):
+        elif first == "ticket" and second == "merge" or first == "pr" and second in U6_ACTIONS:
             shape, what = f"gh {first} {second}", "options"
     else:
         sub, rule = parse_git(suffix, "/")[1], "U1 to U4, P1 to P3"
@@ -1548,10 +1553,10 @@ def backstop(text):
             raise Deny("U5", "this command line names gh, ticket, merge and --no-codex (or a prefix of it) in one pipeline, "
                              "and git-policy refuses such text whatever its shape: put the text in a file (global rule 9), "
                              "or search with the Grep tool")
-        if {"gh", "pr"} <= words and words & {"merge", "create"}:
-            raise Deny("U6", "this command line names gh, pr and merge (or create) in one pipeline, and git-policy "
-                             "refuses such text whatever its shape: put the text in a file (global rule 9), or search "
-                             "with the Grep tool")
+        if {"gh", "pr"} <= words and words & set(U6_ACTIONS):
+            raise Deny("U6", "this command line names gh, pr and merge (or create, or revert) in one pipeline, and "
+                             "git-policy refuses such text whatever its shape: put the text in a file (global rule 9), or "
+                             f"search with the Grep tool; {U6_REVERT}")
 
 
 SHIM_MARKER = re.compile(r"GH_TICKET_INNER(?![A-Za-z0-9_])")    # (c1): no left boundary, -S<name> too (gh-ticket#53)
@@ -1797,7 +1802,7 @@ def main():
     try:
         if os.environ.get("GIT_POLICY_TEST_CRASH") == "1":  # D1: every text is parsed, no fast path (g\\h is gh)
             raise RuntimeError("forced crash for the test suite")
-        help_text = HELP_TEXT.fullmatch(text) is not None   # one of U6's four help lines, as the whole text (gh-ticket#30)
+        help_text = HELP_TEXT.fullmatch(text) is not None   # one of U6's six help lines, as the whole text (gh-ticket#30)
         try:
             evaluate(text, [data.get("cwd") or os.getcwd()], help_ok=help_text)
         except Deny as d:
